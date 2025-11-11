@@ -21,8 +21,8 @@ if st.button("🔍 Predict"):
     if prev_use == 0:
         st.warning("⚠️ Please enter a valid previous consumption value.")
     else:
-#  حساب نسبة التغير
-change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
+    #  حساب نسبة التغير
+       change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
 
 # ==== configurable thresholds ====
 MEAN = 339.91
