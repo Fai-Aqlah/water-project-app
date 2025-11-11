@@ -1,7 +1,7 @@
 
 import streamlit as st
 import numpy as np
-from style import load_custom_style
+from style import load_style
 
 # إعداد الصفحة
 st.set_page_config(page_title="💧 Smart Water Consumption & Leak Detection System", layout="centered")
