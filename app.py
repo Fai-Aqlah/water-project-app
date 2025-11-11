@@ -13,7 +13,12 @@ st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak D
 st.markdown("<div class='sub-title'>Using XGBoost for intelligent water monitoring and leak prevention</div>", unsafe_allow_html=True)
 
 st.title("💧 Smart Water Consumption Prediction & Leak Detection")
-st.markdown("Using XGBoost for intelligent water monitoring 💡")
+st.markdown("""
+<div class='sub-title'>
+نظام مدعوم بالذكاء الاصطناعي لإدارة المياه الذكية ومنع التسريبات 💧<br>
+<small><i>AI-powered system for smart water management and leak prevention</i></small>
+</div>
+""", unsafe_allow_html=True)
 
 # القيم الإحصائية من البيانات (من التحليل بالكولاب)
 low_threshold = 197.22
