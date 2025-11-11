@@ -32,16 +32,18 @@ header {
     }
 
     /*  العنوان الرئيسي  */
-    .main-title {
-        font-size: 42px;
-        font-weight: 900;
-        text-align: center;
-        color: #0E4D64;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* ✨ ظل أنيق تحت العنوان */
-    }
-   /* ✨ حركة دخول أنيقة للعنوان */
+   .main-title {
+    font-size: 42px;
+    font-weight: 900;
+    text-align: center;
+    color: #0E4D64;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    animation: fadeInDown 1s ease-in-out; /* ✨ هذا السطر يفعل الحركة */
+}
+
+/* الحركة */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -52,6 +54,7 @@ header {
         transform: translateY(0);
     }
 }
+
 
 
     /*  العنوان الفرعي  */
