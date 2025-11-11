@@ -98,17 +98,18 @@ def load_style():
 
     /* ===== الفوتر ===== */
     footer {
-        text-align: center;
-        color: #0E4D64;
-        font-size: 17px;
-        font-weight: 600;
-        margin-top: 30px;
-        padding-bottom: 10px;
-        line-height: 1.6;
-        position: relative;
-        bottom: 40px;
-        opacity: 0.9;
-    }
+    text-align: center;
+    color: #2e8b57; /* 💚 أخضر فاتح جميل */
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    line-height: 1.6;
+    position: relative;
+    bottom: 40px;
+    opacity: 0.95;
+}
+
 
     </style>
     """, unsafe_allow_html=True)
