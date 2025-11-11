@@ -1,9 +1,11 @@
 
 import streamlit as st
 import numpy as np
+from style import load_custom_style
 
 # إعداد الصفحة
 st.set_page_config(page_title="💧 Smart Water Consumption & Leak Detection System", layout="centered")
+load_custom_style()
 
 st.title("💧 Smart Water Consumption Prediction & Leak Detection")
 st.markdown("Using XGBoost for intelligent water monitoring 💡")
