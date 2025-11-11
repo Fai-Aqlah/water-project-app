@@ -6,7 +6,9 @@ from style import load_style
 # إعداد الصفحة
 st.set_page_config(page_title="💧 Smart Water Consumption & Leak Detection System", layout="centered")
 load_style()
-st.markdown('<img class="logo" src="https://i.ibb.co/NxjvGJX/Ministry-of-Environment-Water-and-Agriculture.png">', unsafe_allow_html=True)
+#شعار الوزارة
+st.image("Green.png", width=100)
+#العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 st.markdown("<div class='sub-title'>Using XGBoost for intelligent water monitoring and leak prevention</div>", unsafe_allow_html=True)
 
