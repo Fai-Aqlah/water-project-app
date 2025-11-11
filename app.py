@@ -21,8 +21,16 @@ if st.button("🔍 Predict"):
     if prev_use == 0:
         st.warning("⚠️ Please enter a valid previous consumption value.")
     else:
-        # حساب نسبة التغير
-        change_rate = ((curr_use - prev_use) / prev_use) * 100
+#  حساب نسبة التغير
+change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
+
+# 🔍 تحديد مستوى الاستهلاك بناءً على التحليل الإحصائي الفعلي
+if change_rate < 113:
+    st.success(f"✅ Normal consumption. Water usage changed by {change_rate:.1f}%. All good.")
+elif 113 <= change_rate < 190:
+    st.warning(f"⚠️ High consumption detected ({change_rate:.1f}%). Please monitor usage.")
+else:
+    st.error(f"🚨 Leak or extreme overuse detected! Water usage increased by {change_rate:.1f}%. Check the system immediately.")
 
         # تحديد مستويات الاستهلاك السابقة والحالية
         if prev_use <= low_threshold:
