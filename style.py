@@ -25,8 +25,7 @@ header {
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        body {
-    background: linear-gradient(to bottom, #f8fbfd, #ffffff);
+       
 
 
     }
