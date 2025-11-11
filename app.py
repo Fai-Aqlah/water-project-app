@@ -16,22 +16,24 @@ prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.
 curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
 # Prediction button
+# Prediction button
 if st.button("🔍 Predict"):
-        data = np.array([[prev_use, curr_use]])
-        prediction = model.predict(data)
+    data = np.array([[prev_use, curr_use]])
+    prediction = model.predict(data)
 
-        # 🔹 حساب نسبة التغير
-        change_rate = ((curr_use - prev_use) / prev_use) * 100
+    # 🔹 حساب نسبة التغير
+    change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
 
-        # 🔹 منطق العتبة Threshold
-        if abs(change_rate) <= 10:
-            st.success(f"✅ No Leak Detected. Change rate is only {change_rate:.1f}%. Water usage is normal.")
+    # 🔹 منطق العتبة Threshold + منطق الاتجاه
+    if curr_use < prev_use:
+        st.success(f"✅ Excellent! Water usage decreased by {abs(change_rate):.1f}%. This indicates efficient water usage.")
+    else:
+        if change_rate > 10:
+            st.error(f"🚨 Leak or Overuse Detected! Water usage increased by {change_rate:.1f}%. Please check the system.")
         else:
-            if prediction[0] == 1:
-                st.error(f"🚨 Leak Detected! Water usage changed by {change_rate:.1f}%. Please check the system immediately.")
-            else:
-                st.success(f"✅ No Leak Detected. Change rate: {change_rate:.1f}%.")
+            st.warning(f"⚠️ Slight increase ({change_rate:.1f}%). Keep monitoring your consumption.")
 
-    # Footer
+# Footer
 st.markdown("---")
 st.caption("Developed by Fai Alshamary | Powered by XGBoost & Streamlit ✨")
+
