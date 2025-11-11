@@ -71,11 +71,15 @@ def load_style():
 
     /* ===== الفوتر ===== */
     footer {
-        text-align: center;
-        color: #555;
-        font-size: 14px;
-        margin-top: 50px;
-        padding-bottom: 10px;
+    text-align: center;
+    color: #0E4D64;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 80px;       /* رفع المسافة عن الأسفل */
+    padding-bottom: 30px;   /* زيادة التباعد عن نهاية الصفحة */
+    line-height: 1.6;       /* تباعد بسيط بين السطرين */
+}
+
     }
 
     hr {
