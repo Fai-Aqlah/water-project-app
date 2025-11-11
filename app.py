@@ -22,19 +22,21 @@ if st.button("🔍 Predict"):
     # تحديد فئة الاستهلاك
     def consumption_level(value):
         if value < 500:
-            return "low"
+            return "Low"
         elif value < 1500:
-            return "medium"
+            return "Medium"
         else:
-            return "high"
+            return "High"
 
     prev_level = consumption_level(prev_use)
     curr_level = consumption_level(curr_use)
 
     # منطق القرار
     if curr_use == prev_use:
-        if curr_level == "high":
-            st.warning(f"⚠️ High constant consumption detected ({curr_use}L). Try to reduce usage.")
+        if curr_level == "High":
+            st.warning(f"⚠️ High constant consumption detected ({curr_use} L). Try to reduce usage.")
+        elif curr_level == "Medium":
+            st.info(f"ℹ️ Stable average consumption ({curr_use} L). No leak detected.")
         else:
             st.success("✅ Stable and efficient water usage. Keep it up!")
     elif curr_use < prev_use:
@@ -44,7 +46,9 @@ if st.button("🔍 Predict"):
     else:
         st.warning(f"⚠️ Slight increase ({change_rate:.1f}%). Keep monitoring your consumption.")
 
-    st.caption(f"Previous Level: {prev_level.upper()} | Current Level: {curr_level.upper()}")
+    # عرض المستوى الحالي والسابق دائمًا تحت النتيجة
+    st.info(f"Previous Level: {prev_level} | Current Level: {curr_level}")
+
 
 
 # Footer
