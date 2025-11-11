@@ -10,7 +10,6 @@ st.image("Green.jpg", width=140)
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 
-st.title("💧 Smart Water Consumption Prediction & Leak Detection")
 st.markdown("""
 <div class='sub-title'>
 نظام مدعوم بالذكاء الاصطناعي لإدارة المياه الذكية ومنع التسريبات 💧<br>
