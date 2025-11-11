@@ -4,7 +4,6 @@ import numpy as np
 from style import load_style
 
 # إعداد الصفحة
-st.set_page_config(page_title="💧 Smart Water Consumption & Leak Detection System", layout="centered")
 load_style()
 #شعار الوزارة
 st.image("Green.jpg", width=140)
