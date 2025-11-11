@@ -4,8 +4,19 @@ import streamlit as st
 def load_style():
     st.markdown("""
     <style>
+    /*  الشريط العلوي  */
+header {
+    background-color: #2e8b57; /* الأخضر  */
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-    /* ===== الأساسيات ===== */
+    /*  الأساسيات  */
     body {
         background: linear-gradient(to bottom, #f8fafc, #eaf6ff);
         font-family: 'Arial', sans-serif;
@@ -16,7 +27,7 @@ def load_style():
         min-height: 100vh;
     }
 
-    /* ===== العنوان الرئيسي ===== */
+    /*  العنوان الرئيسي  */
     .main-title {
         font-size: 42px;
         font-weight: 900;
@@ -27,7 +38,7 @@ def load_style():
         text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* ✨ ظل أنيق تحت العنوان */
     }
 
-    /* ===== العنوان الفرعي ===== */
+    /*  العنوان الفرعي  */
     .sub-title {
         font-size: 16px;
         font-weight: 500;
@@ -37,7 +48,7 @@ def load_style():
         line-height: 1.5;
     }
 
-    /* ===== الشعار ===== */
+    /*  الشعار  */
     img {
         display: block;
         margin-left: auto;
@@ -49,7 +60,7 @@ def load_style():
         box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
     }
 
-    /* ===== مربعات الإدخال ===== */
+    /*  مربعات الإدخال  */
     .stNumberInput label {
         font-size: 18px;
         font-weight: 600;
@@ -63,43 +74,64 @@ def load_style():
         box-shadow: 0px 1px 4px rgba(0,0,0,0.08);
     }
 
-    /* ===== الزر ===== */
+    /*  الزر  */
     div.stButton > button {
-        font-size: 18px;
-        font-weight: 600;
-        color: white;
-        background-color: #1B83C0;
-        border-radius: 10px;
-        padding: 10px 30px;
-        transition: 0.3s ease-in-out;
-        border: none;
-        box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
-    }
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(90deg, #1B83C0, #20a4f3);
+    border-radius: 10px;
+    padding: 10px 35px;
+    transition: 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+}
+div.stButton > button:hover {
+    background: linear-gradient(90deg, #156EA3, #1B83C0);
+    transform: scale(1.06);
+}
 
-    div.stButton > button:hover {
-        background-color: #156EA3;
-        transform: scale(1.05);
-    }
 
-    /* ===== رسائل النتيجة ===== */
+    /*  رسائل النتيجة  */
     .stSuccess, .stInfo, .stWarning, .stError {
         font-size: 17px;
         font-weight: 500;
         text-align: center;
         line-height: 1.6;
+        .stSuccess { 
+    background-color: #d4edda; 
+    color: #155724; 
+    border-radius: 8px; 
+    padding: 10px; 
+} 
+
+.stWarning { 
+    background-color: #fff3cd; 
+    color: #856404; 
+    border-radius: 8px; 
+    padding: 10px; 
+} 
+
+.stError { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border-radius: 8px; 
+    padding: 10px; 
+}
+
     }
 
-    /* ===== خط فاصل قبل الفوتر ===== */
+    /*  خط فاصل قبل الفوتر  */
     hr {
         border: 1px solid #B6E2D3;
         width: 80%;
         margin: 40px auto 20px auto;
     }
 
-    /* ===== الفوتر ===== */
+    /*  الفوتر  */
     footer {
     text-align: center;
-    color: #2e8b57; /* 💚 أخضر فاتح جميل */
+    color: #2e8b57; /*  أخضر فاتح جميل */
     font-size: 17px;
     font-weight: 600;
     margin-top: 30px;
@@ -110,6 +142,9 @@ def load_style():
     opacity: 0.95;
 }
 
+  section.main > div {
+    padding-top: 10px;
+}
 
     </style>
     """, unsafe_allow_html=True)
