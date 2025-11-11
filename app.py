@@ -5,6 +5,8 @@ from style import load_style
 
 # إعداد الصفحة
 load_style()
+st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
+
 #شعار الوزارة
 st.image("Green.jpg", width=140)
 #العناوين
