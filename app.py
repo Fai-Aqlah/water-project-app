@@ -24,48 +24,46 @@ if st.button("🔍 Predict"):
 #  حساب نسبة التغير
 change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
 
-# 🔍 تحديد مستوى الاستهلاك بناءً على التحليل الإحصائي الفعلي
-if change_rate < 113:
-    st.success(f"✅ Normal consumption. Water usage changed by {change_rate:.1f}%. All good.")
-elif 113 <= change_rate < 190:
-    st.warning(f"⚠️ High consumption detected ({change_rate:.1f}%). Please monitor usage.")
+# ==== configurable thresholds ====
+MEAN = 339.91
+STD  = 142.69
+
+LOW_MAX    = MEAN - STD      # 197.22
+MED_MAX    = MEAN + STD      # 482.60
+
+WARN_PCT   = 113.0           # بداية التحذير
+LEAK_PCT   = 190.0           # تسريب فعلي
+PCT_TOL    = 5.0             # تجاهل تغيّر أقل من 5%
+ABS_TOL    = 10.0            # أو أقل من 10 لتر
+
+# ==== compute features ====
+change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0.0
+abs_delta   = abs(curr_use - prev_use)
+
+def level(x):
+    if x < LOW_MAX: return "Low"
+    if x <= MED_MAX: return "Medium"
+    return "High"
+
+prev_level = level(prev_use)
+curr_level = level(curr_use)
+
+# ==== decision logic ====
+if prev_use == 0:
+    st.info("ℹ️ Previous consumption is 0, change rate set to 0%.")
+elif abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
+    st.success(f"✅ Stable usage (Δ={abs_delta:.0f} L, {change_rate:.1f}%). No action needed.")
 else:
-    st.error(f"🚨 Leak or extreme overuse detected! Water usage increased by {change_rate:.1f}%. Check the system immediately.")
+    if change_rate >= LEAK_PCT:
+        st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
+    elif change_rate >= WARN_PCT:
+        st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
+    elif change_rate <= -PCT_TOL:
+        st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
+    else:
+        st.success(f"✅ Normal change ({change_rate:.1f}%).")
 
-        # تحديد مستويات الاستهلاك السابقة والحالية
-        if prev_use <= low_threshold:
-            prev_level = "Low"
-        elif prev_use <= high_threshold:
-            prev_level = "Medium"
-        else:
-            prev_level = "High"
-
-        if curr_use <= low_threshold:
-            curr_level = "Low"
-        elif curr_use <= high_threshold:
-            curr_level = "Medium"
-        else:
-            curr_level = "High"
-
-        # منطق الكشف والتحليل
-        if curr_use < prev_use:
-            st.success(f"✅ Excellent! Water usage decreased by {abs(change_rate):.1f}%. Great efficiency!")
-        elif curr_use > prev_use:
-            if change_rate > 10:
-                st.error(f"❌ Leak or Overuse Detected! Water usage increased by {change_rate:.1f}%. Please check the system.")
-            else:
-                st.warning(f"⚠️ Slight increase ({change_rate:.1f}%). Keep monitoring your consumption.")
-        else:
-            # حالة التساوي تمامًا
-            if curr_use <= low_threshold:
-                st.info(f"ℹ️ Constant low usage detected ({curr_use:.1f} L). Stable and efficient.")
-            elif curr_use <= high_threshold:
-                st.info(f"ℹ️ Constant medium usage detected ({curr_use:.1f} L). Normal operation.")
-            else:
-                st.warning(f"⚠️ High constant consumption detected ({curr_use:.1f} L). Try to reduce usage.")
-
-        # عرض مستوى الاستهلاك الحالي والسابق
-        st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
+st.markdown(f"**Previous Level:** {prev_level}  |  **Current Level:** {curr_level}")
 
 # الفوتر
 st.markdown("---")
