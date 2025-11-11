@@ -25,6 +25,10 @@ header {
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        body {
+    background: linear-gradient(to bottom, #f8fbfd, #ffffff);
+
+
     }
 
     /*  العنوان الرئيسي  */
@@ -37,6 +41,18 @@ header {
         margin-bottom: 10px;
         text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* ✨ ظل أنيق تحت العنوان */
     }
+   /* ✨ حركة دخول أنيقة للعنوان */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
     /*  العنوان الفرعي  */
     .sub-title {
@@ -131,16 +147,15 @@ div.stButton > button:hover {
     /*  الفوتر  */
     footer {
     text-align: center;
-    color: #2e8b57; /*  أخضر فاتح جميل */
-    font-size: 17px;
+    color: #2e8b57;
+    font-size: 16px;
     font-weight: 600;
-    margin-top: 30px;
-    padding-bottom: 10px;
-    line-height: 1.6;
-    position: relative;
-    bottom: 40px;
-    opacity: 0.95;
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 2px solid #b7dfc5;
+    line-height: 1.8;
 }
+
 
   section.main > div {
     padding-top: 10px;
