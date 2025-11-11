@@ -16,11 +16,8 @@ prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.
 curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
 # Prediction button
-# Prediction button
 if st.button("🔍 Predict"):
-    data = np.array([[prev_use, curr_use]])
-    prediction = model.predict(data)
-
+    
     # 🔹 حساب نسبة التغير
     change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
 
