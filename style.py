@@ -30,8 +30,8 @@ header {
 
     }
 
-    /*  العنوان الرئيسي  */
-   .main-title {
+    /* العنوان الرئيسي */
+.main-title {
     font-size: 42px;
     font-weight: 900;
     text-align: center;
@@ -39,19 +39,20 @@ header {
     margin-top: 20px;
     margin-bottom: 10px;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-    animation: fadeInDown 1s ease-in-out; /* ✨ هذا السطر يفعل الحركة */
+    animation: fadeInDown 1s ease-in-out, glowEffect 3s infinite ease-in-out;
 }
 
-/* الحركة */
+/* 🌿 تأثير التوهّج الأخضر الناعم */
+@keyframes glowEffect {
+    0% { text-shadow: 1px 1px 4px rgba(0,0,0,0.2), 0 0 10px #81c784, 0 0 20px #a5d6a7; }
+    50% { text-shadow: 1px 1px 4px rgba(0,0,0,0.2), 0 0 15px #a5d6a7, 0 0 30px #c8e6c9; }
+    100% { text-shadow: 1px 1px 4px rgba(0,0,0,0.2), 0 0 10px #81c784, 0 0 20px #a5d6a7; }
+}
+
+/* الحركة الانسيابية للعنوان */
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
