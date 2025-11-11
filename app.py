@@ -1,46 +1,66 @@
 
 import streamlit as st
 import numpy as np
-import joblib
-
-# تحميل النموذج (احتياطي فقط – في حال أردت استخدامه لاحقًا)
-model = joblib.load('xgboost_model.pkl')
 
 # إعداد الصفحة
 st.set_page_config(page_title="💧 Smart Water Consumption & Leak Detection System", layout="centered")
+
 st.title("💧 Smart Water Consumption Prediction & Leak Detection")
-st.markdown("💡 Using XGBoost for intelligent water monitoring")
+st.markdown("Using XGBoost for intelligent water monitoring 💡")
+
+# القيم الإحصائية من البيانات (من التحليل بالكولاب)
+low_threshold = 197.22
+high_threshold = 482.60
 
 # إدخال القيم من المستخدم
-prev_use = st.number_input("Enter previous consumption (L):", min_value=0.0, step=1.0)
-curr_use = st.number_input("Enter current consumption (L):", min_value=0.0, step=1.0)
+prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.1)
+curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
-# زر التنبؤ
+# عند الضغط على زر التنبؤ
 if st.button("🔍 Predict"):
-
-    # حساب نسبة التغير بين الاستهلاكين
-    change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
-
-    # القيم المستنتجة من البيانات (عتبات واقعية)
-    low_threshold = 197.22
-    high_threshold = 482.60
-
-    # تصنيف مستوى الاستهلاك الحالي
-    if curr_use < low_threshold:
-        level = "Low"
-        st.success(f"✅ Efficient usage detected! Current consumption ({curr_use:.1f} L) is LOW. Keep it up! 💧")
-    elif curr_use <= high_threshold:
-        level = "Medium"
-        st.info(f"⚖️ Normal usage detected. Current consumption ({curr_use:.1f} L) is within the normal range.")
+    if prev_use == 0:
+        st.warning("⚠️ Please enter a valid previous consumption value.")
     else:
-        level = "High"
-        st.error(f"🚨 High water consumption detected! ({curr_use:.1f} L). Please check for leaks or overuse.")
+        # حساب نسبة التغير
+        change_rate = ((curr_use - prev_use) / prev_use) * 100
 
-    # عرض التغير بالنسبة السابقة
-    st.markdown(f"**Change Rate:** {abs(change_rate):.1f}%")
-    st.caption(f"Previous: {prev_use:.1f} L | Current: {curr_use:.1f} L | Level: {level}")
+        # تحديد مستويات الاستهلاك السابقة والحالية
+        if prev_use <= low_threshold:
+            prev_level = "Low"
+        elif prev_use <= high_threshold:
+            prev_level = "Medium"
+        else:
+            prev_level = "High"
 
-# التذييل (Footer)
+        if curr_use <= low_threshold:
+            curr_level = "Low"
+        elif curr_use <= high_threshold:
+            curr_level = "Medium"
+        else:
+            curr_level = "High"
+
+        # منطق الكشف والتحليل
+        if curr_use < prev_use:
+            st.success(f"✅ Excellent! Water usage decreased by {abs(change_rate):.1f}%. Great efficiency!")
+        elif curr_use > prev_use:
+            if change_rate > 10:
+                st.error(f"❌ Leak or Overuse Detected! Water usage increased by {change_rate:.1f}%. Please check the system.")
+            else:
+                st.warning(f"⚠️ Slight increase ({change_rate:.1f}%). Keep monitoring your consumption.")
+        else:
+            # حالة التساوي تمامًا
+            if curr_use <= low_threshold:
+                st.info(f"ℹ️ Constant low usage detected ({curr_use:.1f} L). Stable and efficient.")
+            elif curr_use <= high_threshold:
+                st.info(f"ℹ️ Constant medium usage detected ({curr_use:.1f} L). Normal operation.")
+            else:
+                st.warning(f"⚠️ High constant consumption detected ({curr_use:.1f} L). Try to reduce usage.")
+
+        # عرض مستوى الاستهلاك الحالي والسابق
+        st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
+
+# الفوتر
 st.markdown("---")
 st.caption("Developed by Fai Alshamary | Powered by XGBoost & Streamlit ✨")
+
 
