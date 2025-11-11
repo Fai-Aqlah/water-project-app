@@ -33,5 +33,5 @@ if st.button("🔍 Predict"):
                 st.success(f"✅ No Leak Detected. Change rate: {change_rate:.1f}%.")
 
     # Footer
-    st.markdown("---")
-    st.caption("Developed by Fai Alshamary | Powered by XGBoost & Streamlit ✨")
+st.markdown("---")
+st.caption("Developed by Fai Alshamary | Powered by XGBoost & Streamlit ✨")
