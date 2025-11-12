@@ -1,0 +1,38 @@
+/* 🌊 خلفية مائية متحركة ناعمة */
+[data-testid="stAppViewContainer"] {
+  background: linear-gradient(180deg, #e0f7fa, #ffffff);
+  background-size: 300% 300%;
+  animation: waveMotion 10s ease infinite;
+}
+
+/* حركة الموج */
+@keyframes waveMotion {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🎨 تحسين النصوص والعناوين */
+h1, h2, h3, label, p {
+  color: #003c3c !important;
+  font-family: 'Arial', sans-serif !important;
+}
+
+/* 💚 تنسيق زر التنبؤ */
+button[kind="primary"] {
+  background-color: #1b8a5a !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-size: 18px !important;
+  padding: 0.6em 1.4em !important;
+  transition: all 0.3s ease;
+}
+button[kind="primary"]:hover {
+  background-color: #156d48 !important;
+  transform: scale(1.05);
+}
+
+/* ✨ تكبير حجم المدخلات */
+input, .stNumberInput {
+  font-size: 18px !important;
+}
