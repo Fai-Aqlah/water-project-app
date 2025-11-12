@@ -5,29 +5,18 @@ from style import load_style
 # ربط ملف التنسيق
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-  # شعار الوزارة في أقصى اليمين بالأعلى
-st.markdown("""
-    <style>
-        .top-logo {
-            position: fixed;
-            top: 15px;
-            right: 25px;
-            width: 150px;
-            border-radius: 10px;
-            box-shadow: 0 0 8px rgba(0,80,60,0.15);
-            z-index: 999;
-        }
-    </style>
-    <img src='Green.jpg' class='top-logo'>
-""", unsafe_allow_html=True)
-
+  
 
 # إعداد الصفحة
 load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 #شعار الوزارة
-st.image("Green.jpg", width=350)
+st.markdown("""
+<div style='text-align:right;'>
+    <img src='Green.jpg' width='350' style='border-radius:10px; box-shadow:0 0 8px rgba(0,80,60,0.15);'>
+</div>
+""", unsafe_allow_html=True)
 
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
