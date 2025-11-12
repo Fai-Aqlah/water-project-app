@@ -10,7 +10,7 @@ with open("style.css") as f:
 col1, col2 = st.columns([10, 6])  # قسم الصفحة لأعمدة
 
 with col2:  # العمود الثاني (يمين)
-    st.image("Green.jpg", width=450, use_column_width=False)
+    st.image("Green.jpg", width=550, use_column_width=False)
 
 
 # إعداد الصفحة
