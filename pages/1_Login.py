@@ -1,15 +1,12 @@
 import streamlit as st
 import re
 
-# ========== إعداد الصفحة ==========
 st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 
-# ========== دالة التحقق من اسم المستخدم ==========
 def validate_username(username):
     pattern = r'^[A-Za-z][A-Za-z0-9]{4,14}$'
     return re.match(pattern, username) is not None
 
-# ========== تصميم CSS احترافي ==========
 st.markdown("""
 <style>
 
@@ -18,7 +15,6 @@ body {
     font-family: 'Arial';
 }
 
-/* صندوق تسجيل الدخول */
 .login-box {
     background: white;
     padding: 40px;
@@ -30,7 +26,6 @@ body {
     animation: slideDown 0.7s ease;
 }
 
-/* العنوان */
 .login-title {
     text-align: center;
     font-size: 26px;
@@ -39,14 +34,12 @@ body {
     margin-bottom: 15px;
 }
 
-/* الشعار */
 .icon {
     text-align: center;
     font-size: 45px;
     margin-bottom: 10px;
 }
 
-/* زر الدخول */
 .stButton > button {
     width: 100%;
     background-color: #1a73e8 !important;
@@ -62,7 +55,6 @@ body {
     transition: 0.2s;
 }
 
-/* أنيميشن انزلاق */
 @keyframes slideDown {
     from {opacity: 0; transform: translateY(-25px);}
     to   {opacity: 1; transform: translateY(0);}
@@ -72,7 +64,6 @@ body {
 """, unsafe_allow_html=True)
 
 
-# ========== محتوى صفحة تسجيل الدخول ==========
 st.markdown("<div class='login-box'>", unsafe_allow_html=True)
 
 st.markdown("<div class='icon'>🔐</div>", unsafe_allow_html=True)
