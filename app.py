@@ -9,6 +9,10 @@ if "logged_in" not in st.session_state:
 if not st.session_state.logged_in:
     login_page()
     st.stop()
+#تسجيل الخروج
+    if st.button("⬅️ Logout"):
+    st.session_state.logged_in = False
+    st.rerun()
 
 import numpy as np
 from style import load_style
