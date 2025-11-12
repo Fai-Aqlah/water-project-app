@@ -1,7 +1,6 @@
 import streamlit as st
 from login import login_page
 import numpy as np
-from style import load_style
 
 # Session setup
 if "logged_in" not in st.session_state:
