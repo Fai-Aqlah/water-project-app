@@ -7,14 +7,11 @@ with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
   
 # شعار الوزارة في أقصى اليمين مع ضبط الحجم والتصميم
-st.markdown("""
-    <div style='display:flex; justify-content:flex-end;'>
-        <img src='app://local/Green.jpg'
-             style='width:350px; border-radius:12px; 
-                    box-shadow:0 0 8px rgba(0,80,60,0.15); 
-                    margin-top:10px; margin-right:10px;'>
-    </div>
-""", unsafe_allow_html=True)
+col1, col2 = st.columns([6, 2])  # قسم الصفحة لأعمدة
+
+with col2:  # العمود الثاني (يمين)
+    st.image("Green.jpg", width=350, use_column_width=False)
+
 
 # إعداد الصفحة
 load_style()
