@@ -11,11 +11,15 @@ with open("style.css") as f:
 load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
-#شعار الوزارة
-# الشعار أقصى اليمين باستخدام الأعمدة (من غير HTML)
-col_left, col_mid, col_right = st.columns([10,1,1])  
-with col_right:
-    st.image("Green.jpg", width=450)  # كبّري/صغّري العرض هنا
+# شعار الوزارة في أقصى اليمين
+st.markdown("""
+    <div style='display:flex; justify-content:flex-end;'>
+        <img src='Green.jpg' 
+             style='width:450px; border-radius:12px; 
+                    box-shadow:0 0 8px rgba(0,80,60,0.15); 
+                    margin-top:10px; margin-right:10px;'>
+    </div>
+""", unsafe_allow_html=True)
 
 
 
