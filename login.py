@@ -77,7 +77,7 @@ def login_page():
                 - No spaces or symbols
             """)
 
-        elif password != "12345":  # كلمة سر بسيطة فقط للمشروع — نقدر نغيّرها
+        elif password != "192837":  # كلمة سر بسيطة فقط للمشروع — نقدر نغيّرها
             st.error("❌ Incorrect password.")
 
         else:
