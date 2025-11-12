@@ -166,3 +166,47 @@ div.stButton > button:hover {
 
     </style>
     """, unsafe_allow_html=True)
+    /* ==== أزرار الإدخال والتنبؤ ==== */
+.stNumberInput input {
+    font-size: 20px;              /* تكبير الخط داخل الصناديق */
+    font-weight: 600;
+    color: #0E4D64;               /* لون الخط الغامق للأرقام */
+    text-align: center;
+    border: 2px solid #0E4D64;
+    border-radius: 8px;
+    background-color: #E6F4F1;    /* خلفية خضراء فاتحة أنيقة */
+    transition: all 0.3s ease;
+}
+
+.stNumberInput input:focus {
+    background-color: #D1EFE9;
+    box-shadow: 0 0 10px #81c784; /* لمعة خضراء خفيفة */
+    transform: scale(1.05);
+}
+
+/* زر التنبؤ */
+div.stButton > button {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(to right, #0E4D64, #158A8A);
+    border-radius: 10px;
+    padding: 12px 30px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: all 0.3s ease-in-out;
+}
+
+div.stButton > button:hover {
+    background: linear-gradient(to right, #158A8A, #0E4D64);
+    transform: scale(1.08);
+    box-shadow: 0 0 15px #81c784; /* لمعة خضراء عند المرور */
+}
+
+/* النصوص أمام الأزرار */
+label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0E4D64;
+}
+
