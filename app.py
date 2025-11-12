@@ -6,18 +6,20 @@ from style import load_style
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
   
-st.image("Green.jpg", width=250)
 
 # إعداد الصفحة
 load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 #شعار الوزارة
+st.image("Green.jpg", width=350)  
 st.markdown("""
-<div style='text-align:right;'>
-    <img src='Green.jpg' width='350' style='border-radius:10px; box-shadow:0 0 8px rgba(0,80,60,0.15);'>
+<div style='text-align:right; margin-top:-10px;'>
+    <img src='Green.jpg' width='350' style='border-radius:12px; box-shadow:0 0 8px rgba(0,80,60,0.15);'>
 </div>
 """, unsafe_allow_html=True)
+
+
 
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
