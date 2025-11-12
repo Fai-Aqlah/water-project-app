@@ -208,5 +208,24 @@ label {
     font-weight: 600;
     color: #0E4D64;
 }
+/* خلفية مائية متحركة خفيفة */
+body {
+  background: linear-gradient(180deg, #e0f7fa, #ffffff);
+  background-size: 400% 400%;
+  animation: waterFlow 10s ease infinite;
+}
+
+/* حركة تموّج الماء */
+@keyframes waterFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* تحسين وضوح النص */
+h1, h2, h3, p, label {
+  color: #003c3c !important;
+}
+
 </style>
     """, unsafe_allow_html=True)
