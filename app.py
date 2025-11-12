@@ -15,7 +15,7 @@ st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>"
 # الشعار أقصى اليمين باستخدام الأعمدة (من غير HTML)
 col_left, col_mid, col_right = st.columns([6,2,2])  
 with col_right:
-    st.image("Green.jpg", width=350)  # كبّري/صغّري العرض هنا
+    st.image("Green.jpg", width=450)  # كبّري/صغّري العرض هنا
 
 
 
