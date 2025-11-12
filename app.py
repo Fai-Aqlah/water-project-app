@@ -1,16 +1,17 @@
-import streamlit as st #كود تسجيل الدخول
+import streamlit as st
 from login import login_page
 
 # Session state setup
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# If user not logged in: show login page and stop the app
+# If user not logged in -> show login page and stop the app
 if not st.session_state.logged_in:
     login_page()
     st.stop()
-#تسجيل الخروج
-    if st.button("⬅️ Logout"):
+
+# Logout button (only visible when logged in)
+if st.button("⬅️ Logout"):
     st.session_state.logged_in = False
     st.rerun()
 
