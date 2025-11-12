@@ -1,26 +1,21 @@
 import streamlit as st
 from login import login_page
+import numpy as np
+from style import load_style
 
-# Session state setup
+# Session setup
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# If user not logged in -> show login page and stop the app
+# If not logged in → show login page
 if not st.session_state.logged_in:
     login_page()
     st.stop()
 
-# Logout button (only visible when logged in)
-if st.button("⬅️ Logout"):
-    st.session_state.logged_in = False
-    st.rerun()
-
-import numpy as np
-from style import load_style
-# ربط ملف التنسيق
+# Apply CSS style
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-  
+
 # شعار الوزارة في أقصى اليمين مع ضبط الحجم والتصميم
 col1, col2 = st.columns([4, 1])  # قسم الصفحة لأعمدة
 
