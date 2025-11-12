@@ -84,8 +84,8 @@ st.markdown("""
 <hr style='margin-top:50px; margin-bottom:20px;'>
 
 <div class="footer-text">
-    Developed by <b>Fai Aqlah</b> | Ministry of Environment, Water & Agriculture – Hail Branch
+    Developed by <b>Fai Aqlah</b> | Ministry of Environment, Water & Agriculture🌿💧 – Hail Branch
     <br>
-    💧 Powered by <b>XGBoost</b> & <b>Streamlit</b> <span>🌿</span>
+     Powered by <b>XGBoost</b> & <b>Streamlit</b> <span></span>
 </div>
 """, unsafe_allow_html=True)
