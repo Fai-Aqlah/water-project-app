@@ -36,6 +36,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+    
+
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 
