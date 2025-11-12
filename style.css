@@ -111,7 +111,7 @@ footer, .footer-text {
   to { transform: scale(1.1); }
 }
 img {
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,80,60,0.15);
+    width: 550px !important;
+    height: auto !important;
 }
 
