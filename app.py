@@ -10,20 +10,17 @@ if "logged_in" not in st.session_state or st.session_state.logged_in is False:
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# شعار الوزارة في أقصى اليمين مع ضبط الحجم والتصميم
-col1, col2 = st.columns([4, 1])  # قسم الصفحة لأعمدة
+col1, col2 = st.columns([4, 1])  
 
-with col2:  # العمود الثاني (يمين)
+with col2:  
     st.image("Green.jpg", width=550, use_column_width=False)
 
 
-# إعداد الصفحة
 load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 
 
-#العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 
 st.markdown("""
