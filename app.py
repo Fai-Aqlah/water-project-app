@@ -10,7 +10,7 @@ with open("style.css") as f:
 st.markdown("""
     <div style='display:flex; justify-content:flex-end;'>
         <img src='Green.jpg' 
-             style='width:450px; border-radius:12px; 
+             style='width:350px; border-radius:12px; 
                     box-shadow:0 0 8px rgba(0,80,60,0.15); 
                     margin-top:10px; margin-right:10px;'>
     </div>
