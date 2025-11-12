@@ -5,20 +5,21 @@ from style import load_style
 # ربط ملف التنسيق
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    #كود الصورة في اقصى اليمين
+   # شعار الوزارة في أقصى اليمين بالأعلى
 st.markdown("""
-    <div style="
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 10px;">
-        <img src='Green.jpg' 
-             style='width: 160px; 
-                    border-radius: 10px;
-                    margin-right: 25px;
-                    box-shadow: 0 0 8px rgba(0,80,60,0.2);'>
-    </div>
+    <style>
+        .top-logo {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 150px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,80,60,0.15);
+            z-index: 999; /* يخليه فوق كل العناصر */
+        }
+    </style>
+
+    <img src='Green.jpg' class='top-logo'>
 """, unsafe_allow_html=True)
 
 # إعداد الصفحة
