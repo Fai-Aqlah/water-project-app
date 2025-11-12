@@ -5,6 +5,7 @@ def validate_username(username):
     pattern = r'^[A-Za-z][A-Za-z0-9]{4,14}$'
     return re.match(pattern, username) is not None
 
+
 def login_page():
 
     st.markdown("""
@@ -32,7 +33,7 @@ def login_page():
         .login-title {
             font-size: 30px;
             font-weight: 700;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #1a2e4f;
         }
 
@@ -44,7 +45,7 @@ def login_page():
 
         .stButton button {
             background-color: #1a73e8;
-            color: white;
+            color: white !important;
             width: 100%;
             padding: 10px;
             border-radius: 10px;
@@ -59,10 +60,21 @@ def login_page():
     </style>
     """, unsafe_allow_html=True)
 
+
+    # ================== LOGIN BOX ===================
     st.markdown("<div class='login-container'>", unsafe_allow_html=True)
     st.markdown("<div class='login-box'>", unsafe_allow_html=True)
 
     st.markdown("<div class='login-title'>🔐 Login</div>", unsafe_allow_html=True)
+
+    # ترحيب جميل
+    st.markdown(
+        "<p style='color:#4a4a4a; font-size:16px; margin-bottom:20px;'>"
+        "Welcome to the Smart Water Management System<br>"
+        "Please login to continue."
+        "</p>",
+        unsafe_allow_html=True
+    )
 
     username = st.text_input("Username", placeholder="Enter your username")
     password = st.text_input("Password", placeholder="Enter your password", type="password")
@@ -70,6 +82,7 @@ def login_page():
     if st.button("Login"):
         if username.strip() == "" or password.strip() == "":
             st.error("❌ Username and password cannot be empty.")
+
         elif not validate_username(username):
             st.error("""
                 ❌ Invalid username.
@@ -79,8 +92,10 @@ def login_page():
                 - Be 5–15 characters long
                 - No spaces or symbols
             """)
-        elif password != "192837":
+
+        elif password != "192837":  # الباسوورد اللي تبينه
             st.error("❌ Incorrect password.")
+
         else:
             st.success(f"Welcome {username} 👋")
             st.session_state.logged_in = True
