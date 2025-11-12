@@ -1,5 +1,5 @@
 import streamlit as st
-# from login import login_page
+from login import login_page
 import numpy as np
 from style import load_style
 
