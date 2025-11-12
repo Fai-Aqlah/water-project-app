@@ -1,5 +1,15 @@
+import streamlit as st #كود تسجيل الدخول
+from login import login_page
 
-import streamlit as st
+# Session state setup
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# If user not logged in: show login page and stop the app
+if not st.session_state.logged_in:
+    login_page()
+    st.stop()
+
 import numpy as np
 from style import load_style
 # ربط ملف التنسيق
