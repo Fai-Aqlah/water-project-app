@@ -86,13 +86,14 @@ else:
 
 st.markdown(f"**Previous Level:** {prev_level}  |  **Current Level:** {curr_level}")
 
-#الفوتر
+# الفوتر
 st.markdown("""
-<hr style='margin-top:50px; margin-bottom:20px;'>
+<hr style='margin-top:15px; margin-bottom:10px; border: 1px solid #4CAF50;'>
 
-<div class="footer-text">
-    Developed by <b>Fai Aqlah</b> | Ministry of Environment, Water & Agriculture🌿💧 – Hail Branch
+<div style='text-align:center; color:#156b3a; font-weight:bold; font-size:18px;'>
+    Developed by <b>Fai Aqlah</b> | Ministry of Environment, Water & Agriculture 🌿💧 – Hail Branch
     <br>
-     Powered by <b>XGBoost</b> & <b>Streamlit</b> <span></span>
+    Powered by <b>XGBoost</b> & <b>Streamlit</b>
 </div>
 """, unsafe_allow_html=True)
+
