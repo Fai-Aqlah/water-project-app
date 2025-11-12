@@ -6,12 +6,7 @@ from style import load_style
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
   
-
-# إعداد الصفحة
-load_style()
-st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
-
-# شعار الوزارة في أقصى اليمين
+# شعار الوزارة في أقصى اليمين مع ضبط الحجم والتصميم
 st.markdown("""
     <div style='display:flex; justify-content:flex-end;'>
         <img src='Green.jpg' 
@@ -20,6 +15,10 @@ st.markdown("""
                     margin-top:10px; margin-right:10px;'>
     </div>
 """, unsafe_allow_html=True)
+
+# إعداد الصفحة
+load_style()
+st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 
 
