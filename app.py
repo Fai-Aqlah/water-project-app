@@ -30,7 +30,7 @@ st.markdown("""
     </div>
 
     <!-- شعار الوزارة -->
-    <img src="mewa_logo.png" 
+    <img src="Green.jpg" 
          style="width:150px; margin-left:25px; border-radius:10px; 
                 box-shadow:0 0 8px rgba(0,80,60,0.15);">
 </div>
