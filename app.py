@@ -12,12 +12,10 @@ load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 #شعار الوزارة
-st.image("Green.jpg", width=350)  
-st.markdown("""
-<div style='text-align:right; margin-top:-10px;'>
-    <img src='Green.jpg' width='350' style='border-radius:12px; box-shadow:0 0 8px rgba(0,80,60,0.15);'>
-</div>
-""", unsafe_allow_html=True)
+# الشعار أقصى اليمين باستخدام الأعمدة (من غير HTML)
+col_left, col_mid, col_right = st.columns([6,2,2])  
+with col_right:
+    st.image("Green.jpg", width=350)  # كبّري/صغّري العرض هنا
 
 
 
