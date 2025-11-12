@@ -164,8 +164,7 @@ div.stButton > button:hover {
     padding-top: 10px;
 }
 
-    </style>
-    """, unsafe_allow_html=True)
+    
     /* ==== أزرار الإدخال والتنبؤ ==== */
 .stNumberInput input {
     font-size: 20px;              /* تكبير الخط داخل الصناديق */
@@ -209,4 +208,5 @@ label {
     font-weight: 600;
     color: #0E4D64;
 }
-
+</style>
+    """, unsafe_allow_html=True)
