@@ -12,6 +12,30 @@ st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>"
 
 #شعار الوزارة
 st.image("Green.jpg", width=350)
+# 🌿 Header Section (Right Logo)
+st.markdown("""
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:25px;">
+    
+    <!-- العنوان والنصوص -->
+    <div style="text-align:center; flex-grow:1;">
+        <h1 style="color:#0277bd; margin:0; font-size:36px;">
+            Smart Water Consumption Prediction & Leak Detection 💧
+        </h1>
+        <p style="font-size:18px; color:#004c4c; margin:5px 0 0;">
+            AI-powered system for smart water management and leak prevention
+        </p>
+        <p style="font-size:16px; color:#005c5c; margin:3px 0;">
+            نظام مدعوم بالذكاء الاصطناعي لإدارة المياه الذكية ومنع التسريبات
+        </p>
+    </div>
+
+    <!-- شعار الوزارة -->
+    <img src="mewa_logo.png" 
+         style="width:150px; margin-left:25px; border-radius:10px; 
+                box-shadow:0 0 8px rgba(0,80,60,0.15);">
+</div>
+""", unsafe_allow_html=True)
+
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 
