@@ -1,38 +1,65 @@
-/* 🌊 خلفية مائية متحركة ناعمة */
+/* 🌐 استيراد خط Poppins (إنجليزي) وخط Tajawal (عربي) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tajawal:wght@400;700&display=swap');
+
+/* 🔷 تنسيق الخلفية */
 [data-testid="stAppViewContainer"] {
-  background: linear-gradient(180deg, #e0f7fa, #ffffff);
+  background: linear-gradient(180deg, #eaf9ff, #ffffff);
   background-size: 300% 300%;
-  animation: waveMotion 10s ease infinite;
+  animation: waveMotion 8s ease infinite;
 }
 
-/* حركة الموج */
+/* حركة خفيفة في الخلفية */
 @keyframes waveMotion {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* 🎨 تحسين النصوص والعناوين */
-h1, h2, h3, label, p {
+/* 🎯 الخط العام */
+html, body, [class*="st-"], label, p, small, input, button {
+  font-family: 'Poppins', 'Tajawal', sans-serif !important;
   color: #003c3c !important;
-  font-family: 'Arial', sans-serif !important;
+  font-size: 18px !important;
 }
 
-/* 💚 تنسيق زر التنبؤ */
+/* 🏷️ العناوين */
+h1 {
+  font-size: 40px !important;
+  color: #015c5c !important;
+  font-weight: 700 !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h2, h3 {
+  color: #017a7a !important;
+  font-weight: 600 !important;
+}
+
+/* 💧 زر التنبؤ */
 button[kind="primary"] {
   background-color: #1b8a5a !important;
   color: white !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
   border-radius: 10px !important;
-  font-size: 18px !important;
-  padding: 0.6em 1.4em !important;
+  padding: 0.6em 2em !important;
   transition: all 0.3s ease;
 }
 button[kind="primary"]:hover {
-  background-color: #156d48 !important;
+  background-color: #16724a !important;
   transform: scale(1.05);
 }
 
-/* ✨ تكبير حجم المدخلات */
+/* 🔢 مدخلات الأرقام */
 input, .stNumberInput {
-  font-size: 18px !important;
+  font-size: 20px !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+}
+
+/* 💬 النصوص السفلية */
+small, p {
+  font-size: 16px !important;
+  color: #004c4c !important;
 }
