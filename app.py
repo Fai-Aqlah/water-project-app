@@ -11,7 +11,7 @@ load_style()
 st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
 #شعار الوزارة
-st.image("Green.jpg", width=140)
+st.image("Green.jpg", width=350)
 #العناوين
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
 
