@@ -8,9 +8,16 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 
-# ========== صفحة تسجيل الدخول ==========
+# ------------------ صفحة تسجيل الدخول ------------------
 def login_page():
-    st.title("🔐 Login Page")
+    st.set_page_config(page_title="Login", page_icon="🔐")
+
+    st.markdown(
+        """
+        <h2 style='text-align:center;'>🔐 Login Page</h2>
+        """,
+        unsafe_allow_html=True
+    )
 
     username = st.text_input("Enter username")
     password = st.text_input("Enter password", type="password")
@@ -24,6 +31,38 @@ def login_page():
             st.error("Wrong username or password ❌")
 
 
+# ------------------ الصفحة الرئيسية بعد تسجيل الدخول ------------------
+def main_page():
+    st.set_page_config(page_title="Water App", page_icon="💧")
+
+    load_style()  # تحميل تنسيق CSS إذا عندك style.py
+
+    # الهيدر
+    st.markdown(
+        "<header>Ministry of Environment, Water & Agriculture 🌿</header>", 
+        unsafe_allow_html=True
+    )
+
+    st.title("Smart Water Consumption Prediction 💧")
+
+    prev = st.number_input("Enter previous consumption:", min_value=0.0)
+    curr = st.number_input("Enter current consumption:", min_value=0.0)
+
+    if st.button("Predict"):
+        if curr > prev * 1.3:
+            st.error("Leak Detected! 🚨")
+        else:
+            st.success("No Leak Detected ✔")
+
+
+# ------------------ تشغيل التطبيق ------------------
+if not st.session_state.logged_in:
+    login_page()        # ❗ يعرض صفحة تسجيل الدخول لوحدها فقط
+else:
+    main_page()         # ❗ يعرض الصفحة الرئيسية فقط بعد تسجيل الدخول
+
+
+        
 # ========== الصفحة الرئيسية بعد تسجيل الدخول ==========
 def main_page():
     load_style()  # تحميل التنسيق إذا عندك style.py
