@@ -3,11 +3,52 @@ import numpy as np
 from style import load_style
 
 
+# إعداد جلسة المستخدم
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-if st.session_state.logged_in is False:
-    st.switch_page("pages/1_Login.py")
+
+# ========== صفحة تسجيل الدخول ==========
+def login_page():
+    st.title("🔐 Login Page")
+
+    username = st.text_input("Enter username")
+    password = st.text_input("Enter password", type="password")
+
+    if st.button("Login"):
+        if username == "Fai" and password == "1929837":
+            st.success("Login successful 🎉")
+            st.session_state.logged_in = True
+            st.experimental_rerun()
+        else:
+            st.error("Wrong username or password ❌")
+
+
+# ========== الصفحة الرئيسية بعد تسجيل الدخول ==========
+def main_page():
+    load_style()  # تحميل التنسيق إذا عندك style.py
+
+    st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
+
+    st.title("Smart Water Consumption Prediction 💧")
+
+    prev = st.number_input("Enter previous consumption:", min_value=0.0)
+    curr = st.number_input("Enter current consumption:", min_value=0.0)
+
+    if st.button("Predict"):
+        if curr > prev * 1.3:
+            st.error("Leak Detected! 🚨")
+        else:
+            st.success("No Leak Detected ✔")
+
+
+# ========== بدء التطبيق ==========
+if st.session_state.logged_in:
+    main_page()
+else:
+    login_page()
+
+
 
 load_style()
 
