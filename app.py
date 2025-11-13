@@ -3,6 +3,17 @@ import numpy as np
 from style import load_style
 
 
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if st.session_state.logged_in is False:
+    st.switch_page("pages/1_Login.py")
+
+load_style()
+
+st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
+
+
 # Apply CSS style
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
