@@ -89,15 +89,24 @@ if st.button("Login"):
     elif any('\u0600' <= c <= '\u06FF' for c in username):
         st.error("❌ Arabic is not allowed in the username.")
 
-    # التحقق النهائي
+   # التحقق النهائي
+else:
+    if username == "Fai" and password == "192837":
+        st.session_state.logged_in = True
+        st.session_state.username = username   # حفظ اسم المستخدم
+
+        # رسالة ترحيب تظهر في صفحة تسجيل الدخول نفسها
+        st.success(f"Welcome, {username}! 👋")
+
+        # الانتقال بعد ثانية
+        st.experimental_sleep(1)
+        st.switch_page("app.py")
+
     else:
-        if username == "Fai" and password == "192837":
-            st.session_state.logged_in = True
-            if username == "Fai" and password == "192837":
-              st.session_state.logged_in = True
-              st.session_state.username = username   # ← حفظ اسم المستخدم هنا
-              st.success("Login successful! 🎉")
-              st.rerun()
+        st.error("❌ Wrong username or password")
+
+ 
+
 
               st.success("Login successful! 🎉")
               st.rerun()
