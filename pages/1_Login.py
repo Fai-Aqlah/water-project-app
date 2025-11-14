@@ -90,22 +90,20 @@ username = st.text_input(
 if "show_pass" not in st.session_state:
     st.session_state.show_pass = False
 
-st.markdown("<div class='password-box'>", unsafe_allow_html=True)
+pass_col1, pass_col2 = st.columns([0.9, 0.1])
 
-password = st.text_input(
-    "Password",
-    type="text" if st.session_state.show_pass else "password",
-    placeholder="Enter password..."
-)
+with pass_col1:
+    password = st.text_input(
+        "Password",
+        type="password" if not st.session_state.show_pass else "text",
+        placeholder="Enter password..."
+    )
 
-# زر العين
-eye = st.button("👁️", key="eye_button")
-if eye:
-    st.session_state.show_pass = not st.session_state.show_pass
-    st.experimental_rerun()
-
-st.markdown("</div>", unsafe_allow_html=True)
-
+with pass_col2:
+    eye_icon = "👁️" if not st.session_state.show_pass else "👁️‍🗨️"
+    if st.button(eye_icon, key="toggle_eye"):
+        st.session_state.show_pass = not st.session_state.show_pass
+        st.experimental_rerun()
 
 # -----------------------------------
 #       LOGIN BUTTON ACTION
