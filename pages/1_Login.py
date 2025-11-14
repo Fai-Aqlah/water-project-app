@@ -11,29 +11,28 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* Main title (Login) */
-.login-title {
-    font-size: 42px;
+/* Login title */
+.main-title {
+    font-size: 45px;
     font-weight: 700;
-    color: #0277bd;  /* Blue */
+    color: #0277bd;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-/* Welcome message */
-.welcome-text {
-    font-size: 26px;
-    font-weight: 600;
-    color: #1b8a5a;  /* Green */
+/* Small subtitle */
+.sub-text {
     text-align: center;
-    margin-top: 15px;
+    color: #1b8a5a;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 /* Input fields */
 input {
-    font-size: 20px !important;
+    font-size: 22px !important;
     padding: 12px !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     border: 2px solid #0277bd !important;
     text-align: left !important;
 }
@@ -44,88 +43,107 @@ input {
     color: white !important;
     font-size: 22px !important;
     font-weight: 700 !important;
-    padding: 12px 40px !important;
-    border-radius: 10px !important;
+    padding: 10px 40px !important;
+    border-radius: 12px !important;
     border: none;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .stButton>button:hover {
     transform: scale(1.05);
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
 }
 
-/* Eye toggle fix */
-.password-toggle {
-    font-size: 18px;
+/* Eye inside password field */
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    padding-right: 40px !important;
+}
+
+.eye-button {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translateY(-30%);
+    font-size: 20px;
     cursor: pointer;
+    color: #0277bd;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ===================== PAGE UI =====================
 
-st.markdown('<div class="login-title">🔐 Login</div>', unsafe_allow_html=True)
-st.markdown("### Welcome to Smart Water Consumption System")
+# ============ PASSWORD TOGGLE LOGIC ============
+if "show_pass" not in st.session_state:
+    st.session_state.show_pass = False
 
-st.write("")  # space
 
-# Password visibility toggle
-if "show_password" not in st.session_state:
-    st.session_state.show_password = False
+# ============ PAGE CONTENT ============
+st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
 
-col1, col2 = st.columns([10,1])
+st.write("")
 
-username = st.text_input("Enter username", key="username_input")
+# Username
+username = st.text_input("Enter username")
 
-# Password + Eye Button
-with col1:
-    password = st.text_input("Enter password", type="password" if not st.session_state.show_password else "default",
-                             key="password_input")
+# Password with eye icon
+st.markdown('<div class="password-container">', unsafe_allow_html=True)
 
-with col2:
-    toggle_btn = st.button("👁️", key="toggle_password")
-    if toggle_btn:
-        st.session_state.show_password = not st.session_state.show_password
+password = st.text_input(
+    "Enter password",
+    type="default" if st.session_state.show_pass else "password",
+)
 
-# ===================== VALIDATION =====================
-def show_all_username_rules():
+eye_col = st.columns([0.8, 0.2])[1]
+
+with eye_col:
+    if st.button("👁️", key="eye_btn"):
+        st.session_state.show_pass = not st.session_state.show_pass
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+
+# ============ VALIDATION ============
+def show_rules():
     st.error("""
 **Username Requirements:**
-- Must NOT contain Arabic letters  
-- Must NOT contain spaces  
-- Must be at least 3 characters  
-- Must contain only letters or numbers  
+• Must NOT contain Arabic letters  
+• Must NOT contain spaces  
+• Must be at least 3 characters  
+• Must contain only letters or numbers  
 """)
 
+
 if st.button("Login"):
-    
-    # RULE 1 — Empty
+
+    # RULES
     if username.strip() == "":
         st.error("❌ Username cannot be empty.")
-        show_all_username_rules()
+        show_rules()
 
-    # RULE 2 — Contains Arabic
-    elif any('\u0600' <= c <= '\u06FF' for c in username):
-        st.error("❌ Arabic letters are NOT allowed in the username.")
-        show_all_username_rules()
-
-    # RULE 3 — Space inside username
     elif " " in username:
         st.error("❌ Username cannot contain spaces.")
-        show_all_username_rules()
-    
-    # RULE 4 — Too short
+        show_rules()
+
     elif len(username) < 3:
-        st.error("❌ Username must be at least 3 characters long.")
-        show_all_username_rules()
+        st.error("❌ Username must be at least 3 characters.")
+        show_rules()
+
+    elif any('\u0600' <= c <= '\u06FF' for c in username):
+        st.error("❌ Arabic letters are NOT allowed.")
+        show_rules()
 
     else:
-        # ACCEPT ANY username + ANY password
-        st.success(f"Welcome, **{username}** 👋")
-        st.markdown(f'<div class="welcome-text">Welcome, {username}! 👋</div>', unsafe_allow_html=True)
+        # SUCCESS
+        st.success(f"Welcome, {username}! 👋")
         time.sleep(1)
+
         st.switch_page("app.py")
+
+
 
 
