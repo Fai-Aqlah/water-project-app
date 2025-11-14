@@ -1,5 +1,4 @@
- 
-       import streamlit as st
+import streamlit as st
 
 st.set_page_config(page_title="Login", page_icon="🔐")
 
@@ -35,14 +34,14 @@ if st.button("Login"):
         st.error("❌ Arabic is not allowed in the username.")
 
     else:
-        # التحقق النهائي الصحيح
-        if username == "Fai" and password == "192837":
+        if username == "Fai" and password == "1929837":
             st.session_state.logged_in = True
             st.success("Login successful! 🎉")
-            st.rerun()  # ❗ تحديث الصفحة للانتقال
+            st.rerun()
         else:
             st.error("❌ Wrong username or password")
 
 # بعد تسجيل الدخول → الانتقال
 if st.session_state.logged_in:
-    st.switch_page("app.py")     # ← يعمل الآن بعد rerun
+    st.switch_page("app.py")
+      
