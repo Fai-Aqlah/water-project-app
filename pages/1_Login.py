@@ -147,24 +147,24 @@ if (
     password_errors.append("• No Arabic characters allowed")
     password_errors.append("• Cannot be empty")
 
-    # ---------------- SHOW USERNAME ERRORS ----------------
-    if username_errors:
-        st.markdown(
-            f"""
-            <div class="error-box">
-                <div class="error-title">❌ Invalid Username</div>
-                <ul class="error-list">
-                    {''.join([f"<li>{e}</li>" for e in username_errors])}
-                </ul>
-            </div>
-            """, unsafe_allow_html=True
-        )
+   # -------------------- SHOW USERNAME ERRORS --------------------
+if username_errors:
+    st.markdown(
+        f"""
+        <div class="error-box">
+            <div class="error-title">❌ Invalid Username</div>
+            <ul class="error-list">
+                {''.join([f"<li>{e}</li>" for e in username_errors])}
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-
-    # ---------------- SHOW PASSWORD ERRORS ----------------
-   if password_errors:
-       st.markdown(
-           f"""
+# -------------------- SHOW PASSWORD ERRORS --------------------
+if password_errors:
+    st.markdown(
+        f"""
         <div class="warning-box">
             <div class="warning-title">⚠️ Invalid Password</div>
             <ul class="warning-list">
