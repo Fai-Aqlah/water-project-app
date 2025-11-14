@@ -1,90 +1,64 @@
 import streamlit as st
+import re
 
-# إعداد الصفحة
-st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
+st.set_page_config(page_title="Login", layout="centered")
 
-# حالة إظهار/إخفاء كلمة المرور
+# ----------------------------------------------------
+#            FUNCTIONS
+# ----------------------------------------------------
+def is_valid_username(username):
+    """اسم المستخدم: إنجليزي فقط + بدون رموز"""
+    return re.match(r'^[A-Za-z0-9_]+$', username)
+
+
+# ----------------------------------------------------
+#            LOGIN UI
+# ----------------------------------------------------
+
+st.markdown("<h2 style='text-align:center;'>🔐 Login Page</h2>", unsafe_allow_html=True)
+
+# Username
+username = st.text_input(
+    "Username (English only)",
+    placeholder="Enter username..."
+)
+
+# Password + Eye Icon
+password_container = st.empty()
+
 if "show_password" not in st.session_state:
     st.session_state.show_password = False
 
-# -------------------------------------------------------
-#                        CSS
-# -------------------------------------------------------
-st.markdown("""
-<style>
-
-body {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-/* العنوان */
-.main-title {
-    font-size: 42px;
-    font-weight: 800;
-    color: #0277bd;
-    text-align: center;
-}
-
-/* النص تحت العنوان */
-.sub-text {
-    text-align: center;
-    color: #1ba85a;
-    font-size: 20px;
-    margin-bottom: 40px;
-}
-
-/* حقول الإدخال */
-.stTextInput > div > div > input {
-    font-size: 20px !important;
-    padding: 14px !important;
-    border-radius: 12px !important;
-    border: 2px solid #0277bd !important;
-}
-
-/* زر تسجيل الدخول */
-.stButton>button {
-    background: linear-gradient(90deg, #1ba85a, #0277bd);
-    color: white !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    padding: 12px 35px !important;
-    border-radius: 10px !important;
-    border: none;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# -------------------------------------------------------
-#                      واجهة الصفحة
-# -------------------------------------------------------
-st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
-
-# حقل اسم المستخدم
-username = st.text_input("Enter username")
-
-# حقل كلمة المرور + زر العين
-col1, col2 = st.columns([10, 1])
-
-with col1:
+with password_container:
     password = st.text_input(
-        "Enter password",
-        type="text" if st.session_state.show_password else "password"
+        "Password",
+        type="text" if st.session_state.show_password else "password",
+        placeholder="Enter password...",
+        help="Click the eye to show/hide the password"
     )
 
-with col2:
-    eye_icon = "👁️" if not st.session_state.show_password else "👁️‍🗨️"
-    if st.button(eye_icon):
+# Eye button inside the same row
+eye_col1, eye_col2 = st.columns([0.9, 0.1])
+with eye_col2:
+    if st.button("👁️"):
         st.session_state.show_password = not st.session_state.show_password
+        st.experimental_rerun()
 
-# زر الدخول
+# ----------------------------------------------------
+#            LOGIN BUTTON
+# ----------------------------------------------------
 if st.button("Login"):
     if username.strip() == "":
-        st.error("Username cannot be empty")
+        st.error("❌ Please enter a username.")
+    elif not is_valid_username(username):
+        st.error("❌ Username must be English letters or numbers only.")
+    elif password.strip() == "":
+        st.error("❌ Please enter a password.")
     else:
-        st.success(f"Welcome, {username}! 👋")
-        st.rerun()
+        st.success("✅ Login successful!")
+
+   
+
 
 
 
