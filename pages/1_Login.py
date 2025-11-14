@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import re
 
 st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 
@@ -11,35 +12,34 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* Login title */
+/* العنوان */
 .main-title {
-    font-size: 45px;
-    font-weight: 700;
+    font-size: 42px;
+    font-weight: 800;
     color: #0277bd;
     text-align: center;
-    margin-bottom: 5px;
 }
 
-/* Small subtitle */
+/* النص تحت العنوان */
 .sub-text {
     text-align: center;
-    color: #1b8a5a;
+    color: #1ba5a5;
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-/* Input fields */
-input {
-    font-size: 22px !important;
+/* حقول الإدخال */
+.stTextInput > div > div > input {
+    font-size: 20px !important;
     padding: 12px !important;
     border-radius: 12px !important;
     border: 2px solid #0277bd !important;
     text-align: left !important;
 }
 
-/* Login button */
-.stButton>button {
-    background: linear-gradient(90deg, #1b8a5a, #0277bd);
+/* زر الدخول */
+.stButton > button {
+    background: linear-gradient(90deg, #1ba5a5, #0277bd);
     color: white !important;
     font-size: 22px !important;
     font-weight: 700 !important;
@@ -49,103 +49,103 @@ input {
     transition: 0.2s;
 }
 
-.stButton>button:hover {
+.stButton > button:hover {
     transform: scale(1.05);
 }
 
-/* Eye inside password field */
-.password-container {
-    position: relative;
+/* زر العين داخل الحقل */
+.eye-btn {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    background: #e3f2fd !important;
+    color: #0277bd !important;
+    border: 1px solid #0277bd !important;
+    font-size: 17px !important;
 }
 
-.password-container input {
-    padding-right: 40px !important;
-}
-
-.eye-button {
-    position: absolute;
-    right: 10px;
-    top: 30%;
-    transform: translateY(-30%);
-    font-size: 20px;
-    cursor: pointer;
-    color: #0277bd;
+/* رسالة الترحيب */
+.welcome-big {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1ba5a5;
+    text-align: center;
+    margin-top: 20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
+# ===================== STATE =====================
+if "show_password" not in st.session_state:
+    st.session_state.show_password = False
 
-# ============ PASSWORD TOGGLE LOGIC ============
-if "show_pass" not in st.session_state:
-    st.session_state.show_pass = False
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
 
-
-# ============ PAGE CONTENT ============
+# ===================== PAGE HEADER =====================
 st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
 
 st.write("")
 
-# Username
-username = st.text_input("Enter username")
+# ===================== USERNAME FIELD =====================
+username = st.text_input("Enter username", key="username_input")
 
-# Password with eye icon
-st.markdown('<div class="password-container">', unsafe_allow_html=True)
+# ===================== PASSWORD FIELD WITH EYE =====================
+col1, col2 = st.columns([10, 1])
 
-password = st.text_input(
-    "Enter password",
-    type="default" if st.session_state.show_pass else "password",
-)
+with col1:
+    password = st.text_input(
+        "Enter password",
+        type="text" if st.session_state.show_password else "password",
+        key="password_input"
+    )
 
-eye_col = st.columns([0.8, 0.2])[1]
+with col2:
+    eye_clicked = st.button("👁", key="eye_btn")
+    if eye_clicked:
+        st.session_state.show_password = not st.session_state.show_password
 
-with eye_col:
-    if st.button("👁️", key="eye_btn"):
-        st.session_state.show_pass = not st.session_state.show_pass
-
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-# ============ VALIDATION ============
+# ===================== VALIDATION RULES =====================
 def show_rules():
     st.error("""
-**Username Requirements:**
-• Must NOT contain Arabic letters  
-• Must NOT contain spaces  
-• Must be at least 3 characters  
-• Must contain only letters or numbers  
+**Username Requirements:**  
+- Must not be empty  
+- Must contain NO spaces  
+- Must be at least 3 characters  
+- English only (No Arabic letters)  
 """)
 
-
+# ===================== LOGIN BUTTON =====================
 if st.button("Login"):
-
-    # RULES
+    
+    # شروط الاسم
     if username.strip() == "":
-        st.error("❌ Username cannot be empty.")
         show_rules()
 
     elif " " in username:
-        st.error("❌ Username cannot contain spaces.")
         show_rules()
 
     elif len(username) < 3:
-        st.error("❌ Username must be at least 3 characters.")
         show_rules()
 
     elif any('\u0600' <= c <= '\u06FF' for c in username):
-        st.error("❌ Arabic letters are NOT allowed.")
         show_rules()
 
     else:
-        # SUCCESS
+        # قبول أي اسم وأي كلمة مرور
+        st.session_state.logged_in = True
+        st.session_state.username = username
+
         st.success(f"Welcome, {username}! 👋")
         time.sleep(1)
-
         st.switch_page("app.py")
 
+   
+
+    
 
 
 
-
-  
+   
