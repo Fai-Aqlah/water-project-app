@@ -1,34 +1,19 @@
 import streamlit as st
 import re
 
-
 # ---------------------------------------------------
 #                PAGE SETTINGS
 # ---------------------------------------------------
 st.set_page_config(page_title="Login", layout="centered")
 
-
 # ---------------------------------------------------
-#                SESSION STATE
+#                CSS
 # ---------------------------------------------------
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-if st.session_state.logged_in:
-    st.switch_page("app.py")
-
-
-
-#                       CSS
-
 st.markdown("""
 <style>
 
-body {
-    background-color: #f5f7fb;
-}
+body { background-color: #f5f7fb; }
 
-/* عنوان الصفحة */
 .login-title {
     text-align:center;
     font-size: 30px;
@@ -37,7 +22,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* مربعات الإدخال */
+/* input boxes */
 .stTextInput > div > div > input {
     border: 1.6px solid #c9d6e8 !important;
     border-radius: 10px !important;
@@ -45,7 +30,7 @@ body {
     font-size: 16px !important;
 }
 
-/* زر الدخول */
+/* Login button */
 .stButton > button {
     width: 100%;
     background-color: #2b4c7e !important;
@@ -56,10 +41,9 @@ body {
     border: none !important;
 }
 
-/*      صناديق الأخطاء       */
-
+/* Error & Warning boxes */
 .error-box, .warning-box {
-    width: 95% !important;     /* يمد الصندوق تقريباً كامل الصفحة */
+    width: 95% !important;
     display: block;
     padding: 18px;
     margin-top: 18px;
@@ -67,8 +51,8 @@ body {
     margin-right: auto;
     border-radius: 8px;
     line-height: 1.7;
-    white-space: normal !important;   /* يمنع النص من أن يصبح عمودي */
-    word-break: keep-all !important;  /* يمنع تكسير الكلمات */
+    white-space: normal !important;
+    word-break: keep-all !important;
     overflow-wrap: normal !important;
 }
 
@@ -101,27 +85,31 @@ body {
 
 
 # ---------------------------------------------------
-#        USERNAME VALIDATION FUNCTION
+#                SESSION STATE
 # ---------------------------------------------------
-def is_valid_username(u):
-    return re.match(r'^[A-Za-z0-9_]+$', u)
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# Already logged in → go to app
+if st.session_state.logged_in:
+    st.switch_page("app.py")
 
 
 # ---------------------------------------------------
-#                    UI TITLE
+#                PAGE TITLE
 # ---------------------------------------------------
 st.markdown("<div class='login-title'>🔐 Login Page</div>", unsafe_allow_html=True)
 
 
 # ---------------------------------------------------
-#                    INPUT FIELDS
+#                INPUT FIELDS
 # ---------------------------------------------------
 username = st.text_input("Username (English only)", placeholder="Enter username...")
 password = st.text_input("Password", type="password", placeholder="Enter password...")
 
 
 # ---------------------------------------------------
-#                LOGIN BUTTON ACTION
+#        LOGIN BUTTON ACTION
 # ---------------------------------------------------
 if st.button("Login"):
 
@@ -132,7 +120,7 @@ if st.button("Login"):
     # ---------------- USERNAME RULES ----------------
     if username.strip() == "":
         username_errors.append("The username cannot be empty")
-    if not is_valid_username(username):
+    if not re.match(r'^[A-Za-z0-9_]+$', username):
         username_errors.append("English letters only")
         username_errors.append("Numbers allowed")
         username_errors.append("No Arabic characters")
@@ -140,21 +128,19 @@ if st.button("Login"):
         username_errors.append("No symbols (!@#$%^&*)")
 
 
-   # ---------------- PASSWORD RULES ----------------
-password_errors = []
-
-if password.strip() == "":
-    password_errors.append("The password cannot be empty")
-if len(password) < 8:
-    password_errors.append("Minimum 8 characters")
-if not re.search(r'[A-Za-z]', password):
-    password_errors.append("Must contain at least one letter")
-if not re.search(r'[0-9]', password):
-    password_errors.append("Must contain at least one number")
-if " " in password:
-    password_errors.append("No spaces allowed")
-if re.search(r'[\u0600-\u06FF]', password):
-    password_errors.append("No Arabic characters allowed")
+    # ---------------- PASSWORD RULES ----------------
+    if password.strip() == "":
+        password_errors.append("The password cannot be empty")
+    if len(password) < 8:
+        password_errors.append("Minimum 8 characters")
+    if not re.search(r'[A-Za-z]', password):
+        password_errors.append("Must contain at least one letter")
+    if not re.search(r'[0-9]', password):
+        password_errors.append("Must contain at least one number")
+    if " " in password:
+        password_errors.append("No spaces allowed")
+    if re.search(r'[\u0600-\u06FF]', password):
+        password_errors.append("No Arabic characters allowed")
 
 
     # ---------------- SHOW USERNAME ERRORS ----------------
@@ -191,11 +177,3 @@ if re.search(r'[\u0600-\u06FF]', password):
         st.session_state.logged_in = True
         st.switch_page("app.py")
 
-
-
-
-    
-
-
-    
-          
