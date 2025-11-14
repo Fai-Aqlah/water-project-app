@@ -6,8 +6,6 @@ from style import load_style
 # التحقق من تسجيل الدخول
 if "logged_in" not in st.session_state or st.session_state.logged_in is False:
     st.switch_page("pages/1_Login.py")
-else:
-    st.success(f"Welcome, {st.session_state.username}! 👋")
 
 
 
