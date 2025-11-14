@@ -88,7 +88,8 @@ if "show_password" not in st.session_state:
 
 
 # ================= PAGE HEADER =================
-st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">🔐 Welcome</div>', unsafe_allow_html=True)
+
 st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
 st.write("")
 
