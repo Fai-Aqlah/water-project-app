@@ -4,95 +4,111 @@ import re
 
 st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 
-# ===================== CUSTOM CSS =====================
+
 st.markdown("""
 <style>
 
 body {
+    background: linear-gradient(135deg, #e8f5f1, #dff1ff);
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* العنوان */
-.main-title {
-    font-size: 42px;
+/* == LOGIN CARD == */
+.login-card {
+    background: white;
+    padding: 40px;
+    max-width: 450px;
+    margin: 80px auto;
+    border-radius: 18px;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+}
+
+/* العنوان الرئيسي */
+.login-title {
+    font-size: 36px;
     font-weight: 800;
     color: #0277bd;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 /* النص تحت العنوان */
 .sub-text {
+    font-size: 16px;
+    color: #1ba85a;
     text-align: center;
-    color: #1ba5a5;
-    font-size: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
-/* حقول الإدخال */
+/* == حقول الإدخال == */
 .stTextInput > div > div > input {
-    font-size: 20px !important;
-    padding: 12px !important;
+    font-size: 18px !important;
+    padding: 14px !important;
     border-radius: 12px !important;
     border: 2px solid #0277bd !important;
-    text-align: left !important;
+}
+
+/* العين داخل مربع الباسورد */
+.eye-btn {
+    position: relative;
+    top: 8px;
+    right: 12px;
+    background: #e3f2fd !important;
+    color: #0277bd !important;
+    border-radius: 50%;
+    width: 36px !important;
+    height: 36px !important;
+    border: 1px solid #0277bd !important;
+    font-size: 18px !important;
+    padding: 0 !important;
 }
 
 /* زر الدخول */
-.stButton > button {
-    background: linear-gradient(90deg, #1ba5a5, #0277bd);
+.stButton>button {
+    width: 100%;
+    background: linear-gradient(90deg, #1ba85a, #0277bd);
     color: white !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     font-weight: 700 !important;
-    padding: 10px 40px !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    margin-top: 15px;
     border: none;
-    transition: 0.2s;
 }
 
-.stButton > button:hover {
-    transform: scale(1.05);
-}
-
-/* زر العين داخل الحقل */
-.eye-btn {
-    width: 35px !important;
-    height: 35px !important;
-    border-radius: 50% !important;
-    background: #e3f2fd !important;
-    color: #0277bd !important;
-    border: 1px solid #0277bd !important;
-    font-size: 17px !important;
+.stButton>button:hover {
+    transform: scale(1.04);
 }
 
 /* رسالة الترحيب */
-.welcome-big {
-    font-size: 30px;
-    font-weight: 800;
-    color: #1ba5a5;
+.welcome-msg {
+    font-size: 26px;
+    color: #1ba85a;
     text-align: center;
+    font-weight: 700;
     margin-top: 20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ===================== STATE =====================
+# =================== STATE ===================
 if "show_password" not in st.session_state:
     st.session_state.show_password = False
-
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# ===================== PAGE HEADER =====================
-st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
+
+# =================== LOGIN CARD ===================
+st.markdown('<div class="login-card">', unsafe_allow_html=True)
+
+st.markdown('<div class="login-title">🔐 Login</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
 
-st.write("")
-
-# ===================== USERNAME FIELD =====================
+# =============== USERNAME FIELD ==================
 username = st.text_input("Enter username", key="username_input")
 
-# ===================== PASSWORD FIELD WITH EYE =====================
+# =============== PASSWORD FIELD ==================
 col1, col2 = st.columns([10, 1])
 
 with col1:
@@ -103,24 +119,24 @@ with col1:
     )
 
 with col2:
-    eye_clicked = st.button("👁", key="eye_btn")
-    if eye_clicked:
+    eye = st.button("👁", key="eye_btn")
+    if eye:
         st.session_state.show_password = not st.session_state.show_password
 
-# ===================== VALIDATION RULES =====================
+
+# ================== VALIDATION ==================
 def show_rules():
     st.error("""
-**Username Requirements:**  
-- Must not be empty  
-- Must contain NO spaces  
-- Must be at least 3 characters  
-- English only (No Arabic letters)  
+**Username Requirements:**
+• Must not be empty  
+• Must contain no spaces  
+• Must be at least 3 characters  
+• English only (No Arabic letters)
 """)
 
-# ===================== LOGIN BUTTON =====================
+# ================= LOGIN BUTTON ==================
 if st.button("Login"):
-    
-    # شروط الاسم
+
     if username.strip() == "":
         show_rules()
 
@@ -134,18 +150,16 @@ if st.button("Login"):
         show_rules()
 
     else:
-        # قبول أي اسم وأي كلمة مرور
+        st.success(f"<div class='welcome-msg'>Welcome, {username}! 👋</div>", unsafe_allow_html=True)
         st.session_state.logged_in = True
         st.session_state.username = username
-
-        st.success(f"Welcome, {username}! 👋")
         time.sleep(1)
         st.switch_page("app.py")
 
+st.markdown("</div>", unsafe_allow_html=True)
+
+
    
 
-    
-
-
-
+   
    
