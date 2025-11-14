@@ -1,7 +1,6 @@
  import streamlit as st
 
 # إعداد الصفحة
-st.set_page_config(page_title="Login", page_icon="🔐")
 
 st.markdown("<h2 style='text-align:center;'>🔐 Login Page</h2>", unsafe_allow_html=True)
 
