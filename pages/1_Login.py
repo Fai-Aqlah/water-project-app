@@ -56,6 +56,11 @@ body {
     transform: scale(1.05);
 }
 
+/* حاوية لمربع كلمة المرور */
+.password-wrapper {
+    position: relative;
+}
+
 /* زر العين داخل مربع الإدخال */
 .eye-btn {
     width: 36px !important;
@@ -66,7 +71,11 @@ body {
     color: #0277bd !important;
     border: 1px solid #0277bd !important;
     font-size: 18px !important;
-    margin-top: 32px !important;
+
+    position: absolute;
+    right: 8px;   /* يلصق العين يمين المربع */
+    top: 8px;     /* ينزلها شوي لتكون وسط الحقل */
+    margin-top: 0 !important;
 }
 
 /* رسالة الترحيب */
@@ -82,36 +91,31 @@ body {
 """, unsafe_allow_html=True)
 
 
-# ================= STATE FOR PASSWORD TOGGLE =================
+
+
+# ================= PASSWORD FIELD WITH EYE =================
+# إنشاء حالة show_password إذا لم تكن موجودة
 if "show_password" not in st.session_state:
     st.session_state.show_password = False
 
-
-# ================= PAGE HEADER =================
-st.markdown('<div class="main-title">🔐 Welcome</div>', unsafe_allow_html=True)
-
-st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
-st.write("")
-
-
-# ================= USERNAME FIELD =================
-username = st.text_input("Enter username", key="username_input")
-
-
-# ================= PASSWORD FIELD + EYE =================
+# الأعمدة: الحقل + زر العين
 col1, col2 = st.columns([10, 1])
 
 with col1:
     password = st.text_input(
         "Enter password",
         type="text" if st.session_state.show_password else "password",
-        key="password_input"
+        key="password_input",
     )
 
 with col2:
-    eye_clicked = st.button("👁️", key="eye_btn", help="Show / Hide Password")
-    if eye_clicked:
+    eye_icon = "🙈" if st.session_state.show_password else "👁️"
+    if st.button(eye_icon, key="eye_btn"):
         st.session_state.show_password = not st.session_state.show_password
+
+
+   
+
 
 
 # ================= VALIDATION RULES =================
