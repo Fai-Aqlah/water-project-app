@@ -26,8 +26,8 @@ if st.button("Login"):
         st.error("❌ Username cannot contain spaces.")
 
     # 3) التحقق: الحد الأدنى 4 حروف
-    elif len(username) < 4:
-        st.error("❌ Username must be at least 4 characters.")
+    elif len(username) < 3:
+        st.error("❌ Username must be at least 3 characters.")
 
     # 4) التحقق: منع العربية
     elif any('\u0600' <= c <= '\u06FF' for c in username):
