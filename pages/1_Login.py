@@ -162,13 +162,13 @@ if (
 
 
     # ---------------- SHOW PASSWORD ERRORS ----------------
-    if password_errors:
+   if password_errors:
         st.markdown(
             f"""
-            <div class="warning-box">
-                <div class="warning-title">⚠️ Invalid Password</div>
-                <ul class="warning-list">
-                    {''.join([f"<li>{e}</li>" for e in password_errors])}
+            <div class="error-box">
+                <div class="error-title">❌ Invalid Username</div>
+                <ul class="error-list">
+                    {''.join([f"<li>{e}</li>" for e in username_errors])}
                 </ul>
             </div>
             """, unsafe_allow_html=True
@@ -176,8 +176,7 @@ if (
 
 
     # ---------------- SUCCESS ----------------
-    if not username_errors and not password_errors:
-        st.success(f"🎉 Welcome, {username}!")
-        st.session_state.logged_in = True
-        st.switch_page("app.py")
-
+if not username_errors and not password_errors:
+    st.success(f"🎉 Welcome, {username}!")
+    st.session_state.logged_in = True
+    st.switch_page("app.py")
