@@ -1,118 +1,12 @@
 import streamlit as st
 import time
+from style import load_style
+load_style()
 
 # إعداد الصفحة
 st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 
-# ===========================
-#        CSS STYLE
-# ===========================
-st.markdown("""
-<style>
 
-/* ===== خلفية الصفحة ===== */
-[data-testid="stAppViewContainer"] {
-    background: linear-gradient(145deg, #eaf3ec, #f8fbf9);
-}
-
-/* ===== شريط الوزارة ===== */
-.header-bar {
-    background-color: #1b5e20;
-    padding: 12px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-
-/* ===== صندوق تسجيل الدخول ===== */
-.login-box {
-    background-color: #ffffff;
-    padding: 35px;
-    border-radius: 18px;
-    width: 430px;
-    margin: auto;
-    box-shadow: 0px 6px 22px rgba(0,0,0,0.12);
-    animation: fadeSlide 0.7s ease both;
-}
-
-/* حركة الدخول */
-@keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(25px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== عنوان Login ===== */
-.login-title {
-    color: #1b5e20;
-    font-size: 30px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-/* ===== النص التحتي ===== */
-.sub-text {
-    text-align: center;
-    color: #444;
-    margin-bottom: 25px;
-    font-size: 15px;
-}
-
-/* ===== مدخلات النص ===== */
-.stTextInput input {
-    height: 50px !important;
-    border-radius: 12px !important;
-    border: 1px solid #88a98f !important;
-    font-size: 17px !important;
-    padding-left: 38px !important;
-    background-color: #f8faf8 !important;
-    background-size: 18px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-}
-
-/* ===== أيقونة اسم المستخدم ===== */
-#username_input {
-    background-image: url("https://img.icons8.com/ios-filled/50/1b5e20/user.png");
-}
-
-/* ===== أيقونة كلمة المرور ===== */
-#password_input {
-    background-image: url("https://img.icons8.com/ios-glyphs/30/1b5e20/lock--v1.png");
-}
-
-/* ===== زر تسجيل الدخول ===== */
-.stButton > button {
-    background-color: #1b5e20 !important;
-    color: white !important;
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: 0.25s ease-in-out;
-}
-
-.stButton > button:hover {
-    background-color: #145218 !important;
-    transform: translateY(-2px);
-}
-
-/* ===== رسائل الخطأ ===== */
-.stAlert {
-    border-radius: 12px !important;
-    font-size: 16px !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# ===========================
 #        واجهة الصفحة
 # ===========================
 
