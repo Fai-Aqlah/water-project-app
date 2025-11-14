@@ -93,10 +93,16 @@ if st.button("Login"):
     else:
         if username == "Fai" and password == "192837":
             st.session_state.logged_in = True
-            st.success("Login successful! 🎉")
-            st.rerun()
+            if username == "Fai" and password == "192837":
+              st.session_state.logged_in = True
+              st.session_state.username = username   # ← حفظ اسم المستخدم هنا
+              st.success("Login successful! 🎉")
+              st.rerun()
+
+              st.success("Login successful! 🎉")
+              st.rerun()
         else:
-            st.error("❌ Wrong username or password")
+             st.error("❌ Wrong username or password")
 
 st.markdown("</div>", unsafe_allow_html=True)
 
