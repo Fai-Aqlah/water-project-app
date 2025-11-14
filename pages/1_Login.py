@@ -128,7 +128,7 @@ if st.button("Login"):
     elif any('\u0600' <= c <= '\u06FF' for c in username):
         st.error("❌ Arabic is not allowed in the username.")
     else:
-        if username == "Fai" and password == "1929837":
+        if username == "Fai" and password == "192837":
             st.session_state.logged_in = True
             st.session_state.username = username
 
