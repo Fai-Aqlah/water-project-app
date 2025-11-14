@@ -18,9 +18,9 @@ if st.session_state.logged_in:
     st.switch_page("app.py")
 
 
-# ---------------------------------------------------
+
 #                       CSS
-# ---------------------------------------------------
+
 st.markdown("""
 <style>
 
@@ -56,29 +56,32 @@ body {
     border: none !important;
 }
 
-/* صناديق الأخطاء */
+/*      صناديق الأخطاء       */
+
 .error-box, .warning-box {
-    width: 100%;
+    width: 95% !important;     /* يمد الصندوق تقريباً كامل الصفحة */
     display: block;
     padding: 18px;
-    margin-top: 14px;
+    margin-top: 18px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 8px;
     line-height: 1.7;
+    white-space: normal !important;   /* يمنع النص من أن يصبح عمودي */
+    word-break: keep-all !important;  /* يمنع تكسير الكلمات */
+    overflow-wrap: normal !important;
 }
 
-/* Error = أحمر */
 .error-box {
     background-color: #ffe5e5;
     border-left: 6px solid #d9534f;
 }
 
-/* Warning = أصفر */
 .warning-box {
     background-color: #fff4e5;
     border-left: 6px solid #f0ad4e;
 }
 
-/* العناوين */
 .error-title, .warning-title {
     font-size: 18px;
     font-weight: bold;
@@ -88,13 +91,8 @@ body {
 .error-title { color: #b52b27; }
 .warning-title { color: #d48806; }
 
-/* القائمة */
-.error-list, .warning-list {
-    font-size: 16px;
-    padding-left: 10px;
-}
-
 .error-list li, .warning-list li {
+    font-size: 16px;
     margin-bottom: 4px;
 }
 
