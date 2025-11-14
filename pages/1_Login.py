@@ -112,7 +112,6 @@ password = st.text_input("Password", type="password", placeholder="Enter passwor
 #        LOGIN BUTTON ACTION
 # ---------------------------------------------------
 if st.button("Login"):
-
     username_errors = []
     password_errors = []
 
