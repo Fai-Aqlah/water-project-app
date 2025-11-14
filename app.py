@@ -3,6 +3,9 @@ import numpy as np
 from style import load_style
 
 
+if "logged_in" not in st.session_state or st.session_state.logged_in == False:
+    st.switch_page("pages/1_Login.py")
+
 
 
 load_style()
