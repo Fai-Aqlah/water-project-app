@@ -129,19 +129,25 @@ if st.button("Login"):
 
 
     # ---------------- PASSWORD RULES ----------------
-    if password.strip() == "":
-        password_errors.append("The password cannot be empty")
-    if len(password) < 8:
-        password_errors.append("Minimum 8 characters")
-    if not re.search(r'[A-Za-z]', password):
-        password_errors.append("Must contain at least one letter")
-    if not re.search(r'[0-9]', password):
-        password_errors.append("Must contain at least one number")
-    if " " in password:
-        password_errors.append("No spaces allowed")
-    if re.search(r'[\u0600-\u06FF]', password):
-        password_errors.append("No Arabic characters allowed")
+password_errors = []
 
+if password.strip() == "":
+    password_errors.append("The password cannot be empty")
+
+if len(password) < 8:
+    password_errors.append("Minimum 8 characters")
+
+if not re.search(r'[A-Za-z]', password):
+    password_errors.append("Must contain at least one letter")
+
+if not re.search(r'[0-9]', password):
+    password_errors.append("Must contain at least one number")
+
+if " " in password:
+    password_errors.append("No spaces allowed")
+
+if re.search(r'[\u0600-\u06FF]', password):
+    password_errors.append("No Arabic characters allowed")
 
     # ---------------- SHOW USERNAME ERRORS ----------------
     if username_errors:
