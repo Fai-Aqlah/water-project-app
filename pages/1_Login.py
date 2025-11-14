@@ -34,7 +34,7 @@ if st.button("Login"):
         st.error("❌ Arabic is not allowed in the username.")
 
     else:
-        if username == "Fai" and password == "1929837":
+        if username == "Fai" and password == "192837":
             st.session_state.logged_in = True
             st.success("Login successful! 🎉")
             st.rerun()
