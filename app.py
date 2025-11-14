@@ -3,7 +3,8 @@ import numpy as np
 from style import load_style
 
 
-if "logged_in" not in st.session_state or st.session_state.logged_in == False:
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
 
 
 
