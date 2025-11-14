@@ -9,11 +9,14 @@ st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 st.markdown("""
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /* ===== خلفية متدرجة مع حركة ===== */
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(135deg, #dff3ec, #ffffff, #e7f6ff);
     background-size: 300% 300%;
-    animation: bgMove 10s ease infinite;
+    animation: bgMove 8s ease infinite;
+    font-family: 'Poppins', sans-serif;
 }
 
 @keyframes bgMove {
@@ -24,51 +27,52 @@ st.markdown("""
 
 /* ===== صندوق تسجيل الدخول ===== */
 .login-container {
-    background: #ffffffd9;
+    background: #ffffffec;
     padding: 40px;
-    width: 430px;
+    width: 450px;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(50, 150, 120, 0.25);
+    box-shadow: 0 0 30px rgba(60, 140, 110, 0.25);
     border: 1.5px solid #cce8e0;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(5px);
     transition: 0.3s ease;
 }
 
-/* ضوء ناعم حول الصندوق عند المرور */
+/* ضوء ناعم حول الصندوق */
 .login-container:hover {
-    box-shadow: 0 0 35px rgba(50, 150, 120, 0.32);
+    box-shadow: 0 0 40px rgba(50, 150, 120, 0.32);
 }
 
 /* ===== عنوان الصفحة ===== */
 .login-title {
     text-align: center;
-    font-size: 34px;
+    font-size: 38px;
     font-weight: 700;
     color: #1b8a5a;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 /* ===== النص التحتي ===== */
 .login-subtext {
     text-align: center;
-    color: #555;
-    font-size: 16px;
-    margin-bottom: 25px;
+    color: #444;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
 /* ===== تنسيق حقول الإدخال ===== */
 .stTextInput input {
-    height: 48px !important;
+    height: 50px !important;
     border-radius: 12px !important;
     border: 2px solid #1b8a5a !important;
-    font-size: 18px !important;
-    padding-left: 42px !important;
-    background-color: #f7fffb !important;
+    font-size: 20px !important;
+    padding-left: 45px !important;
+    background-color: #f5fff9 !important;
     background-repeat: no-repeat;
     background-position: 12px center;
-    background-size: 20px;
+    background-size: 22px;
+    font-weight: 500;
 }
 
 /* أيقونة المستخدم */
@@ -84,11 +88,11 @@ st.markdown("""
 /* ===== زر تسجيل الدخول ===== */
 .stButton>button {
     width: 100%;
-    height: 48px !important;
+    height: 50px !important;
     background: linear-gradient(90deg, #1b8a5a, #0277bd);
     color: #fff !important;
-    font-size: 20px !important;
-    font-weight: 600 !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
     border-radius: 12px !important;
     border: none;
     transition: 0.25s ease-in-out;
@@ -96,7 +100,7 @@ st.markdown("""
 
 .stButton>button:hover {
     transform: translateY(-3px);
-    box-shadow: 0px 4px 14px rgba(0, 60, 100, 0.25);
+    box-shadow: 0px 4px 14px rgba(0, 60, 100, 0.3);
 }
 
 </style>
@@ -105,12 +109,12 @@ st.markdown("""
 # ============================
 #        LOGIN BOX
 # ============================
+
 st.markdown("<div class='login-container'>", unsafe_allow_html=True)
 
 st.markdown("<div class='login-title'>🔐 Login</div>", unsafe_allow_html=True)
 st.markdown("<div class='login-subtext'>Welcome to Smart Water Consumption System</div>", unsafe_allow_html=True)
 
-# الحقول مع المفاتيح للأيقونات
 username = st.text_input("Enter username", key="username_input")
 password = st.text_input("Enter password", type="password", key="password_input")
 
@@ -128,10 +132,9 @@ if st.button("Login"):
     elif any('\u0600' <= c <= '\u06FF' for c in username):
         st.error("❌ Arabic is not allowed in the username.")
     else:
-        if username == "Fai" and password == "192837":
+        if username == "Fai" and password == "1929837":
             st.session_state.logged_in = True
             st.session_state.username = username
-
             st.success(f"Welcome, {username}! 🎉")
             time.sleep(1)
             st.switch_page("app.py")
@@ -140,5 +143,6 @@ if st.button("Login"):
 
 st.markdown("</div>", unsafe_allow_html=True)
 
+  
 
-            
+           
