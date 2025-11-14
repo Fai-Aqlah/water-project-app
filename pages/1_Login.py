@@ -112,72 +112,61 @@ password = st.text_input("Password", type="password", placeholder="Enter passwor
 #        LOGIN BUTTON ACTION
 # ---------------------------------------------------
 if st.button("Login"):
+
     username_errors = []
     password_errors = []
 
-
     # ---------------- USERNAME RULES ----------------
-    if username.strip() == "":
-        username_errors.append("The username cannot be empty")
-    if not re.match(r'^[A-Za-z0-9_]+$', username):
-        username_errors.append("English letters only")
-        username_errors.append("Numbers allowed")
-        username_errors.append("No Arabic characters")
-        username_errors.append("No spaces")
-        username_errors.append("No symbols (!@#$%^&*)")
+    if (
+        username.strip() == "" or
+        not re.match(r'^[A-Za-z0-9]+$', username)
+    ):
+        username_errors.append("• English letters and numbers only")
+        username_errors.append("• No Arabic characters")
+        username_errors.append("• No spaces")
 
-    # ---------------- PASSWORD RULES (Single IF like username) ----------------
-password_errors = []
+    # ---------------- PASSWORD RULES ----------------
+    if (
+        password.strip() == "" or
+        len(password) < 8 or
+        not re.search(r'[A-Za-z]', password) or
+        not re.search(r'[0-9]', password) or
+        " " in password or
+        re.search(r'[\u0600-\u06FF]', password)
+    ):
+        password_errors.append("• Minimum 8 characters")
+        password_errors.append("• Must contain letters and numbers")
+        password_errors.append("• No spaces")
+        password_errors.append("• No Arabic characters")
 
-# نستخدم شرط واحد فقط + داخله كل الشروط
-if (
-    password.strip() == "" or
-    len(password) < 8 or
-    not re.search(r"[A-Za-z]", password) or
-    not re.search(r"[0-9]", password) or
-    " " in password or
-    re.search(r"[\u0600-\u06FF]", password)
-):
-    password_errors.append("The password must follow all rules:")
-    password_errors.append("• Minimum 8 characters")
-    password_errors.append("• Must contain at least one letter")
-    password_errors.append("• Must contain at least one number")
-    password_errors.append("• No spaces allowed")
-    password_errors.append("• No Arabic characters allowed")
-    password_errors.append("• Cannot be empty")
+    # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
+    if username_errors:
+        st.markdown(
+            f"""
+            <div class="error-box">
+                <div class="error-title">❌ Invalid Username</div>
+                <ul class="error-list">
+                    {''.join([f"<li>{e}</li>" for e in username_errors])}
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-# -------------------- SHOW USERNAME ERRORS --------------------
-if username_errors:
-    st.markdown(
-        f"""
-        <div class="error-box">
-            <div class="error-title">❌ Invalid Username</div>
-            <ul class="error-list">
-                {''.join([f"<li>{e}</li>" for e in username_errors])}
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    if password_errors:
+        st.markdown(
+            f"""
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Invalid Password</div>
+                <ul class="warning-list">
+                    {''.join([f"<li>{e}</li>" for e in password_errors])}
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-# -------------------- SHOW PASSWORD ERRORS --------------------
-if password_errors:
-    st.markdown(
-        f"""
-        <div class="warning-box">
-            <div class="warning-title">⚠️ Invalid Password</div>
-            <ul class="warning-list">
-                {''.join([f"<li>{e}</li>" for e in password_errors])}
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-
-    # ---------------- SUCCESS ----------------
-if not username_errors and not password_errors:
-    st.success(f"🎉 Welcome, {username}!")
-    st.session_state.logged_in = True
-    st.switch_page("app.py")
+    if not username_errors and not password_errors:
+        st.success(f"Welcome {username}!")
+        st.session_state.logged_in = True
+        st.switch_page("app.py")
