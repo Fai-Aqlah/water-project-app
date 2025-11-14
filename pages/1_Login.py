@@ -86,23 +86,7 @@ username = st.text_input(
 )
 
 
-# -------- Password + Eye Button --------
-if "show_pass" not in st.session_state:
-    st.session_state.show_pass = False
 
-pass_col1, pass_col2 = st.columns([0.9, 0.1])
-
-with pass_col1:
-    password = st.text_input(
-        "Password",
-        type="password" if not st.session_state.show_pass else "text",
-        placeholder="Enter password..."
-    )
-
-with pass_col2:
-    eye_icon = "👁️" if not st.session_state.show_pass else "👁️‍🗨️"
-    if st.button(eye_icon, key="toggle_eye"):
-        st.session_state.show_pass = not st.session_state.show_pass
         st.experimental_rerun()
 
 # -----------------------------------
