@@ -161,7 +161,6 @@ if username_errors:
         unsafe_allow_html=True
     )
 
-
 # -------------------- SHOW PASSWORD ERRORS --------------------
 if password_errors:
     st.markdown(
