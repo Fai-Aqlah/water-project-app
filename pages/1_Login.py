@@ -1,12 +1,15 @@
 import streamlit as st
-import time
-import re
 
-# ================= PAGE CONFIG =================
+# إعداد الصفحة
 st.set_page_config(page_title="Login", page_icon="🔐", layout="centered")
 
+# حالة إظهار/إخفاء كلمة المرور
+if "show_password" not in st.session_state:
+    st.session_state.show_password = False
 
-# ================= CUSTOM CSS =================
+# -------------------------------------------------------
+#                        CSS
+# -------------------------------------------------------
 st.markdown("""
 <style>
 
@@ -14,30 +17,28 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* عنوان الصفحة */
+/* العنوان */
 .main-title {
-    font-size: 46px;
+    font-size: 42px;
     font-weight: 800;
-    color: #0277bd;  /* أزرق */
+    color: #0277bd;
     text-align: center;
-    margin-bottom: -5px;
 }
 
 /* النص تحت العنوان */
 .sub-text {
     text-align: center;
-    color: #1ba85a; /* أخضر */
+    color: #1ba85a;
     font-size: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 /* حقول الإدخال */
 .stTextInput > div > div > input {
-    font-size: 22px !important;
-    padding: 12px !important;
+    font-size: 20px !important;
+    padding: 14px !important;
     border-radius: 12px !important;
     border: 2px solid #0277bd !important;
-    text-align: left !important;
 }
 
 /* زر تسجيل الدخول */
@@ -46,118 +47,49 @@ body {
     color: white !important;
     font-size: 22px !important;
     font-weight: 700 !important;
-    padding: 12px 45px !important;
-    border-radius: 12px !important;
+    padding: 12px 35px !important;
+    border-radius: 10px !important;
     border: none;
-    transition: 0.2s;
-}
-
-.stButton>button:hover {
-    transform: scale(1.05);
-}
-
-/* حاوية لمربع كلمة المرور */
-.password-wrapper {
-    position: relative;
-}
-
-/* زر العين داخل مربع الإدخال */
-.eye-btn {
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0 !important;
-    border-radius: 50% !important;
-    background: #e3f2fd !important;
-    color: #0277bd !important;
-    border: 1px solid #0277bd !important;
-    font-size: 18px !important;
-
-    position: absolute;
-    right: 8px;   /* يلصق العين يمين المربع */
-    top: 8px;     /* ينزلها شوي لتكون وسط الحقل */
-    margin-top: 0 !important;
-}
-
-/* رسالة الترحيب */
-.welcome-big {
-    font-size: 30px;
-    font-weight: 800;
-    color: #1ba85a;
-    text-align: center;
-    margin-top: 20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
+# -------------------------------------------------------
+#                      واجهة الصفحة
+# -------------------------------------------------------
+st.markdown('<div class="main-title">🔐 Login</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-text">Welcome to Smart Water Consumption System</div>', unsafe_allow_html=True)
 
+# حقل اسم المستخدم
+username = st.text_input("Enter username")
 
-
-# ================= PASSWORD FIELD WITH EYE =================
-# إنشاء حالة show_password إذا لم تكن موجودة
-if "show_password" not in st.session_state:
-    st.session_state.show_password = False
-
-# الأعمدة: الحقل + زر العين
+# حقل كلمة المرور + زر العين
 col1, col2 = st.columns([10, 1])
 
 with col1:
     password = st.text_input(
         "Enter password",
-        type="text" if st.session_state.show_password else "password",
-        key="password_input",
+        type="text" if st.session_state.show_password else "password"
     )
 
 with col2:
-    eye_icon = "🙈" if st.session_state.show_password else "👁️"
-    if st.button(eye_icon, key="eye_btn"):
+    eye_icon = "👁️" if not st.session_state.show_password else "👁️‍🗨️"
+    if st.button(eye_icon):
         st.session_state.show_password = not st.session_state.show_password
+
+# زر الدخول
+if st.button("Login"):
+    if username.strip() == "":
+        st.error("Username cannot be empty")
+    else:
+        st.success(f"Welcome, {username}! 👋")
+        st.experimental_rerun()
+
+
 
 
    
 
 
 
-# ================= VALIDATION RULES =================
-def show_rules():
-    st.error(
-        "**Username Requirements:**\n"
-        "- Must not be empty\n"
-        "- Must contain no spaces\n"
-        "- Must be at least 3 characters\n"
-        "- English only (No Arabic letters)"
-    )
-
-
-# ================= LOGIN BUTTON =================
-if st.button("Login"):
-    # الشروط
-    if username.strip() == "":
-        show_rules()
-
-    elif " " in username:
-        show_rules()
-
-    elif len(username) < 3:
-        show_rules()
-
-    elif any('\u0600' <= c <= '\u06FF' for c in username):
-        show_rules()
-
-    else:
-        # نجاح
-        st.markdown(
-            f"<div class='welcome-big'>Welcome, {username}! 👋</div>",
-            unsafe_allow_html=True
-        )
-        st.session_state.logged_in = True
-        st.session_state.username = username
-
-        time.sleep(1)
-        st.switch_page("app.py")
-
-    
-    
-    
-    
-       
