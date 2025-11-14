@@ -163,16 +163,18 @@ if (
 
     # ---------------- SHOW PASSWORD ERRORS ----------------
    if password_errors:
-        st.markdown(
-            f"""
-            <div class="error-box">
-                <div class="error-title">❌ Invalid Username</div>
-                <ul class="error-list">
-                    {''.join([f"<li>{e}</li>" for e in username_errors])}
-                </ul>
-            </div>
-            """, unsafe_allow_html=True
-        )
+       st.markdown(
+           f"""
+        <div class="warning-box">
+            <div class="warning-title">⚠️ Invalid Password</div>
+            <ul class="warning-list">
+                {''.join([f"<li>{e}</li>" for e in password_errors])}
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 
     # ---------------- SUCCESS ----------------
