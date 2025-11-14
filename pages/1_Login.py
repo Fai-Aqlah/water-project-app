@@ -129,6 +129,7 @@ if st.button("Login"):
 
 
     # ---------------- PASSWORD RULES ----------------
+if password.strip() == "":
 password_errors = []
 
 if password.strip() == "":
