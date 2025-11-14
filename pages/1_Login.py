@@ -127,28 +127,25 @@ if st.button("Login"):
         username_errors.append("No spaces")
         username_errors.append("No symbols (!@#$%^&*)")
 
-
-    # ---------------- PASSWORD RULES ----------------
-if password.strip() == "":
+    # ---------------- PASSWORD RULES (Single IF like username) ----------------
 password_errors = []
 
-if password.strip() == "":
-    password_errors.append("The password cannot be empty")
-
-if len(password) < 8:
-    password_errors.append("Minimum 8 characters")
-
-if not re.search(r'[A-Za-z]', password):
-    password_errors.append("Must contain at least one letter")
-
-if not re.search(r'[0-9]', password):
-    password_errors.append("Must contain at least one number")
-
-if " " in password:
-    password_errors.append("No spaces allowed")
-
-if re.search(r'[\u0600-\u06FF]', password):
-    password_errors.append("No Arabic characters allowed")
+# نستخدم شرط واحد فقط + داخله كل الشروط
+if (
+    password.strip() == "" or
+    len(password) < 8 or
+    not re.search(r"[A-Za-z]", password) or
+    not re.search(r"[0-9]", password) or
+    " " in password or
+    re.search(r"[\u0600-\u06FF]", password)
+):
+    password_errors.append("The password must follow all rules:")
+    password_errors.append("• Minimum 8 characters")
+    password_errors.append("• Must contain at least one letter")
+    password_errors.append("• Must contain at least one number")
+    password_errors.append("• No spaces allowed")
+    password_errors.append("• No Arabic characters allowed")
+    password_errors.append("• Cannot be empty")
 
     # ---------------- SHOW USERNAME ERRORS ----------------
     if username_errors:
