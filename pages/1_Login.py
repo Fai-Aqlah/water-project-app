@@ -147,7 +147,7 @@ if (
     password_errors.append("• No Arabic characters allowed")
     password_errors.append("• Cannot be empty")
 
-   # -------------------- SHOW USERNAME ERRORS --------------------
+# -------------------- SHOW USERNAME ERRORS --------------------
 if username_errors:
     st.markdown(
         f"""
@@ -174,6 +174,7 @@ if password_errors:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
