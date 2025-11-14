@@ -84,7 +84,8 @@ if st.button("Login"):
         st.error("Username cannot be empty")
     else:
         st.success(f"Welcome, {username}! 👋")
-        st.experimental_rerun()
+        st.rerun()
+
 
 
 
