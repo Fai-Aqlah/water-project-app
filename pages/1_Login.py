@@ -13,14 +13,12 @@ st.markdown("""
     margin-top: 10px;
     border-left: 6px solid #b00000;
 }
-
 .error-title {
     color: #b00000;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
 }
-
 .error-list li {
     color: #600000;
     font-size: 15px;
@@ -34,65 +32,55 @@ st.markdown("""
     margin-top: 10px;
     border-left: 6px solid #b88600;
 }
-
 .warning-title {
     color: #b88600;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
 }
-
 .warning-list li {
     color: #7a5a00;
     font-size: 15px;
     margin-left: 20px;
 }
 
-/* ===== شكل الحقول في صفحة تسجيل الدخول ===== */
-
+/* ===== شكل حقول تسجيل الدخول ===== */
 .login-input input {
-    font-size: 40px !important;
+    font-size: 26px !important;
     font-weight: 600 !important;
     padding: 18px !important;
     height: 55px !important;
-    border-radius: 20px !important;
+    border-radius: 14px !important;
     border: 2px solid #1b4d3e !important;
     background-color: #f8fff8 !important;
     color: #1b4d3e !important;
+    width: 100% !important;
 }
 
-/* ===== تكبير الليبل فوق الحقل ===== */
+/* ===== الليبل فوق الحقل ===== */
 .login-input label {
-    font-size: 40px !important;
+    font-size: 22px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
 }
 
-/* ===== تأثير التركيز (التحديد الأزرق) ===== */
+/* تحديد بلون أزرق عند الضغط */
 .login-input input:focus {
     border: 2px solid #87cefa !important;
     outline: none !important;
 }
 
-
-
-
-
-
 </style>
 """, unsafe_allow_html=True)
+
 # -------------------------------------------------
-
-    
-
-
-
 
 st.set_page_config(page_title="Login", layout="centered")
 
 # ---------------- HEADER ----------------
 header_html = """
-<div style="width:75%; margin:auto; padding:25px; border-radius:20px; background:#ffffff; box-shadow:0px 6px 18px rgba(0,0,0,0.15); text-align:center;">
+<div style="width:75%; margin:auto; padding:25px; border-radius:20px; background:#ffffff;
+            box-shadow:0px 6px 18px rgba(0,0,0,0.15); text-align:center;">
     <h1 style="font-size:48px; font-weight:900; color:#1b4d3e; margin:0;">
         Smart Water System — Login Portal 🔐💧
     </h1>
@@ -101,17 +89,18 @@ header_html = """
     </p>
 </div>
 """
-
-
 st.markdown(header_html, unsafe_allow_html=True)
 
+st.write("")  
+st.write("")  
 
+# ---------------- INPUTS (مغلفة داخل div) ----------------
+st.markdown('<div class="login-input">', unsafe_allow_html=True)
 
+username = st.text_input("Username (English only)", key="username")
+password = st.text_input("Password", type="password", key="password")
 
-
-# ---------------- INPUTS ----------------
-username = st.text_input("Username (English only)", "")
-password = st.text_input("Password", type="password")
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------- BUTTON ----------------
 if st.button("Login"):
@@ -150,7 +139,7 @@ if st.button("Login"):
         password_errors.append("No symbols allowed (!@#$%^&*)")
         password_errors.append("Cannot be empty")
 
-    # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
+    # ---------------- SHOW ERRORS ----------------
     if username_errors:
         st.markdown(
             f"""
@@ -177,13 +166,14 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
-    # ---------------- SUCCESS: username & password valid ----------------
+    # ---------------- SUCCESS ----------------
     if not username_errors and not password_errors:
         st.success("Login successful! Redirecting...")
         st.session_state.logged_in = True
         st.session_state.username = username
         time.sleep(4)
         st.switch_page("app.py")
+
    
        
 
