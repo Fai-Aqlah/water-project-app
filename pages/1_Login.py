@@ -4,39 +4,37 @@ import time
 
 st.set_page_config(page_title="Login", layout="centered")
 
-# ---------------- HEADER ----------------
-
-    header_html = """
+header_html = """
 <div style="
-    width: 75%;
+    text-align:center;
+    padding:25px;
+    border-radius:20px;
+    background: linear-gradient(180deg, #1b4d3e, #2a6f55);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
     margin: auto;
-    padding: 25px;
-    border-radius: 20px;
-    background: #1b4d3e;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    width: 75%;
 ">
     <h1 style="
-        font-size: 42px;
-        font-weight: 900;
-        color: white;
-        margin: 0;
+        font-size:48px;
+        font-weight:900;
+        color:white;
+        margin:0;
     ">
         Smart Water System – Login Portal 🔐💧
     </h1>
 
     <p style="
-        font-size: 18px;
-        font-weight: 600;
-        margin-top: 12px;
-        color: #7CC6FA;
+        font-size:18px;
+        font-weight:600;
+        margin-top:12px;
+        color:#87CEFA;
     ">
         Please log in to continue
     </p>
 </div>
 """
-st.markdown(header_html, unsafe_allow_html=True)
 
+st.markdown(header_html, unsafe_allow_html=True)
 
 # ---------------- INPUTS ----------------
 username = st.text_input("Username (English only)", "")
