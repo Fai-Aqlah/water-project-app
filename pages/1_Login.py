@@ -6,26 +6,35 @@ st.set_page_config(page_title="Login", layout="centered")
 
 st.markdown(
     """
-    <h1 style="
+    <div style="
         text-align:center; 
-        font-size:48px; 
-        font-weight:900; 
-        color:#1b4d3e;
+        padding:20px;
+        border-radius:12px;
+        background: linear-gradient(90deg, #1b4d3e, #2e8b57);
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.18);
+        margin-bottom: 30px;
     ">
-        Smart Water System – Login Portal 🔐💧
-    </h1>
+        <h1 style="
+            font-size:48px; 
+            font-weight:900; 
+            color:white;
+            margin:0;
+        ">
+            Smart Water System – Login Portal 🔐💧
+        </h1>
 
-    <h3 style="
-        text-align:center; 
-        color:#1e90ff; 
-        margin-top:10px;
-        font-weight:600;
-    ">
-        Please log in to continue
-    </h3>
+        <h3 style="
+            color:#87CEFA; 
+            font-weight:600;
+            margin-top:12px;
+        ">
+            Please log in to continue
+        </h3>
+    </div>
     """,
     unsafe_allow_html=True,
 )
+
 
 
 
