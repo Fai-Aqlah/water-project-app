@@ -1,6 +1,53 @@
 import streamlit as st
 import re
 import time
+st.markdown("""
+<style>
+
+.error-box {
+    background: #ffdddd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border-left: 6px solid #b00000;
+}
+
+.error-title {
+    color: #b00000;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.error-list li {
+    color: #600000;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.warning-box {
+    background: #fff4cc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border-left: 6px solid #b88600;
+}
+
+.warning-title {
+    color: #b88600;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.warning-list li {
+    color: #7a5a00;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.set_page_config(page_title="Login", layout="centered")
 
@@ -23,7 +70,6 @@ st.markdown(header_html, unsafe_allow_html=True)
 username = st.text_input("Username (English only)", "")
 password = st.text_input("Password", type="password")
 
-# ---------------- BUTTON ----------------
 # ---------------- BUTTON ----------------
 if st.button("Login"):
 
