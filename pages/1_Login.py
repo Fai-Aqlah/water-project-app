@@ -48,13 +48,24 @@ st.markdown("""
     margin-left: 20px;
 }
 
-/* Label styling */
+/* ====== شكل مربع الإدخال نفسه ====== */
+.stTextInput > div > div > input {
+    font-size: 22px !important;     /* حجم الخط داخل المربع */
+    padding: 15px !important;       /* مساحة داخلية */
+    border-radius: 12px !important; /* تدوير الحواف */
+    border: 2px solid #1b4d3e !important; /* لون الحدود */
+    background-color: #f8fff8 !important; /* خلفية خفيفة */
+    width: 100% !important;         /* يجبره يكون عريض */
+}
+
+/* ====== تكبير خط الليبل فوق المربع ====== */
 .stTextInput label {
-    font-size: 28px !important;
+    font-size: 22px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
-    font-family: Arial, sans-serif !important;
 }
+
+
 
 </style>
 """, unsafe_allow_html=True)
