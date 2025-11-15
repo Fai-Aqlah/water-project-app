@@ -15,21 +15,11 @@ header_html = """
     box-shadow:0px 6px 18px rgba(0,0,0,0.15);
     text-align:center;
 ">
-    <h1 style="
-        font-size:48px;
-        font-weight:900;
-        color:#1b4d3e;
-        margin:0;
-    ">
+    <h1 style="font-size:48px; font-weight:900; color:#1b4d3e; margin:0;">
         Smart Water System — Login Portal 🔐💧
     </h1>
 
-    <p style="
-        font-size:18px;
-        font-weight:600;
-        margin-top:12px;
-        color:#87CEFA;
-    ">
+    <p style="font-size:18px; font-weight:600; margin-top:12px; color:#87CEFA;">
         Please log in to continue
     </p>
 </div>
