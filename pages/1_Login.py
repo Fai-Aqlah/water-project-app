@@ -70,7 +70,7 @@ if st.button("Login"):
     username_errors = []
     password_errors = []
 
-    # ================= USERNAME RULES =================
+    # ---------------- USERNAME RULES ----------------
     if (
         username.strip() == "" or
         not re.match(r'^[A-Za-z0-9]+$', username) or
@@ -84,7 +84,7 @@ if st.button("Login"):
         username_errors.append("No symbols (!@#$%^&*)")
         username_errors.append("Cannot be empty")
 
-    # ================= PASSWORD RULES =================
+    # ---------------- PASSWORD RULES ----------------
     if (
         password.strip() == "" or
         len(password) < 8 or
@@ -98,11 +98,12 @@ if st.button("Login"):
         password_errors.append("Must contain letters and numbers")
         password_errors.append("No spaces")
         password_errors.append("No Arabic characters")
-        password_errors.append("No symbols (!@#$%^&*)")
+        password_errors.append("No symbols allowed (!@#$%^&*)")
         password_errors.append("Cannot be empty")
 
-    # ================= SUCCESS =================
+    # ---------------- SUCCESS ----------------
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
+        st.success("Login successful! Redirecting...")
         st.experimental_rerun()
