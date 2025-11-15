@@ -102,9 +102,14 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
-   # ---------------- SUCCESS: username & password valid ----------------
+ # ---------------- SUCCESS: username & password valid ----------------
 if not username_errors and not password_errors:
-    
+
+    # ضعي الجلسة أول شيء قبل أي طباعة
+    st.session_state.logged_in = True
+    st.session_state.username = username
+
+    # بعدين اطبعي الرسالة
     st.markdown(
         f"""
         <div style="
@@ -128,17 +133,9 @@ if not username_errors and not password_errors:
         unsafe_allow_html=True
     )
 
-    # تخزين البيانات
-    st.session_state.logged_in = True
-    st.session_state.username = username
-
-    # الانتقال بعد 3 ثواني
-    time.sleep(4)
+    # الانتقال بعد 3 ثوانٍ
+    time.sleep(3)
     st.switch_page("pages/app.py")
-
-   
-       
-
 
 
        
