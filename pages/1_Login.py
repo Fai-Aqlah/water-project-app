@@ -3,9 +3,7 @@ import re
 import time
 
 st.set_page_config(page_title="Login", layout="centered")
-
-
-   st.markdown(
+st.markdown(
     """
     <div style="
         text-align:center;
@@ -35,8 +33,6 @@ st.set_page_config(page_title="Login", layout="centered")
     """,
     unsafe_allow_html=True,
 )
-
-
 
 # Inputs
 username = st.text_input("Username (English only)", "")
