@@ -183,14 +183,17 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
-    if not username_errors and not password_errors:
+   # -----------------------------------------
+# SUCCESS: username and password are valid
+# -----------------------------------------
+if not username_errors and not password_errors:
 
-    # Show welcome message BEFORE switching page
+    # رسالة ترحيب بعد تسجيل الدخول
     st.markdown(
         f"""
         <h1 style="
             text-align:center;
-            font-size:50px;
+            font-size:48px;
             font-weight:900;
             color:#1b4d3e;
             margin-top:20px;">
@@ -207,12 +210,13 @@ if st.button("Login"):
         unsafe_allow_html=True
     )
 
-    # Save login state
-    st.session_state.logged_in = True
-
-    # Small delay so message appears
+    # تأخير بسيط حتى تظهر الرسالة
     import time
     time.sleep(1.2)
 
-    # Redirect to app page
+    # حفظ حالة تسجيل الدخول
+    st.session_state.logged_in = True
+    st.session_state.username = username
+
+    # الانتقال لصفحة التطبيق الرئيسية (التنبؤ)
     st.switch_page("app.py")
