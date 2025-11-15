@@ -48,22 +48,26 @@ st.markdown("""
     margin-left: 20px;
 }
 
-/* ====== شكل مربع الإدخال نفسه ====== */
-.stTextInput > div > div > input {
-    font-size: 40px !important;     /* حجم الخط داخل المربع */
-    padding: 20px !important;       /* مساحة داخلية */
-    border-radius: 12px !important; /* تدوير الحواف */
-    border: 2px solid #1b4d3e !important; /* لون الحدود */
-    background-color: #f8fff8 !important; /* خلفية خفيفة */
-    width: 100% !important;         /* يجبره يكون عريض */
+/* ====== شكل مربعات الإدخال Username / Password ====== */
+div[data-testid="stTextInput"] input {
+    font-size: 30px !important;        /* حجم الخط داخل المربع */
+    padding: 14px 18px !important;     /* مساحة داخلية */
+    height: 52px !important;           /* ارتفاع المربع */
+    border-radius: 12px !important;    /* تدوير الحواف */
+    border: 2px solid #1b4d3e !important;  /* لون الحدود */
+    background-color: #f8fff8 !important;  /* خلفية خفيفة */
+    width: 100% !important;            /* يخليه عريض على قد العمود */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
 }
 
 /* ====== تكبير خط الليبل فوق المربع ====== */
-.stTextInput label {
-    font-size: 40px !important;
-    font-weight: 1000 !important;
+div[data-testid="stTextInput"] label {
+    font-size: 30px !important;
+    font-weight: 800 !important;
     color: #1b4d3e !important;
+    font-family: Arial, sans-serif !important;
 }
+
 
 
 
