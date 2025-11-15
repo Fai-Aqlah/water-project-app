@@ -88,4 +88,11 @@ div[data-testid="stTextInput"] input:focus {
     border: 3px solid #87CEFA !important;
     outline: none !important;
 }
+/* ===== تكبير الليبل (Username / Password) ===== */
+
+div[data-testid="stTextInput"] label p {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    color: #1b4d3e !important;
+}
 
