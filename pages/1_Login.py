@@ -186,8 +186,6 @@ if st.button("Login"):
     if not username_errors and not password_errors:
         st.success(f"Welcome {username}!")
         st.session_state.logged_in = True
-        st.switch_page("app.py")
-        
         st.markdown(
     f"""
     <h1 style="
@@ -209,4 +207,6 @@ if st.button("Login"):
     unsafe_allow_html=True
 )
 
-
+        st.switch_page("app.py")
+        
+       
