@@ -1,7 +1,8 @@
 import streamlit as st
 import re
 import time
-st.markdown("""
+
+    st.markdown("""
 <style>
 
 .error-box {
@@ -45,17 +46,18 @@ st.markdown("""
     font-size: 15px;
     margin-left: 20px;
 }
-st.markdown("""
-<style>
 
+/*  تكبير خط Username و Password */
 .stTextInput label {
-    font-size: 28px !important;
+    font-size: 30px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
+    font-family: Arial, sans-serif !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 
