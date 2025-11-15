@@ -106,8 +106,7 @@ header_html = """
 st.markdown(header_html, unsafe_allow_html=True)
 
 
-username = st.text_input("Username (English only)", key="username")
-password = st.text_input("Password", type="password", key="password")
+
 
 
 # ---------------- INPUTS ----------------
