@@ -34,6 +34,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+
 # Inputs
 username = st.text_input("Username (English only)", "")
 password = st.text_input("Password", type="password")
