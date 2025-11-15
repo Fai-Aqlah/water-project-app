@@ -124,6 +124,9 @@ if st.button("Login"):
         username_errors.append("• English letters and numbers only")
         username_errors.append("• No Arabic characters")
         username_errors.append("• No spaces")
+        username_errors.append("• No symbols (!@#$%^&*)")
+        username_errors.append("• Cannot be empty")
+
 
     # ---------------- PASSWORD RULES ----------------
     if (
