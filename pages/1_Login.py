@@ -102,13 +102,39 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
-    # ---------------- SUCCESS ----------------
-    if not username_errors and not password_errors:
-        st.success("Login successful! Redirecting...")
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        time.sleep(4)
-        st.switch_page("app.py")
+   # ---------------- SUCCESS: username & password valid ----------------
+if not username_errors and not password_errors:
+    
+    st.markdown(
+        f"""
+        <div style="
+            background:#f0fff4;
+            padding:25px;
+            border-radius:15px;
+            border-left:7px solid #1b4d3e;
+            margin-top:20px;
+            text-align:center;">
+            
+            <h2 style="color:#1b4d3e; font-size:40px; margin:0;">
+                Welcome, {username}! 👋💧
+            </h2>
+
+            <p style="color:#1b4d3e; font-size:22px; font-weight:600; margin-top:10px;">
+                Glad to have you here — let's start predicting your water consumption 🌱
+            </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # تخزين البيانات
+    st.session_state.logged_in = True
+    st.session_state.username = username
+
+    # الانتقال بعد 3 ثواني
+    time.sleep(4)
+    st.switch_page("pages/app.py")
 
    
        
