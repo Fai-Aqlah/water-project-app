@@ -62,6 +62,29 @@
     margin-left: 20px;
 }
 
+/* ===== شكل الحقول ===== */
+.login-input input {
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    padding: 15px !important;
+    height: 55px !important;
+    border-radius: 15px !important;
+    border: 2px solid #1b4d3e !important;
+    background-color: #f8fff8 !important;
+    color: #1b4d3e !important;
+}
+
+.login-input label {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #1b4d3e !important;
+}
+
+/* عند التركيز */
+.login-input input:focus {
+    border: 2px solid #87cefa !important;
+    outline: none !important;
+}
 
 /* ===== تنسيق حقول الإدخال ===== */
 
