@@ -28,10 +28,7 @@ st.markdown(
             font-weight:600;
             margin-top:12px;
         ">
-            Please log in to continue
-        </h3>
-    </div>
-    """,
+           
     unsafe_allow_html=True,
 )
 
