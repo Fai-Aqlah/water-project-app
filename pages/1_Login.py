@@ -20,7 +20,7 @@ st.markdown(
             color:white;
             margin:0;
         ">
-            Smart Water System – Login Portal 💧🔐
+            Smart Water System – Login Portal 🔐💧
         </h1>
 
         <h3 style="
@@ -32,10 +32,10 @@ st.markdown(
         </h3>
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
-
+    
 # Inputs
 username = st.text_input("Username (English only)", "")
 password = st.text_input("Password", type="password")
