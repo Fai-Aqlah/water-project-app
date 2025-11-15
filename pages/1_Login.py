@@ -187,3 +187,25 @@ if st.button("Login"):
         st.success(f"Welcome {username}!")
         st.session_state.logged_in = True
         st.switch_page("app.py")
+
+st.markdown(
+    f"""
+    <h1 style="
+        text-align:center; 
+        font-size:50px; 
+        font-weight:900; 
+        color:#1b4d3e;
+        margin-top:20px;">
+        Welcome, {username}! 👋💧
+    </h1>
+
+    <h3 style="
+        text-align:center; 
+        color:#2e6f57;
+        margin-top:-10px;">
+        Glad to have you here — let's start predicting your water consumption 🌿
+    </h3>
+    """,
+    unsafe_allow_html=True
+)
+
