@@ -121,11 +121,11 @@ if st.button("Login"):
         username.strip() == "" or
         not re.match(r'^[A-Za-z0-9]+$', username)
     ):
-        username_errors.append("• English letters and numbers only")
-        username_errors.append("• No Arabic characters")
-        username_errors.append("• No spaces")
-        username_errors.append("• No symbols (!@#$%^&*)")
-        username_errors.append("• Cannot be empty")
+        username_errors.append(" English letters and numbers only")
+        username_errors.append(" No Arabic characters")
+        username_errors.append(" No spaces")
+        username_errors.append(" No symbols (!@#$%^&*)")
+        username_errors.append(" Cannot be empty")
 
 
     # ---------------- PASSWORD RULES ----------------
@@ -137,11 +137,12 @@ if st.button("Login"):
         " " in password or
         re.search(r'[\u0600-\u06FF]', password)
     ):
-        password_errors.append("• Minimum 8 characters")
-        password_errors.append("• Must contain letters and numbers")
-        password_errors.append("• No spaces")
-        password_errors.append("• No Arabic characters")
-
+        password_errors.append(" Minimum 8 characters")
+        password_errors.append(" Must contain letters and numbers")
+        password_errors.append(" No spaces")
+        password_errors.append(" No Arabic characters")
+        password_errors.append(" No symbols allowed")
+        password_errors.append(" Cannot be empty")
     # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
     if username_errors:
         st.markdown(
