@@ -10,6 +10,35 @@ def load_local_css(file_name):
 load_local_css("pages/style_login.css")
 
 st.set_page_config(page_title="Login", layout="centered")
+# ====== WELCOME MESSAGE AFTER LOGIN ======
+if "logged_in" in st.session_state and st.session_state.logged_in:
+    username = st.session_state.username
+
+    st.markdown(
+        f"""
+        <div style="
+            background:#f0fff4;
+            padding:25px;
+            border-radius:15px;
+            border-left:7px solid #1b4d3e;
+            margin-top:20px;
+            text-align:center;">
+                
+            <h2 style="color:#1b4d3e; font-size:40px; margin:0;">
+                Welcome, {username}! 👋💧
+            </h2>
+
+            <p style="color:#1b4d3e; font-size:22px; font-weight:600; margin-top:10px;">
+                Glad to have you here — let's start predicting your water consumption 🌱
+            </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    time.sleep(2)
+    st.switch_page("pages/app.py")
 
 # ---------------- HEADER ----------------
 header_html = """
@@ -102,46 +131,12 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
- # ---------------- SUCCESS: username & password valid ----------------
+ # ---------------- SUCCESS ----------------
 if not username_errors and not password_errors:
 
-    # ضعي الجلسة أول شيء قبل أي طباعة
+    # 1) حدّثي session_state قبل أي طباعة
     st.session_state.logged_in = True
     st.session_state.username = username
 
-    # بعدين اطبعي الرسالة
-    st.markdown(
-        f"""
-        <div style="
-            background:#f0fff4;
-            padding:25px;
-            border-radius:15px;
-            border-left:7px solid #1b4d3e;
-            margin-top:20px;
-            text-align:center;">
-            
-            <h2 style="color:#1b4d3e; font-size:40px; margin:0;">
-                Welcome, {username}! 👋💧
-            </h2>
-
-            <p style="color:#1b4d3e; font-size:22px; font-weight:600; margin-top:10px;">
-                Glad to have you here — let's start predicting your water consumption 🌱
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # الانتقال بعد 3 ثوانٍ
-    time.sleep(3)
-    st.switch_page("pages/app.py")
-
-
-       
-        
-    
-
-
-   
-       
+    # 2) إعادة تحميل الصفحة (أفضل حل — يضمن عدم حدوث APIException)
+    st.experimental_rerun()
