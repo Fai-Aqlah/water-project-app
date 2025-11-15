@@ -45,13 +45,18 @@ st.markdown("""
     font-size: 15px;
     margin-left: 20px;
 }
-/* تكبير كل الليبلات في الصفحة */
-label {
-    font-size: 30px !important;
+st.markdown("""
+<style>
+
+.stTextInput label {
+    font-size: 28px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
-    font-family: Arial, sans-serif !important;
 }
+
+</style>
+""", unsafe_allow_html=True)
+
 
 </style>
 """, unsafe_allow_html=True)
