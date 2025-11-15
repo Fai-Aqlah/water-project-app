@@ -45,13 +45,14 @@ st.markdown("""
     font-size: 15px;
     margin-left: 20px;
 }
-/* تكبير خط الـ Username والـ Password */
-div[data-baseweb="input"] > label {
-    font-size: 22px !important;
-    font-weight: 700 !important;
+/* تكبير خط Username و Password */
+div.row-widget.stTextInput label {
+    font-size: 30px !important;
+    font-weight: 800 !important;
     color: #1b4d3e !important;
-    font-family: 'Arial', sans-serif !important;
+    font-family: Arial, sans-serif !important;
 }
+
 
 </style>
 """, unsafe_allow_html=True)
