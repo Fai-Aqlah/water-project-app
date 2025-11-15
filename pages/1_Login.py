@@ -2,99 +2,79 @@ import streamlit as st
 import re
 import time
 
-# --------------------- STYLE ---------------------
+st.set_page_config(page_title="Login", layout="centered")
+
+# ------------------------------------------------
+#                   GLOBAL STYLE
+# ------------------------------------------------
 st.markdown("""
 <style>
 
-.error-box {
-    background: #ffdddd;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 10px;
-    border-left: 6px solid #b00000;
-}
+    /* ===== صندوق الأخطاء ===== */
+    .error-box {
+        background: #ffdddd;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+        border-left: 6px solid #b00000;
+    }
+    .error-title {
+        color: #b00000;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    .error-list li {
+        color: #600000;
+        font-size: 15px;
+        margin-left: 20px;
+    }
 
-.error-title {
-    color: #b00000;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
+    /* ===== صندوق التحذير لكلمة المرور ===== */
+    .warning-box {
+        background: #fff4cc;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+        border-left: 6px solid #b88600;
+    }
+    .warning-title {
+        color: #b88600;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    .warning-list li {
+        color: #7a5a00;
+        font-size: 15px;
+        margin-left: 20px;
+    }
 
-.error-list li {
-    color: #600000;
-    font-size: 15px;
-    margin-left: 20px;
-}
+    /* ===== تنسيق حقول الإدخال ===== */
+    .stTextInput > div > input {
+        font-size: 22px !important;
+        font-weight: 600 !important;
+        padding: 18px !important;
+        border-radius: 12px !important;
+        border: 2px solid #1b4d3e !important;
+        background-color: #f8fff8 !important;
+        width: 100% !important;
+    }
 
-.warning-box {
-    background: #fff4cc;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 10px;
-    border-left: 6px solid #b88600;
-}
-
-.warning-title {
-    color: #b88600;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.warning-list li {
-    color: #7a5a00;
-    font-size: 15px;
-    margin-left: 20px;
-}
-
-/* ====== تكبير الليبل فوق الحقل (Username / Password) ====== */
-.stTextInput label {
-    font-size: 26px !important;
-    font-weight: 800 !important;
-    color: #1b4d3e !important;
-}
-
-/* ====== تكبير حقل الإدخال نفسه ====== */
-.stTextInput > div > div > input {
-    font-size: 30px !important;         /* خط الكتابة داخل المربع */
-    padding: 20px !important;           /* يكبر مساحة الحقل */
-    height: 60px !important;            /* يكبر المربع بشكل واضح */
-    border-radius: 20px !important;     /* يعطي شكل ناعم */
-    border: 2px solid #1b4d3e !important;
-    background-color: #f8fff8 !important;
-}
-
-/* ====== تكبير placeholder (النص داخل الحقل قبل الكتابة) ====== */
-input::placeholder {
-    font-size: 30px !important;
-    font-weight: 800 !important;
-    color: #1b4d3e !important;
-    opacity: 1 !important;
-}
-
-/* ====== تكبير وتوضيح التحديد الأزرق (Focus) ====== */
-.stTextInput > div > div > input:focus {
-    outline: 3px solid #87cefa !important;
-    border-color: #87cefa !important;
-}
-
-
-
-
+    /* ===== تكبير خط اسم الحقل Username/Password ===== */
+    .stTextInput label {
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        color: #1b4d3e !important;
+        font-family: Arial, sans-serif !important;
+    }
 
 </style>
 """, unsafe_allow_html=True)
-# -------------------------------------------------
 
-    
-
-
-
-
-st.set_page_config(page_title="Login", layout="centered")
-
-# ---------------- HEADER ----------------
+# ------------------------------------------------
+#                   HEADER
+# ------------------------------------------------
 header_html = """
 <div style="width:75%; margin:auto; padding:25px; border-radius:20px; background:#ffffff; box-shadow:0px 6px 18px rgba(0,0,0,0.15); text-align:center;">
     <h1 style="font-size:48px; font-weight:900; color:#1b4d3e; margin:0;">
@@ -108,32 +88,43 @@ header_html = """
 
 
 st.markdown(header_html, unsafe_allow_html=True)
+st.write("")
+st.write("")
 
-# ---------------- INPUTS ----------------
-username = st.text_input("Username (English only)", "")
+# ------------------------------------------------
+#                  INPUT FIELDS
+# ------------------------------------------------
+username = st.text_input("Username (English only)")
 password = st.text_input("Password", type="password")
 
-# ---------------- BUTTON ----------------
+# ------------------------------------------------
+#                  VALIDATION
+# ------------------------------------------------
 if st.button("Login"):
 
     username_errors = []
     password_errors = []
 
-    # ---------------- USERNAME RULES ----------------
+    # --------------------------------------------
+    #           USERNAME RULES (OLD VERSION)
+    # --------------------------------------------
     if (
         username.strip() == "" or
         not re.match(r'^[A-Za-z0-9]+$', username) or
         " " in username or
         re.search(r'[\u0600-\u06FF]', username) or
-        re.search(r'[!@#$%^&*]', username)
+        not any(c.isalpha() for c in username) or
+        not any(c.isdigit() for c in username)
     ):
         username_errors.append("English letters and numbers only")
         username_errors.append("No Arabic characters")
         username_errors.append("No spaces")
-        username_errors.append("No symbols (!@#$%^&*)")
+        username_errors.append("Must contain letters and numbers")
         username_errors.append("Cannot be empty")
 
-    # ---------------- PASSWORD RULES ----------------
+    # --------------------------------------------
+    #           PASSWORD RULES (OLD VERSION)
+    # --------------------------------------------
     if (
         password.strip() == "" or
         len(password) < 8 or
@@ -150,7 +141,9 @@ if st.button("Login"):
         password_errors.append("No symbols allowed (!@#$%^&*)")
         password_errors.append("Cannot be empty")
 
-    # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
+    # --------------------------------------------
+    #              SHOW USERNAME ERRORS
+    # --------------------------------------------
     if username_errors:
         st.markdown(
             f"""
@@ -164,6 +157,9 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
+    # --------------------------------------------
+    #              SHOW PASSWORD ERRORS
+    # --------------------------------------------
     if password_errors:
         st.markdown(
             f"""
@@ -177,13 +173,16 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
-    # ---------------- SUCCESS: username & password valid ----------------
+    # --------------------------------------------
+    #                  SUCCESS
+    # --------------------------------------------
     if not username_errors and not password_errors:
         st.success("Login successful! Redirecting...")
         st.session_state.logged_in = True
         st.session_state.username = username
-        time.sleep(4)
+        time.sleep(1)
         st.switch_page("app.py")
+
 
    
        
