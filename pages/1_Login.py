@@ -20,7 +20,7 @@ st.markdown(
             color:white;
             margin:0;
         ">
-            Smart Water System – Login Portal 🔐💧
+            Smart Water System — Login Portal 🔐💧
         </h1>
 
         <h3 style="
@@ -28,7 +28,11 @@ st.markdown(
             font-weight:600;
             margin-top:12px;
         ">
-           
+            Please log in to continue
+        </h3>
+
+    </div>
+    """,
     unsafe_allow_html=True,
 )
 
