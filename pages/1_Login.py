@@ -187,8 +187,7 @@ if st.button("Login"):
         st.success(f"Welcome {username}!")
         st.session_state.logged_in = True
         st.switch_page("app.py")
-
-st.markdown(
+        st.markdown(
     f"""
     <h1 style="
         text-align:center; 
@@ -208,4 +207,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
