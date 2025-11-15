@@ -98,7 +98,20 @@ if st.session_state.logged_in:
 # ---------------------------------------------------
 #                PAGE TITLE
 # ---------------------------------------------------
-st.markdown("<div class='login-title'>🔐 Login Page</div>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h1 style="text-align:center; font-size:34px; font-weight:700; color:#1b4d3e; margin-bottom: -10px;">
+        Smart Water System – Login Portal 🔐💧
+    </h1>
+    
+    <h4 style="text-align:center; color:#444; margin-top:0px;">
+        Please log in to continue
+    </h4>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
 
 # ---------------------------------------------------
