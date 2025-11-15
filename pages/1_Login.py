@@ -57,18 +57,18 @@ st.markdown("""
 
 /* ====== تكبير حقل الإدخال نفسه ====== */
 .stTextInput > div > div > input {
-    font-size: 22px !important;         /* خط الكتابة داخل المربع */
+    font-size: 30px !important;         /* خط الكتابة داخل المربع */
     padding: 20px !important;           /* يكبر مساحة الحقل */
     height: 60px !important;            /* يكبر المربع بشكل واضح */
-    border-radius: 12px !important;     /* يعطي شكل ناعم */
+    border-radius: 20px !important;     /* يعطي شكل ناعم */
     border: 2px solid #1b4d3e !important;
     background-color: #f8fff8 !important;
 }
 
 /* ====== تكبير placeholder (النص داخل الحقل قبل الكتابة) ====== */
 input::placeholder {
-    font-size: 22px !important;
-    font-weight: 700 !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
     color: #1b4d3e !important;
     opacity: 1 !important;
 }
