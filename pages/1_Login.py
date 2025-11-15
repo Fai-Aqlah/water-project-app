@@ -4,26 +4,47 @@ import time
 
 st.set_page_config(page_title="Login", layout="centered")
 
-st.markdown(
-    f"""
-    <h1 style="
-        text-align:center;
-        font-size:48px;
-        font-weight:900;
-        color:#1b4d3e;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-        margin-bottom:10px;
-    ">
-        Smart Water System – Login Portal 
-        <span style="font-size:55px;">🔐💧</span>
-    </h1>
+st.markdown("""
+<style>
+    /* Fade-in for whole page */
+    body {
+        opacity: 0;
+        animation: fadeIn 1.3s ease-in-out forwards;
+    }
 
-    <h3 style="text-align:center; color:#266f57;">
-        Please log in to continue
-    </h3>
-    """,
-    unsafe_allow_html=True,
-)
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<h1 style="
+    text-align:center;
+    font-size:48px;
+    font-weight:900;
+    background: linear-gradient(180deg, #1b4d3e 0%, #0a8f6a 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+    animation: slideDown 1s ease-out;
+">
+    Smart Water System – Login Portal 🔐💧
+</h1>
+
+<h3 style="text-align:center; color:#266f57; margin-top:-10px;">
+    Please log in to continue
+</h3>
+
+<style>
+@keyframes slideDown {
+    0% { transform: translateY(-35px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 
 # Inputs
