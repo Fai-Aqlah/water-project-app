@@ -28,10 +28,12 @@ st.markdown(header_html, unsafe_allow_html=True)
 st.write("")  
 st.write("")  
 
-# ---------------- INPUTS (مغلفة داخل div) ----------------
+# ---------------- INPUTS ----------------
 st.markdown('<div class="login-input">', unsafe_allow_html=True)
+
 username = st.text_input("Username (English only)", key="username")
 password = st.text_input("Password", type="password", key="password")
+
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------- BUTTON ----------------
