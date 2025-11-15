@@ -50,8 +50,8 @@ st.markdown("""
 
 /* ====== شكل مربع الإدخال نفسه ====== */
 .stTextInput > div > div > input {
-    font-size: 22px !important;     /* حجم الخط داخل المربع */
-    padding: 15px !important;       /* مساحة داخلية */
+    font-size: 40px !important;     /* حجم الخط داخل المربع */
+    padding: 20px !important;       /* مساحة داخلية */
     border-radius: 12px !important; /* تدوير الحواف */
     border: 2px solid #1b4d3e !important; /* لون الحدود */
     background-color: #f8fff8 !important; /* خلفية خفيفة */
@@ -60,8 +60,8 @@ st.markdown("""
 
 /* ====== تكبير خط الليبل فوق المربع ====== */
 .stTextInput label {
-    font-size: 22px !important;
-    font-weight: 800 !important;
+    font-size: 40px !important;
+    font-weight: 1000 !important;
     color: #1b4d3e !important;
 }
 
