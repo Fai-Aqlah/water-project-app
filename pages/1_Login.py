@@ -24,46 +24,52 @@ username = st.text_input("Username (English only)", "")
 password = st.text_input("Password", type="password")
 
 # ---------------- BUTTON ----------------
+# ---------------- BUTTON ----------------
 if st.button("Login"):
 
     username_errors = []
     password_errors = []
 
     # ---------------- USERNAME RULES ----------------
-    if username.strip() == "" or not re.match(r"^[A-Za-z0-9]+$", username):
-        username_errors.append("English letters and numbers only.")
-    if " " in username:
-        username_errors.append("No spaces allowed.")
-    if re.search(r"[\u0600-\u06FF]", username):
-        username_errors.append("No Arabic characters allowed.")
-    if not any(c.isalpha() for c in username):
-        username_errors.append("Must contain at least one letter.")
-    if not any(c.isdigit() for c in username):
-        username_errors.append("Must contain at least one number.")
+    if (
+        username.strip() == "" or
+        not re.match(r'^[A-Za-z0-9]+$', username) or
+        " " in username or
+        re.search(r'[\u0600-\u06FF]', username) or
+        re.search(r'[!@#$%^&*]', username)
+    ):
+        username_errors.append("English letters and numbers only")
+        username_errors.append("No Arabic characters")
+        username_errors.append("No spaces")
+        username_errors.append("No symbols (!@#$%^&*)")
+        username_errors.append("Cannot be empty")
 
     # ---------------- PASSWORD RULES ----------------
-    if password.strip() == "":
-        password_errors.append("Password cannot be empty.")
-    if len(password) < 8:
-        password_errors.append("Minimum length: 8 characters.")
-    if " " in password:
-        password_errors.append("No spaces allowed.")
-    if not re.search(r"[A-Za-z]", password):
-        password_errors.append("Password must contain letters.")
-    if not re.search(r"[0-9]", password):
-        password_errors.append("Password must contain numbers.")
-    if re.search(r"[\u0600-\u06FF]", password):
-        password_errors.append("No Arabic allowed.")
-    if re.search(r"[!@#$%^&*]", password):
-        password_errors.append("Symbols not allowed (!@#$%^&*).")
+    if (
+        password.strip() == "" or
+        len(password) < 8 or
+        not re.search(r'[A-Za-z]', password) or
+        not re.search(r'[0-9]', password) or
+        " " in password or
+        re.search(r'[\u0600-\u06FF]', password) or
+        re.search(r'[!@#$%^&*]', password)
+    ):
+        password_errors.append("Minimum 8 characters")
+        password_errors.append("Must contain letters and numbers")
+        password_errors.append("No spaces")
+        password_errors.append("No Arabic characters")
+        password_errors.append("No symbols allowed (!@#$%^&*)")
+        password_errors.append("Cannot be empty")
 
-    # ---------------- SHOW ERRORS ----------------
+    # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
     if username_errors:
         st.markdown(
             f"""
-            <div style="background:#ffdddd;padding:15px;border-radius:10px;">
-                <h4 style="color:#b00000;">⚠️ Invalid Username</h4>
-                <ul>{"".join(f"<li>{e}</li>" for e in username_errors)}</ul>
+            <div class="error-box">
+                <div class="error-title">❌ Invalid Username</div>
+                <ul class="error-list">
+                    {''.join(f"<li>{e}</li>" for e in username_errors)}
+                </ul>
             </div>
             """,
             unsafe_allow_html=True
@@ -72,20 +78,22 @@ if st.button("Login"):
     if password_errors:
         st.markdown(
             f"""
-            <div style="background:#fff4cc;padding:15px;border-radius:10px;">
-                <h4 style="color:#b88600;">⚠️ Invalid Password</h4>
-                <ul>{"".join(f"<li>{e}</li>" for e in password_errors)}</ul>
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Invalid Password</div>
+                <ul class="warning-list">
+                    {''.join(f"<li>{e}</li>" for e in password_errors)}
+                </ul>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-    # ---------------- SUCCESS ----------------
+    # ---------------- SUCCESS: username & password valid ----------------
     if not username_errors and not password_errors:
         st.success("Login successful! Redirecting...")
         st.session_state.logged_in = True
         st.session_state.username = username
-        time.sleep(4)
+        time.sleep(1)
         st.switch_page("app.py")
 
    
