@@ -62,53 +62,30 @@
     margin-left: 20px;
 }
 
-/* ===== شكل الحقول ===== */
-.login-input input {
+/* ===== تنسيق صندوق الإدخال ===== */
+
+div[data-testid="stTextInput"] input {
     font-size: 30px !important;
-    font-weight: 600 !important;
-    padding: 15px !important;
-    height: 55px !important;
-    border-radius: 15px !important;
-    border: 2px solid #1b4d3e !important;
-    background-color: #f8fff8 !important;
-    color: #1b4d3e !important;
-}
-
-.login-input label {
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    color: #1b4d3e !important;
-}
-
-/* عند التركيز */
-.login-input input:focus {
-    border: 2px solid #87cefa !important;
-    outline: none !important;
-}
-
-/* ===== تنسيق حقول الإدخال ===== */
-
-.login-input input {
-    font-size: 28px !important;
-    font-weight: 600 !important;
+    height: 60px !important;
     padding: 18px !important;
-    height: 55px !important;
-    border-radius: 14px !important;
-    border: 2px solid #1b4d3e !important;
-    background-color: #f8fff8 !important;
+    border-radius: 15px !important;
+    border: 3px solid #1b4d3e !important;
+    background: #f8fff8 !important;
     color: #1b4d3e !important;
-    width: 100% !important;
 }
 
-/* ===== الليبل ===== */
-.login-input label {
-    font-size: 22px !important;
+/* ===== تنسيق اسم الحقل (الليبل) ===== */
+
+div[data-testid="stTextInput"] label {
+    font-size: 24px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
 }
 
-/* ===== تأثير التركيز ===== */
-.login-input input:focus {
-    border: 2px solid #87cefa !important;
+/* ===== تأثير تركيز ===== */
+
+div[data-testid="stTextInput"] input:focus {
+    border: 3px solid #87CEFA !important;
     outline: none !important;
 }
+
