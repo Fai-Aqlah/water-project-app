@@ -109,7 +109,7 @@ if st.button("Login"):
         st.session_state.username = username
 
         # تأخير بسيط
-        time.sleep(1.2)
+        time.sleep(4)
 
         # الانتقال لصفحة التنبؤ
         st.switch_page("app.py")
