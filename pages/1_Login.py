@@ -45,8 +45,8 @@ st.markdown("""
     font-size: 15px;
     margin-left: 20px;
 }
-/* تكبير خط الليبل (Username / Password) */
-label.css-1p0q1uy, label.css-7fv5q1 {
+/* تكبير خط الـ Username والـ Password */
+div[data-baseweb="input"] > label {
     font-size: 22px !important;
     font-weight: 700 !important;
     color: #1b4d3e !important;
