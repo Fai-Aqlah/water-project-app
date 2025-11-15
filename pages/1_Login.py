@@ -4,19 +4,20 @@ import time
 
 st.set_page_config(page_title="Login", layout="centered")
 
-st.markdown(
+
+   st.markdown(
     """
     <div style="
-        text-align:center; 
-        padding:20px;
-        border-radius:20px;
-        background: linear-gradient(90deg, #1b4d3e, #2e8b57);
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.18);
-        margin-bottom: 30px;
+        text-align:center;
+        padding: 25px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #1b4d3e, #2a6f55);
+        box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
+        margin-bottom: 40px;
     ">
         <h1 style="
-            font-size:48px; 
-            font-weight:900; 
+            font-size:48px;
+            font-weight:900;
             color:white;
             margin:0;
         ">
@@ -24,7 +25,7 @@ st.markdown(
         </h1>
 
         <h3 style="
-            color:#87CEFA; 
+            color:#87CEFA;
             font-weight:600;
             margin-top:12px;
         ">
