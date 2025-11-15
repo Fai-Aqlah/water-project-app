@@ -184,29 +184,39 @@ if st.button("Login"):
         )
 
     if not username_errors and not password_errors:
-        st.success(f"Welcome {username}!")
-        st.session_state.logged_in = True
-        st.markdown(
-    f"""
-    <h1 style="
-        text-align:center; 
-        font-size:50px; 
-        font-weight:900; 
-        color:#1b4d3e;
-        margin-top:20px;">
-        Welcome, {username}! 👋💧
-    </h1>
 
-    <h3 style="
-        text-align:center; 
-        color:#2e6f57;
-        margin-top:-10px;">
-        Glad to have you here — let's start predicting your water consumption 🌿
-    </h3>
-    """,
-    unsafe_allow_html=True
-)
+    # Show welcome message BEFORE switching page
+    st.markdown(
+        f"""
+        <h1 style="
+            text-align:center;
+            font-size:50px;
+            font-weight:900;
+            color:#1b4d3e;
+            margin-top:20px;">
+            Welcome, {username}! 👋💧
+        </h1>
 
-        st.switch_page("app.py")
+        <h3 style="
+            text-align:center;
+            color:#2e6f57;
+            margin-top:-10px;">
+            Glad to have you here — let's start predicting your water consumption 🌿
+        </h3>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Save login status
+    st.session_state.logged_in = True
+
+    # Delay small moment so message appears first
+    import time
+    time.sleep(1.1)
+
+    # Move to prediction page
+    st.switch_page("app.py")
+
+
         
        
