@@ -4,12 +4,20 @@ import time
 
 st.set_page_config(page_title="Login", layout="centered")
 
-# Title
 st.markdown(
-    """
-    <h1 style="text-align:center; font-size:48px; font-weight:900; color:#1b4d3e;">
-        💧 Smart Water System – Login Portal 🔐
+    f"""
+    <h1 style="
+        text-align:center;
+        font-size:48px;
+        font-weight:900;
+        color:#1b4d3e;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        margin-bottom:10px;
+    ">
+        Smart Water System – Login Portal 
+        <span style="font-size:55px;">🔐💧</span>
     </h1>
+
     <h3 style="text-align:center; color:#266f57;">
         Please log in to continue
     </h3>
