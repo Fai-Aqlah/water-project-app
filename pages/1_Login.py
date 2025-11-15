@@ -45,6 +45,13 @@ st.markdown("""
     font-size: 15px;
     margin-left: 20px;
 }
+/* تكبير خط الليبل (Username / Password) */
+label.css-1p0q1uy, label.css-7fv5q1 {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #1b4d3e !important;
+    font-family: 'Arial', sans-serif !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -139,7 +146,7 @@ if st.button("Login"):
         st.success("Login successful! Redirecting...")
         st.session_state.logged_in = True
         st.session_state.username = username
-        time.sleep(1)
+        time.sleep(4)
         st.switch_page("app.py")
 
    
