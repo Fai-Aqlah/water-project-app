@@ -9,7 +9,7 @@ st.markdown(
     <div style="
         text-align:center; 
         padding:20px;
-        border-radius:12px;
+        border-radius:20px;
         background: linear-gradient(90deg, #1b4d3e, #2e8b57);
         box-shadow: 0px 4px 15px rgba(0,0,0,0.18);
         margin-bottom: 30px;
@@ -34,7 +34,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 
 
 
