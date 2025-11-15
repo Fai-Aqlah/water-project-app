@@ -37,8 +37,6 @@ if "logged_in" in st.session_state and st.session_state.logged_in:
         unsafe_allow_html=True
     )
 
-    time.sleep(2)
-    st.switch_page("pages/app.py")
 
 # ---------------- HEADER ----------------
 header_html = """
@@ -132,11 +130,12 @@ if st.button("Login"):
         )
 
  # ---------------- SUCCESS ----------------
+# ---------------- SUCCESS ----------------
 if not username_errors and not password_errors:
 
-    # 1) حدّثي session_state قبل أي طباعة
+    # 1) نحدّث session_state
     st.session_state.logged_in = True
     st.session_state.username = username
 
-    # 2) إعادة تحميل الصفحة (أفضل حل — يضمن عدم حدوث APIException)
+    # 2) نعيد تشغيل الصفحة بدون أي طباعة
     st.experimental_rerun()
