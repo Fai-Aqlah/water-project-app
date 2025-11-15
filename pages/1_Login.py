@@ -65,18 +65,12 @@ password = st.text_input("Password", type="password", key="password")
 st.markdown('</div>', unsafe_allow_html=True)
 
 
-# ---------------- BUTTON ----------------
 if st.button("Login"):
 
     username_errors = []
     password_errors = []
- if not username_errors and not password_errors:
 
-    st.session_state.logged_in = True
-    st.session_state.username = username
-    st.experimental_rerun()
-
-    # ---------------- USERNAME RULES ----------------
+    # ================= USERNAME RULES =================
     if (
         username.strip() == "" or
         not re.match(r'^[A-Za-z0-9]+$', username) or
@@ -90,7 +84,7 @@ if st.button("Login"):
         username_errors.append("No symbols (!@#$%^&*)")
         username_errors.append("Cannot be empty")
 
-    # ---------------- PASSWORD RULES ----------------
+    # ================= PASSWORD RULES =================
     if (
         password.strip() == "" or
         len(password) < 8 or
@@ -104,33 +98,11 @@ if st.button("Login"):
         password_errors.append("Must contain letters and numbers")
         password_errors.append("No spaces")
         password_errors.append("No Arabic characters")
-        password_errors.append("No symbols allowed (!@#$%^&*)")
+        password_errors.append("No symbols (!@#$%^&*)")
         password_errors.append("Cannot be empty")
 
-    # ---------------- SHOW ERRORS ----------------
-    if username_errors:
-        st.markdown(
-            f"""
-            <div class="error-box">
-                <div class="error-title">❌ Invalid Username</div>
-                <ul class="error-list">
-                    {''.join(f"<li>{e}</li>" for e in username_errors)}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-    if password_errors:
-        st.markdown(
-            f"""
-            <div class="warning-box">
-                <div class="warning-title">⚠️ Invalid Password</div>
-                <ul class="warning-list">
-                    {''.join(f"<li>{e}</li>" for e in password_errors)}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
+    # ================= SUCCESS =================
+    if not username_errors and not password_errors:
+        st.session_state.logged_in = True
+        st.session_state.username = username
+        st.experimental_rerun()
