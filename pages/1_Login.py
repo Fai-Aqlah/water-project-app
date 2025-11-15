@@ -207,16 +207,12 @@ if st.button("Login"):
         unsafe_allow_html=True
     )
 
-    # Save login status
+    # Save login state
     st.session_state.logged_in = True
 
-    # Delay small moment so message appears first
+    # Small delay so message appears
     import time
-    time.sleep(1.1)
+    time.sleep(1.2)
 
-    # Move to prediction page
+    # Redirect to app page
     st.switch_page("app.py")
-
-
-        
-       
