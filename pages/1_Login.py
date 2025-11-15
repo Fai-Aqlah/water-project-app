@@ -6,24 +6,16 @@ st.set_page_config(page_title="Login", layout="centered")
 
 # ---------------- HEADER ----------------
 header_html = """
-<div style="
-    width:75%;
-    margin:auto;
-    padding:25px;
-    border-radius:20px;
-    background:#ffffff;
-    box-shadow:0px 6px 18px rgba(0,0,0,0.15);
-    text-align:center;
-">
+<div style="width:75%; margin:auto; padding:25px; border-radius:20px; background:#ffffff; box-shadow:0px 6px 18px rgba(0,0,0,0.15); text-align:center;">
     <h1 style="font-size:48px; font-weight:900; color:#1b4d3e; margin:0;">
         Smart Water System — Login Portal 🔐💧
     </h1>
-
     <p style="font-size:18px; font-weight:600; margin-top:12px; color:#87CEFA;">
         Please log in to continue
     </p>
 </div>
 """
+
 
 st.markdown(header_html, unsafe_allow_html=True)
 
