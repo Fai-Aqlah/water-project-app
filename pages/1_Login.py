@@ -1,222 +1,115 @@
 import streamlit as st
 import re
+import time
 
-# ---------------------------------------------------
-#                PAGE SETTINGS
-# ---------------------------------------------------
 st.set_page_config(page_title="Login", layout="centered")
 
-# ---------------------------------------------------
-#                CSS
-# ---------------------------------------------------
-st.markdown("""
-<style>
-
-body { background-color: #f5f7fb; }
-
-.login-title {
-    text-align:center;
-    font-size: 30px;
-    font-weight: bold;
-    color: #2b4c7e;
-    margin-bottom: 25px;
-}
-
-/* input boxes */
-.stTextInput > div > div > input {
-    border: 1.6px solid #c9d6e8 !important;
-    border-radius: 10px !important;
-    padding: 12px !important;
-    font-size: 16px !important;
-}
-
-/* Login button */
-.stButton > button {
-    width: 100%;
-    background-color: #2b4c7e !important;
-    color: white !important;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 17px;
-    border: none !important;
-}
-
-/* Error & Warning boxes */
-.error-box, .warning-box {
-    width: 95% !important;
-    display: block;
-    padding: 18px;
-    margin-top: 18px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    line-height: 1.7;
-    white-space: normal !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-}
-
-.error-box {
-    background-color: #ffe5e5;
-    border-left: 6px solid #d9534f;
-}
-
-.warning-box {
-    background-color: #fff4e5;
-    border-left: 6px solid #f0ad4e;
-}
-
-.error-title, .warning-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.error-title { color: #b52b27; }
-.warning-title { color: #d48806; }
-
-.error-list li, .warning-list li {
-    font-size: 16px;
-    margin-bottom: 4px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-
-# ---------------------------------------------------
-#                SESSION STATE
-# ---------------------------------------------------
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-# Already logged in → go to app
-if st.session_state.logged_in:
-    st.switch_page("app.py")
-
-
-# ---------------------------------------------------
-#                PAGE TITLE
-# ---------------------------------------------------
+# Title
 st.markdown(
     """
-    <h1 style="text-align:center; font-size:34px; font-weight:700; color:#1b4d3e; margin-bottom: -10px;">
-        Smart Water System – Login Portal 🔐💧
+    <h1 style="text-align:center; font-size:48px; font-weight:900; color:#1b4d3e;">
+        💧 Smart Water System – Login Portal 🔐
     </h1>
-    
-    <h4 style="text-align:center; color:#444; margin-top:0px;">
+    <h3 style="text-align:center; color:#266f57;">
         Please log in to continue
-    </h4>
+    </h3>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
+# Inputs
+username = st.text_input("Username (English only)", "")
+password = st.text_input("Password", type="password")
 
-
-
-# ---------------------------------------------------
-#                INPUT FIELDS
-# ---------------------------------------------------
-username = st.text_input("Username (English only)", placeholder="Enter username...")
-password = st.text_input("Password", type="password", placeholder="Enter password...")
-
-
-# ---------------------------------------------------
-#        LOGIN BUTTON ACTION
-# ---------------------------------------------------
+# Button
 if st.button("Login"):
-
+    
     username_errors = []
     password_errors = []
 
     # ---------------- USERNAME RULES ----------------
     if (
         username.strip() == "" or
-        not re.match(r'^[A-Za-z0-9]+$', username)
+        not re.match(r"^[A-Za-z0-9]+$", username)
     ):
-        username_errors.append(" English letters and numbers only")
-        username_errors.append(" No Arabic characters")
-        username_errors.append(" No spaces")
-        username_errors.append(" No symbols (!@#$%^&*)")
-        username_errors.append(" Cannot be empty")
-
+        username_errors.append("• English letters and numbers only")
+        username_errors.append("• No Arabic characters")
+        username_errors.append("• No spaces")
+        username_errors.append("• No symbols (!@#$%^&*)")
+        username_errors.append("• Cannot be empty")
 
     # ---------------- PASSWORD RULES ----------------
     if (
         password.strip() == "" or
         len(password) < 8 or
-        not re.search(r'[A-Za-z]', password) or
-        not re.search(r'[0-9]', password) or
+        not re.search(r"[A-Za-z]", password) or
+        not re.search(r"[0-9]", password) or
         " " in password or
-        re.search(r'[\u0600-\u06FF]', password)
+        re.search(r"[\u0600-\u06FF]", password) or
+        re.search(r"[!@#$%^&*]", password)
     ):
-        password_errors.append(" Minimum 8 characters")
-        password_errors.append(" Must contain letters and numbers")
-        password_errors.append(" No spaces")
-        password_errors.append(" No Arabic characters")
-        password_errors.append(" No symbols allowed")
-        password_errors.append(" Cannot be empty")
-    # ---------------- SHOW ERRORS (لا تلمسينها) ----------------
+        password_errors.append("• Minimum 8 characters")
+        password_errors.append("• Must contain letters AND numbers")
+        password_errors.append("• No spaces allowed")
+        password_errors.append("• No Arabic characters allowed")
+        password_errors.append("• No symbols allowed (!@#$%^&*)")
+        password_errors.append("• Cannot be empty")
+
+    # ---------------- SHOW USERNAME ERRORS ----------------
     if username_errors:
         st.markdown(
             f"""
-            <div class="error-box">
-                <div class="error-title">❌ Invalid Username</div>
-                <ul class="error-list">
+            <div class="error-box" style="background:#ffdddd;padding:15px;border-radius:10px;">
+                <div class="error-title" style="color:#8b0000;font-size:20px;">
+                    ❌ Invalid Username
+                </div>
+                <ul>
                     {''.join([f"<li>{e}</li>" for e in username_errors])}
                 </ul>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
+    # ---------------- SHOW PASSWORD ERRORS ----------------
     if password_errors:
         st.markdown(
             f"""
-            <div class="warning-box">
-                <div class="warning-title">⚠️ Invalid Password</div>
-                <ul class="warning-list">
+            <div class="warning-box" style="background:#fff1cc;padding:15px;border-radius:10px;">
+                <div class="warning-title" style="color:#b36b00;font-size:20px;">
+                    ⚠️ Invalid Password
+                </div>
+                <ul>
                     {''.join([f"<li>{e}</li>" for e in password_errors])}
                 </ul>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
-   # -----------------------------------------
-# SUCCESS: username and password are valid
-# -----------------------------------------
-if not username_errors and not password_errors:
+    # ---------------- SUCCESS ----------------
+    if not username_errors and not password_errors:
 
-    # رسالة ترحيب بعد تسجيل الدخول
-    st.markdown(
-        f"""
-        <h1 style="
-            text-align:center;
-            font-size:48px;
-            font-weight:900;
-            color:#1b4d3e;
-            margin-top:20px;">
-            Welcome, {username}! 👋💧
-        </h1>
+        # ترحيب قبل الانتقال للصفحة
+        st.markdown(
+            f"""
+            <h1 style="text-align:center; font-size:50px; font-weight:900; color:#1b4d3e; margin-top:100px;">
+                Welcome, {username}! 💧👋
+            </h1>
 
-        <h3 style="
-            text-align:center;
-            color:#2e6f57;
-            margin-top:-10px;">
-            Glad to have you here — let's start predicting your water consumption 🌿
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
+            <h3 style="text-align:center; color:#266f57; margin-top:10px;">
+                Glad to have you here — let's start predicting your water consumption 🌿
+            </h3>
+            """,
+            unsafe_allow_html=True,
+        )
 
-    # تأخير بسيط حتى تظهر الرسالة
-    import time
-    time.sleep(1.2)
+        # حفظ حالة تسجيل الدخول
+        st.session_state.logged_in = True
+        st.session_state.username = username
 
-    # حفظ حالة تسجيل الدخول
-    st.session_state.logged_in = True
-    st.session_state.username = username
+        # تأخير بسيط
+        time.sleep(1.2)
 
-    # الانتقال لصفحة التطبيق الرئيسية (التنبؤ)
-    st.switch_page("app.py")
+        # الانتقال لصفحة التنبؤ
+        st.switch_page("app.py")
