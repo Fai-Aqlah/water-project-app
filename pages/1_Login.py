@@ -70,6 +70,11 @@ if st.button("Login"):
 
     username_errors = []
     password_errors = []
+ if not username_errors and not password_errors:
+
+    st.session_state.logged_in = True
+    st.session_state.username = username
+    st.experimental_rerun()
 
     # ---------------- USERNAME RULES ----------------
     if (
@@ -129,13 +134,3 @@ if st.button("Login"):
             unsafe_allow_html=True
         )
 
- # ---------------- SUCCESS ----------------
-# ---------------- SUCCESS ----------------
-if not username_errors and not password_errors:
-
-    # 1) نحدّث session_state
-    st.session_state.logged_in = True
-    st.session_state.username = username
-
-    # 2) نعيد تشغيل الصفحة بدون أي طباعة
-    st.experimental_rerun()
