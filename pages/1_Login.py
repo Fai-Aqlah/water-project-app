@@ -48,25 +48,37 @@ st.markdown("""
     margin-left: 20px;
 }
 
-/* ====== شكل مربعات الإدخال Username / Password ====== */
-div[data-testid="stTextInput"] input {
-    font-size: 30px !important;        /* حجم الخط داخل المربع */
-    padding: 14px 18px !important;     /* مساحة داخلية */
-    height: 52px !important;           /* ارتفاع المربع */
-    border-radius: 12px !important;    /* تدوير الحواف */
-    border: 2px solid #1b4d3e !important;  /* لون الحدود */
-    background-color: #f8fff8 !important;  /* خلفية خفيفة */
-    width: 100% !important;            /* يخليه عريض على قد العمود */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
-}
-
-/* ====== تكبير خط الليبل فوق المربع ====== */
-div[data-testid="stTextInput"] label {
-    font-size: 30px !important;
+/* ====== تكبير الليبل فوق الحقل (Username / Password) ====== */
+.stTextInput label {
+    font-size: 26px !important;
     font-weight: 800 !important;
     color: #1b4d3e !important;
-    font-family: Arial, sans-serif !important;
 }
+
+/* ====== تكبير حقل الإدخال نفسه ====== */
+.stTextInput > div > div > input {
+    font-size: 22px !important;         /* خط الكتابة داخل المربع */
+    padding: 20px !important;           /* يكبر مساحة الحقل */
+    height: 60px !important;            /* يكبر المربع بشكل واضح */
+    border-radius: 12px !important;     /* يعطي شكل ناعم */
+    border: 2px solid #1b4d3e !important;
+    background-color: #f8fff8 !important;
+}
+
+/* ====== تكبير placeholder (النص داخل الحقل قبل الكتابة) ====== */
+input::placeholder {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #1b4d3e !important;
+    opacity: 1 !important;
+}
+
+/* ====== تكبير وتوضيح التحديد الأزرق (Focus) ====== */
+.stTextInput > div > div > input:focus {
+    outline: 3px solid #87cefa !important;
+    border-color: #87cefa !important;
+}
+
 
 
 
