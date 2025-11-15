@@ -7,11 +7,11 @@ st.markdown(
     """
     <div style="
         text-align:center;
-        padding: 25px;
-        border-radius: 20px;
+        padding:25px;
+        border-radius:20px;
         background: linear-gradient(180deg, #1b4d3e, #2a6f55);
         box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
-        margin-bottom: 40px;
+        margin-bottom:40px;
     ">
         <h1 style="
             font-size:48px;
@@ -19,7 +19,7 @@ st.markdown(
             color:white;
             margin:0;
         ">
-            Smart Water System – Login Portal 🔐💧
+            Smart Water System – Login Portal 💧🔐
         </h1>
 
         <h3 style="
@@ -31,7 +31,7 @@ st.markdown(
         </h3>
     </div>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
 
