@@ -95,30 +95,28 @@ div[data-testid="stTextInput"] label p {
     font-weight: 700 !important;
     color: #1b4d3e !important;
 }
-/* 🌿 زر تسجيل الدخول بشكل احترافي */
+/* زر Login بتصميم مشابه لزر Logout */
 .stButton > button {
-    background-color: #1b4d3e !important; /* اللون الأساسي */
+    background: linear-gradient(135deg, #0b7b72, #035f64) !important;
     color: white !important;
-    padding: 10px 28px !important;
+    padding: 12px 32px !important;
     font-size: 16px !important;
     font-weight: 600 !important;
-    border-radius: 10px !important;
+    border-radius: 20px !important;
     border: none !important;
     cursor: pointer !important;
-    transition: 0.3s ease-in-out !important;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.15) !important;
+    transition: 0.25s ease-in-out !important;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.20) !important;
 }
 
-/* تأثير الهوفر */
+/* الهوفر */
 .stButton > button:hover {
-    background-color: #145a4f !important; 
+    background: linear-gradient(135deg, #0c8e85, #047178) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0px 6px 18px rgba(0,0,0,0.25) !important;
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.25) !important;
 }
 
 /* عند الضغط */
 .stButton > button:active {
     transform: scale(0.97) !important;
 }
-
-
