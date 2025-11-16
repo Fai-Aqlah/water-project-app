@@ -63,29 +63,39 @@ if st.button("Login"):
 
     if password_errors:
         st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
+        
 
-   if not username_errors and not password_errors:
-       st.session_state.logged_in = True
-       st.session_state.username = username
 
-       st.success("تم تسجيل الدخول بنجاح ✔️")
 
-       st.markdown(
-         f"""
-         <div style="text-align:center; margin-top:20px;">
-             <h2 style="color:#1b4d3e; font-size:40px; font-weight:900;">
-                Welcome, {st.session_state.username}! 👋💧
-            </h2>
-            <p style="color:#1b4d3e; font-size:22px; font-weight:600;">
-                Glad to have you here — let's start predicting your water consumption 🌿💧
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 
-    import time
-    time.sleep(2)
+    
+    # ---------- SUCCESS ----------
+    if not username_errors and not password_errors:
+        st.session_state.logged_in = True
+        st.session_state.username = username
 
-    st.experimental_set_query_params(page="app")
-    st.rerun()
+        st.success("تم تسجيل الدخول بنجاح ✔️")
+
+        # العبارة الترحيبية
+        st.markdown(
+            f"""
+            <div style="text-align:center; margin-top:20px;">
+                <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
+                    Welcome, {st.session_state.username}! 👋💧
+                </h2>
+                <p style="color:#1b4d3e; font-size:20px; font-weight:600;">
+                    Glad to have you here — let's start predicting your water consumption 🌿
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # ننتظر شوي عشان تشوفين الترحيب
+        time.sleep(2)
+
+        # الانتقال لصفحة app (الصفحة الرئيسية)
+        st.switch_page("app")
+
+
+   
