@@ -30,7 +30,7 @@ username_errors = []
 password_errors = []
 
 # ------------------ BUTTON ------------------
-if st.button("Login"):
+if st.button("Login", type="secondary"):
 
      # ---------------- USERNAME RULES ----------------
     if (
