@@ -32,6 +32,8 @@ username_errors = []
 password_errors = []
 
 if st.button("Login", type="secondary"):
+    st.session_state.clicked_login = True
+    # ثم قواعد التحقق...
 
     if (
         username.strip() == "" or
@@ -83,8 +85,13 @@ if st.button("Login", type="secondary"):
             </div>
             """,
             unsafe_allow_html=True
-        )
-if not username_errors and not password_errors:
+ 
+       )
+        
+if not st.session_state.get("clicked_login"):
+    pass
+
+if st.session_state.get("clicked_login") and not username_errors and not password_errors:
     st.session_state.logged_in = True
     st.session_state.username = username
     st.success("Login Successful!")
