@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 from style import load_style
 
+st.switch_page("1_Login")
+
 
 
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
