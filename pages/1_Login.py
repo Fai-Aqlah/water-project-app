@@ -15,7 +15,7 @@ st.markdown("""
     margin-bottom:40px;
 ">
     <h1 style="color:#1b4d3e; font-size:48px; font-weight:900;">
-        Welcome 👋💧
+        Smart Water System 💧 – Login Portal 
     </h1>
 </div>
 """, unsafe_allow_html=True)
@@ -91,7 +91,7 @@ if st.button("Login", type="secondary"):
         st.session_state.logged_in = True
         st.session_state.username = username
 
-        st.success("تم تسجيل الدخول بنجاح ✔️")
+        st.success("Login Successful!")
 
         st.markdown(
             f"""
