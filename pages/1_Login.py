@@ -1,9 +1,6 @@
 import streamlit as st
 import re
 import time
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("⛔ You must log in first from the Login page.")
-    st.stop()
 
 
 
