@@ -95,4 +95,30 @@ div[data-testid="stTextInput"] label p {
     font-weight: 700 !important;
     color: #1b4d3e !important;
 }
+/* 🌿 زر تسجيل الدخول بشكل احترافي */
+.stButton > button {
+    background-color: #1b4d3e !important; /* اللون الأساسي */
+    color: white !important;
+    padding: 10px 28px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: 0.3s ease-in-out !important;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* تأثير الهوفر */
+.stButton > button:hover {
+    background-color: #145a4f !important; 
+    transform: translateY(-2px) !important;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.25) !important;
+}
+
+/* عند الضغط */
+.stButton > button:active {
+    transform: scale(0.97) !important;
+}
+
 
