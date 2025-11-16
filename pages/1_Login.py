@@ -75,4 +75,4 @@ if st.button("Login"):
         st.session_state.username = username
         st.rerun()
         time.sleep(3)
-        st.switch_page("main/app.py")
+        st.switch_page("app.py")
