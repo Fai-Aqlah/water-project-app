@@ -19,9 +19,7 @@ if "logged_in" in st.session_state and st.session_state.logged_in:
             Welcome, {st.session_state.username}! 👋💧
         </h2>
 
-        <p style="color:#1b4d3e; font-size:22px; font-weight:600; margin-top:10px;">
-            Glad to have you here — let's start predicting your water consumption 🌿
-        </p>
+        
     """, unsafe_allow_html=True)
 
 
