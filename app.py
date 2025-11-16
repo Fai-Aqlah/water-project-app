@@ -2,6 +2,10 @@ import streamlit as st
 import numpy as np
 from style import load_style
 
+import streamlit as st
+
+st.write(st.session_state)
+st.write(st._get_script_run_ctx().pages)
 
 
 # ---------------- منع الوصول لصفحة التنبؤ بدون تسجيل دخول ----------------
