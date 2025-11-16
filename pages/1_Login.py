@@ -64,20 +64,32 @@ if st.button("Login"):
     if password_errors:
         st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
 
-    if not username_errors and not password_errors:
-        st.success("تم تسجيل الدخول بنجاح ✔️")
+   if not username_errors and not password_errors:
+    st.session_state.logged_in = True
+    st.session_state.username = username
 
-        st.markdown("""
-           <div style="margin-top:20px; text-align:center;">
-               <h3 style="color:#1b4d3e; font-weight:800;">
-                Glad to have you here — let’s start predicting your water consumption 💧🌿
-            </h3>
+    st.success("تم تسجيل الدخول بنجاح ✔️")
+
+    st.markdown(
+        f"""
+        <div style="text-align:center; margin-top:20px;">
+            <h2 style="color:#1b4d3e; font-size:40px; font-weight:900;">
+                Welcome, {st.session_state.username}! 👋💧
+            </h2>
+            <p style="color:#1b4d3e; font-size:22px; font-weight:600;">
+                Glad to have you here — let's start predicting your water consumption 🌿💧
+            </p>
         </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
-    time.sleep(2)
+    import time
+    time.sleep(4)
 
-    st.switch_page("app.py")
+    # لا نستخدم switch_page
+    st.experimental_set_query_params(page="app")
+    st.rerun()
 
 
       
