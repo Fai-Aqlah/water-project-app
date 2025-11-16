@@ -109,7 +109,7 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
         )
 
-        st.switch_page("home.py")
+        st.switch_page("home")
 
 
 
