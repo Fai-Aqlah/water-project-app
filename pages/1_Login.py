@@ -89,28 +89,26 @@ if st.button("Login", type="secondary"):
         )
 
     # ------------------ SUCCESS ------------------
-    if not username_errors and not password_errors:
-        st.session_state.logged_in = True
-        st.session_state.username = username
+   if not username_errors and not password_errors:
+    st.session_state.logged_in = True
+    st.session_state.username = username
+    st.success("Login Successful!")
 
-        st.success("Login Successful!")
+    st.markdown(
+        f"""
+        <div style="text-align:center; margin-top:20px;">
+            <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
+                Welcome, {st.session_state.username}! 👋💧
+            </h2>
+            <p style="color:#1b4d3e; font-size:20px; font-weight:600;">
+                ⭐ Great! Let's take you to your Home page 🌿💧
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        st.markdown(
-            f"""
-            <div style="text-align:center; margin-top:20px;">
-                <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
-                    Welcome, {st.session_state.username}! 👋💧
-                </h2>
-                <p style="color:#1b4d3e; font-size:20px; font-weight:600;">
-                  ⭐⭐⭐ Great! Let’s take you to your Home page 🌿💧
-                </p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.switch_page("home")
-
+    st.switch_page("home")   
 
 
    
