@@ -1,9 +1,7 @@
 import streamlit as st
 import re
 import time
-st.success("Login Successful!")
-time.sleep(1)
-st.experimental_rerun()
+
 
 def load_local_css(file_name):
     with open(file_name) as f:
