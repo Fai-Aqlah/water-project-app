@@ -88,7 +88,6 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
         )
 
-    # ------------------ SUCCESS ------------------
   if not username_errors and not password_errors:
     st.session_state.logged_in = True
     st.session_state.username = username
