@@ -62,7 +62,7 @@ if st.button("Login", type="secondary"):
         password_errors.append("Cannot be empty")
 
     if password_errors:
-        st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
+        st.warning("Please fix the following:\n\n" + "\n".join(f"- {e}" for e in username_errors + password_errors))
         
 
 
