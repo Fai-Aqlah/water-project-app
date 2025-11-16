@@ -61,8 +61,28 @@ if st.button("Login", type="secondary"):
         password_errors.append("No Arabic characters")
         password_errors.append("Cannot be empty")
 
-    if password_errors:
-        st.warning("Please fix the following:\n\n" + "\n".join(f"- {e}" for e in username_errors + password_errors))
+    # عرض أخطاء اسم المستخدم داخل مربع أحمر
+if username_errors:
+    st.markdown(f"""
+    <div class="error-box">
+        <div class="error-title"> Username Errors ❌ </div>
+        <ul class="error-list">
+            {''.join(f"<li>{e}</li>" for e in username_errors)}
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+# عرض أخطاء كلمة المرور داخل مربع أصفر
+if password_errors:
+    st.markdown(f"""
+    <div class="warning-box">
+        <div class="warning-title"> Password Errors ⚠️ </div>
+        <ul class="warning-list">
+            {''.join(f"<li>{e}</li>" for e in password_errors)}
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
         
 
 
