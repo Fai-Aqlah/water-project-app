@@ -72,3 +72,5 @@ if st.button("Login"):
         st.session_state.logged_in = True
         st.session_state.username = username
         st.experimental_rerun()
+        time.sleep(3)
+        st.switch_page("main/app.py")
