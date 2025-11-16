@@ -64,22 +64,23 @@ if st.button("Login"):
         st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
 
     # إذا ما فيه ولا خطأ
-    if not username_errors and not password_errors:
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        st.success("Login successful! Redirecting...")
-        st.markdown("""
-            <p style="font-size:20px; font-weight:600; color:#1b4d3e; margin-top:20px;">
-                Glad to have you here — let’s start predicting your water consumption 🌿💧
-            </p>
-        """, unsafe_allow_html=True)
+   if not username_errors and not password_errors:
+    st.success("Login Successful!")
 
-       
-        
+    # ---------------- العبارة الطويلة ----------------
+    st.markdown("""
+        <div style="margin-top:20px; text-align:center;">
+            <h3 style="color:#1b4d3e; font-weight:800;">
+                Glad to have you here — let’s start predicting your water consumption 💧🌿
+            </h3>
+        </div>
+    """, unsafe_allow_html=True)
 
-        
+    # وقت عرض العبارة قبل الانتقال
+    time.sleep(4)
 
-        st.switch_page("app.py")  # عدّلي الاسم حسب صفحة التنبؤ
+    # الانتقال للصفحة الثانية
+    st.switch_page("app.py")
 
       
    
