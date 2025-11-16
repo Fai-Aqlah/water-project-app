@@ -95,7 +95,7 @@ if st.button("Login"):
         time.sleep(2)
 
         # الانتقال لصفحة app (الصفحة الرئيسية)
-        st.switch_page("app")
+        st.switch_page("app.py")
 
 
    
