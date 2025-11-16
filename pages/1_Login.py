@@ -2,6 +2,9 @@ import streamlit as st
 import re
 import time
 
+# إذا المستخدم داخل، ودخل صفحة اللوقين بالغلط → رجعيه للهوم
+if "logged_in" in st.session_state and st.session_state.logged_in:
+    st.switch_page("pages/home.py")
 
 def load_local_css(file_name):
     with open(file_name) as f:
