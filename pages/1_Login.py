@@ -21,9 +21,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# نقرأ المدخلات من session_state
-username = st.session_state.username_input
-password = st.session_state.password_input
+username = st.text_input("Username (English only)", key="username_input")
+password = st.text_input("Password", type="password", key="password_input")
+
 
 username_errors = []
 password_errors = []
