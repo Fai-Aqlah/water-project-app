@@ -107,7 +107,7 @@ if not username_errors and not password_errors:
         unsafe_allow_html=True
     )
 
-    st.switch_page("2_home")
+    st.switch_page("home")
 
      
 
