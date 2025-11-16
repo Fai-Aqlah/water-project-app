@@ -31,34 +31,34 @@ password_errors = []
 # ------------------ BUTTON ------------------
 if st.button("Login"):
 
-    # =======================
-    # USERNAME RULES (مثل القديم بالضبط)
-    # =======================
-    if username.strip() == "":
-        username_errors.append("Username cannot be empty.")
-    if not re.match(r'^[A-Za-z0-9]+$', username):
-        username_errors.append("Username must contain only English letters and numbers.")
-    if " " in username:
-        username_errors.append("Spaces are not allowed in username.")
-    if re.search(r'[\u0600-\u06FF]', username):
-        username_errors.append("Arabic letters are not allowed in username.")
-    if re.search(r'[!@#$%^&*(),.?":{}|<>]', username):
-        username_errors.append("Special characters are not allowed.")
+     # ---------------- USERNAME RULES ----------------
+    if (
+        username.strip() == "" or
+        not re.match(r'^[A-Za-z0-9]+$', username) or
+        " " in username or
+        re.search(r'[\u0600-\u06FF]', username) or
+        re.search(r'[!@#$%^&*]', username)
+    ):
+        username_errors.append("English letters and numbers only")
+        username_errors.append("No Arabic characters")
+        username_errors.append("No spaces")
+        username_errors.append("No symbols (!@#$%^&*)")
+        username_errors.append("Cannot be empty")
 
-    # =======================
-    # PASSWORD RULES (نفس الشروط القديمة)
-    # =======================
-    if password.strip() == "":
-        password_errors.append("Password cannot be empty.")
-    if len(password) < 6:
-        password_errors.append("Password must be at least 6 characters.")
-    if " " in password:
-        password_errors.append("Spaces are not allowed in password.")
-
-    # هنا الفكرة المهمة:
-    # حتى لو كان فيه شرط واحد غلط، نظهر كل الشروط
-    if username_errors:
-        st.error("Please fix the following username rules:\n\n" + "\n".join([f"• {e}" for e in username_errors]))
+    # ---------------- PASSWORD RULES ----------------
+    if (
+        password.strip() == "" or
+        len(password) < 8 or
+        not re.search(r'[A-Za-z]', password) or
+        not re.search(r'[0-9]', password) or
+        " " in password or
+        re.search(r'[\u0600-\u06FF]', password)
+    ):
+        password_errors.append("Password must be at least 8 characters")
+        password_errors.append("Must include letters and numbers")
+        password_errors.append("No spaces allowed")
+        password_errors.append("No Arabic characters")
+        password_errors.append("Cannot be empty")
 
     if password_errors:
         st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
