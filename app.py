@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from style import load_style
 
-st.switch_page("1_Login")
 
 
 
