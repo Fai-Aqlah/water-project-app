@@ -71,6 +71,6 @@ if st.button("Login"):
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
-        st.experimental_rerun()
+        st.rerun()
         time.sleep(3)
         st.switch_page("main/app.py")
