@@ -16,9 +16,6 @@ st.markdown("""
     <h1 style="color:#1b4d3e; font-size:48px; font-weight:900;">
         Welcome 👋💧
     </h1>
-    <p style="color:#1b4d3e; font-size:22px; font-weight:600;">
-        Glad to have you here — let's start predicting your water consumption 🌿
-    </p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -71,6 +68,17 @@ if st.button("Login"):
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login successful! Redirecting...")
+        st.markdown("""
+            <p style="font-size:20px; font-weight:600; color:#1b4d3e; margin-top:20px;">
+                Glad to have you here — let’s start predicting your water consumption 🌿💧
+            </p>
+        """, unsafe_allow_html=True)
+
+       
+        
+
+        
+
         st.switch_page("app.py")  # عدّلي الاسم حسب صفحة التنبؤ
 
       
