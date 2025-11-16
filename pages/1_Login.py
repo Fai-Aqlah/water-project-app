@@ -63,25 +63,27 @@ if st.button("Login", type="secondary"):
 
     # عرض أخطاء اسم المستخدم داخل مربع أحمر
 if username_errors:
-    st.markdown(f"""
+    st.markdown("""
     <div class="error-box">
-        <div class="error-title"> Username Errors ❌ </div>
+        <div class="error-title">❌ Username Errors</div>
         <ul class="error-list">
-            {''.join(f"<li>{e}</li>" for e in username_errors)}
+            %s
         </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """ % "".join(f"<li>{e}</li>" for e in username_errors), unsafe_allow_html=True)
+
 
 # عرض أخطاء كلمة المرور داخل مربع أصفر
 if password_errors:
-    st.markdown(f"""
+    st.markdown("""
     <div class="warning-box">
-        <div class="warning-title"> Password Errors ⚠️ </div>
+        <div class="warning-title">⚠️ Password Errors</div>
         <ul class="warning-list">
-            {''.join(f"<li>{e}</li>" for e in password_errors)}
+            %s
         </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """ % "".join(f"<li>{e}</li>" for e in password_errors), unsafe_allow_html=True)
+
 
         
 
