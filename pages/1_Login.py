@@ -1,6 +1,10 @@
 import streamlit as st
 import re
 import time
+st.success("Login Successful!")
+time.sleep(1)
+st.experimental_rerun()
+
 def load_local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -100,14 +104,13 @@ if st.button("Login", type="secondary"):
                     Welcome, {st.session_state.username}! 👋💧
                 </h2>
                 <p style="color:#1b4d3e; font-size:20px; font-weight:600;">
-                    Glad to have you here — let’s start predicting your water consumption 🌿
+                  ⭐⭐⭐ Great! Let’s take you to your Home page 🌿💧
                 </p>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-        time.sleep(5)
         st.switch_page("home.py")
 
 
