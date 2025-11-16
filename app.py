@@ -16,7 +16,7 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
 if "logged_in" in st.session_state and st.session_state.logged_in:
     st.markdown(f"""
         <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
-            Welcome, {st.session_state.username}! 👋💧
+            Welcome, {st.session_state.username}! 💧
         </h2>
 
         
