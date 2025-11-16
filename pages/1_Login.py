@@ -24,17 +24,19 @@ header_html = """
 st.markdown(header_html, unsafe_allow_html=True)
 
 
-# ----------------------------- INPUTS -----------------------------
-username = st.text_input("Username (English only)", key="login_username")  
+# INPUTS
+username = st.text_input("Username (English only)", key="login_username")
 password = st.text_input("Password", type="password", key="login_password")
 
+# ERROR LISTS
+username_errors = []
+password_errors = []
 
-   
-                  
+# BUTTON
 if st.button("Login"):
 
-    username_errors = []
-    password_errors = []
+   
+    
 
     # ================= USERNAME RULES =================
     if (
