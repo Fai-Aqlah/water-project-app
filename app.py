@@ -3,9 +3,16 @@ import numpy as np
 from style import load_style
 
 
-# التحقق من تسجيل الدخول
-if "logged_in" not in st.session_state or st.session_state.logged_in is False:
-    st.switch_page("pages/1_Login.py")
+if "logged_in" in st.session_state and st.session_state.logged_in:
+    st.markdown(f"""
+        <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
+            Welcome, {st.session_state.username}! 👋💧
+        </h2>
+
+        <p style="color:#1b4d3e; font-size:22px; font-weight:600; margin-top:10px;">
+            Glad to have you here — let's start predicting your water consumption 🌿
+        </p>
+    """, unsafe_allow_html=True)
 
 
 
