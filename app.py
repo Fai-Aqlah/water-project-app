@@ -3,6 +3,12 @@ import numpy as np
 from style import load_style
 
 
+# منع الوصول للصفحة بدون تسجيل دخول
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.warning("🚫 You must log in first.")
+
+    st.stop()   # ← يوقف الصفحة بدون خطأ
+
 
 
 
