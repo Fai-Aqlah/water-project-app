@@ -87,8 +87,6 @@ if st.button("Login", type="secondary"):
             """,
             unsafe_allow_html=True
         )
-
-
    if not username_errors and not password_errors:
     st.session_state.logged_in = True
     st.session_state.username = username
@@ -101,7 +99,7 @@ if st.button("Login", type="secondary"):
                 Welcome, {st.session_state.username}! 👋💧
             </h2>
             <p style="color:#1b4d3e; font-size:20px; font-weight:600;">
-                ⭐ ⭐⭐Great! Let's take you to your Home page 🌿💧
+                ⭐✨ Great! Let's take you to your Home page 🌿💧
             </p>
         </div>
         """,
@@ -109,3 +107,8 @@ if st.button("Login", type="secondary"):
     )
 
     st.switch_page("home")
+     
+
+
+
+  
