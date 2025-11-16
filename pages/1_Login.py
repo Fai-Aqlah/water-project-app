@@ -107,7 +107,7 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
         )
 
-        time.sleep(3)
+        time.sleep(5)
         st.switch_page("app.py")
 
 
