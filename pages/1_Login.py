@@ -1,8 +1,8 @@
 import streamlit as st
 import re
 import time
-if "logged_in" in st.session_state and st.session_state.logged_in:
-    st.info("You are already logged in.")
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.warning("⛔ You must log in first from the Login page.")
     st.stop()
 
 
@@ -14,7 +14,6 @@ def load_local_css(file_name):
 load_local_css("pages/style_login.css")
 st.set_page_config(page_title="Login", layout="centered")
 
-# ------------------ HEADER ------------------
 st.markdown("""
 <div style="
     text-align:center;
@@ -37,7 +36,6 @@ password_errors = []
 
 if st.button("Login", type="secondary"):
 
-    # ------------------ USERNAME RULES ------------------
     if (
         username.strip() == "" or
         not re.match(r'^[A-Za-z0-9]+$', username) or
@@ -51,7 +49,6 @@ if st.button("Login", type="secondary"):
         username_errors.append("No symbols (!@#$%^&*)")
         username_errors.append("Cannot be empty")
 
-    # ------------------ PASSWORD RULES ------------------
     if (
         password.strip() == "" or
         len(password) < 8 or
@@ -65,7 +62,6 @@ if st.button("Login", type="secondary"):
         password_errors.append("No spaces allowed")
         password_errors.append("Cannot be empty")
 
-    # ------------------ SHOW USERNAME ERRORS ------------------
     if username_errors:
         st.markdown(
             f"""
@@ -79,7 +75,6 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
         )
 
-    # ------------------ SHOW PASSWORD ERRORS ------------------
     if password_errors:
         st.markdown(
             f"""
@@ -92,7 +87,6 @@ if st.button("Login", type="secondary"):
             """,
             unsafe_allow_html=True
         )
-  # SUCCESS ---------------------------------------------------------------
 if not username_errors and not password_errors:
     st.session_state.logged_in = True
     st.session_state.username = username
