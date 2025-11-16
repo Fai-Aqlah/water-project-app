@@ -91,14 +91,12 @@ if password_errors:
 
 
     
-    # ---------- SUCCESS ----------
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
 
         st.success("تم تسجيل الدخول بنجاح ✔️")
 
-        # العبارة الترحيبية
         st.markdown(
             f"""
             <div style="text-align:center; margin-top:20px;">
@@ -113,10 +111,7 @@ if password_errors:
             unsafe_allow_html=True
         )
 
-        # ننتظر شوي عشان تشوفين الترحيب
-        time.sleep(2)
-
-        # الانتقال لصفحة app (الصفحة الرئيسية)
+        time.sleep(4)
         st.switch_page("app.py")
 
 
