@@ -6,7 +6,7 @@ from style import load_style
 # منع الوصول لصفحة التنبؤ بدون تسجيل دخول
 if "logged_in" not in st.session_state or st.session_state.logged_in != True:
     st.warning("🚫 You must log in first.")
-    st.switch_page("1_Login.py")
+    st.switch_page("1 Login")
 
 if "logged_in" in st.session_state and st.session_state.logged_in:
     st.markdown(f"""
