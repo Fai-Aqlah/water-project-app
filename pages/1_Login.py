@@ -77,7 +77,7 @@ if st.button("Login"):
 
     time.sleep(2)
 
-    st.switch_page("2_Home.py")
+    st.switch_page("app.py")
 
 
       
