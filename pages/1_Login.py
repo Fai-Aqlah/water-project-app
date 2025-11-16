@@ -65,15 +65,15 @@ if st.button("Login"):
         st.warning("Please fix the following password rules:\n\n" + "\n".join([f"• {e}" for e in password_errors]))
 
    if not username_errors and not password_errors:
-    st.session_state.logged_in = True
-    st.session_state.username = username
+       st.session_state.logged_in = True
+       st.session_state.username = username
 
-    st.success("تم تسجيل الدخول بنجاح ✔️")
+       st.success("تم تسجيل الدخول بنجاح ✔️")
 
-    st.markdown(
-        f"""
-        <div style="text-align:center; margin-top:20px;">
-            <h2 style="color:#1b4d3e; font-size:40px; font-weight:900;">
+       st.markdown(
+         f"""
+         <div style="text-align:center; margin-top:20px;">
+             <h2 style="color:#1b4d3e; font-size:40px; font-weight:900;">
                 Welcome, {st.session_state.username}! 👋💧
             </h2>
             <p style="color:#1b4d3e; font-size:22px; font-weight:600;">
@@ -85,13 +85,7 @@ if st.button("Login"):
     )
 
     import time
-    time.sleep(4)
+    time.sleep(2)
 
-    # لا نستخدم switch_page
     st.experimental_set_query_params(page="app")
     st.rerun()
-
-
-      
-   
-      
