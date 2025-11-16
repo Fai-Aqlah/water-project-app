@@ -1,10 +1,12 @@
 import streamlit as st
 import re
 import time
-
-# إذا المستخدم داخل، ودخل صفحة اللوقين بالغلط → رجعيه للهوم
 if "logged_in" in st.session_state and st.session_state.logged_in:
-    st.switch_page("pages/home.py")
+    st.info("You are already logged in.")
+    st.stop()
+
+
+
 
 def load_local_css(file_name):
     with open(file_name) as f:
@@ -110,7 +112,6 @@ if not username_errors and not password_errors:
         unsafe_allow_html=True
     )
 
-    st.switch_page("pages/home.py")
 
      
 
