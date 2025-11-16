@@ -3,15 +3,8 @@ import numpy as np
 from style import load_style
 
 
-st.write(st.session_state)
-st.write(st._get_script_run_ctx().pages)
 
 
-# ---------------- منع الوصول لصفحة التنبؤ بدون تسجيل دخول ----------------
-if "logged_in" not in st.session_state or st.session_state.logged_in != True:
-    st.warning("🚫 You must log in first.")
-    st.switch_page("Login")
-# ---------------------------------------------------------------------------
 
 
 
