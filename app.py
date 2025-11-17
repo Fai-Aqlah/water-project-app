@@ -2,27 +2,33 @@ import streamlit as st
 import numpy as np
 from style import load_style
 import requests
-import datetime
 
-def send_email_alert(consumption_value, change_rate):
-    url = "https://api.emailjs.com/api/v1.0/email/send"
+RESEND_API_KEY = "re_2nNQotiq_H1CJpcLPQBk6UAgB6CfvSTab"
+
+ALERT_EMAIL = "faialahmary@gmail.com"
+
+def send_email_alert(consumption, change_rate):
+    url = "https://api.resend.com/emails"
 
     payload = {
-        "service_id": "service_zC5x7rd",
-        "template_id": "template_default",
-        "user_id": "xxxQFdyP4Oz-xCnPL",
-        "template_params": {
-            "to_email": "faialahmary@gmail.com",
-            "message": f"⚠️ High water usage detected!\nCurrent usage: {consumption_value} L\nIncrease: {change_rate:.1f}%",
-            "date": str(datetime.date.today())
-        }
+        "from": "Water Alert System <alert@yourapp.com>",
+        "to": [ALERT_EMAIL],
+        "subject": "🚨 Water Leak Alert Detected!",
+        "html": f"""
+        <h2>⚠️ High Water Usage Alert</h2>
+        <p><b>Unusual consumption detected:</b> {consumption} liters.</p>
+        <p><b>Change rate:</b> {change_rate:.1f}%</p>
+        <p>Please check your water system immediately.</p>
+        """
     }
 
-    headers = {"Content-Type": "application/json"}
+    headers = {
+        "Authorization": f"Bearer {RESEND_API_KEY}",
+        "Content-Type": "application/json"
+    }
 
     response = requests.post(url, json=payload, headers=headers)
     return response.status_code
-
 
 
 
@@ -133,8 +139,7 @@ elif abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
 else:
     if change_rate >= LEAK_PCT:
         st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
-                send_email_alert(curr_use, change_rate)
-        st.info("📩 Alert email has been sent.")
+                
 
     elif change_rate >= WARN_PCT:
         st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
