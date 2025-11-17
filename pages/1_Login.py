@@ -115,7 +115,7 @@ if st.session_state.get("clicked_login") and not username_errors and not passwor
     time.sleep(4)
 
     # الانتقال لصفحة الهوم
-    st.switch_page("home.py")
+    st.switch_page("pages/home.py")
 
 
      
