@@ -3,6 +3,11 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.warning("⛔ You must log in first from the Login page.")
     st.stop()
 
+def load_home_css():
+    with open("pages/style_home.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_home_css()
 
 st.set_page_config(page_title="Home", layout="centered")
 
