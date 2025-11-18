@@ -3,7 +3,10 @@ import numpy as np
 from style import load_style
 import requests
 
-RESEND_API_KEY = "re_WiPh1kXJQ_MGzx6TLNNNBCxX9AEs6MWN87"
+
+
+# Load API key securely
+RESEND_API_KEY = st.secrets["RESEND_API_KEY"]
 
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
