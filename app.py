@@ -1,33 +1,37 @@
 import streamlit as st
 import numpy as np
 from style import load_style
+# ========== EMAIL ALERT (RESEND) ==========
 import requests
 
-RESEND_API_KEY = "re_2nNQotiq_H1CJpcLPQBk6UAgB6CfvSTab"
-
-ALERT_EMAIL = "faialahmary@gmail.com"
-
-def send_email_alert(consumption, change_rate):
+def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
-
-    payload = {
-        "from": "Water Alert System <alert@yourapp.com>",
-        "to": [ALERT_EMAIL],
-        "subject": "🚨 Water Leak Alert Detected!",
-        "html": f"""
-        <h2>⚠️ High Water Usage Alert</h2>
-        <p><b>Unusual consumption detected:</b> {consumption} liters.</p>
-        <p><b>Change rate:</b> {change_rate:.1f}%</p>
-        <p>Please check your water system immediately.</p>
-        """
-    }
-
+    
+    api_key = "re_2nNQotiq_H1CJpcLPQBK6UA9B6CfYsTab"  # مفتاحك
     headers = {
-        "Authorization": f"Bearer {RESEND_API_KEY}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    data = {
+        # 👇 هذا هو العنوان الرسمي اللي Gmail يقبله دائماً
+        "from": "Smart Water System <notifications@fai-system.dev>",
+        
+        # 👇 هنا إيميلك
+        "to": ["faialahmary@gmail.com"],
+
+        "subject": "🚨 Water Leak Detected!",
+        
+        "html": f"""
+            <h2>⚠️ High Water Usage Alert</h2>
+            <p><b>Current usage:</b> {consumption_value} L</p>
+            <p><b>Increase rate:</b> {change_rate:.1f}%</p>
+            <br>
+            <p>Please check your water system immediately.</p>
+        """
+    }
+
+    response = requests.post(url, headers=headers, json=data)
     return response.status_code
 
 
