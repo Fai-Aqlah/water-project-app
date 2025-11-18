@@ -1,6 +1,12 @@
 import streamlit as st
 import numpy as np
 from style import load_style
+import requests
+import os
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+st.write("API KEY Loaded:", RESEND_API_KEY is not None)
+st.write("API KEY Value:", RESEND_API_KEY)
+
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
 
