@@ -16,16 +16,17 @@ def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
 
     payload = {
-        "from": "faialahmary@gmail.com",
-        "to": ["faialahmary@gmail.com"],
-        "subject": "🚨 Water Leakage Alert Detected!",
-        "html": f"""
-            <h2>🚨 Leakage / Extreme Overuse Detected</h2>
-            <p><b>Current Consumption:</b> {consumption_value} L</p>
-            <p><b>Change Rate:</b> +{change_rate:.1f}%</p>
-            <p>Please check the system immediately.</p>
-        """
-    }
+    "from": "Fai Aqlah <faialahmary@gmail.com>",
+    "to": ["faialahmary@gmail.com"],
+    "subject": "🚨 Water Leakage Alert Detected!",
+    "html": f"""
+        <h2>🚨 Leakage / Extreme Overuse Detected</h2>
+        <p><b>Current Consumption:</b> {consumption_value} L</p>
+        <p><b>Change Rate:</b> +{change_rate:.1f}%</p>
+        <p>Please check the system immediately.</p>
+    """
+}
+
 
     headers = {
         "Authorization": f"Bearer {RESEND_API_KEY}",
