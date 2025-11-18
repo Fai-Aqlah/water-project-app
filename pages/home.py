@@ -13,7 +13,8 @@ load_home_css()
 # ===========================
 
 # العنوان الرئيسي
-st.markdown("## Smart Water System 💧🌿", unsafe_allow_html=False)
+st.markdown("## Smart Water System: AI-Driven Consumption Analysis & Early Leakage Detection
+💧🌿", unsafe_allow_html=False)
 
 # الوصف العام
 st.markdown("""
