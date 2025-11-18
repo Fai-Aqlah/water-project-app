@@ -6,6 +6,9 @@ def load_home_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_home_css()
+
+
+
 st.markdown("""
 <div class="project-box">
     <h2 class="section-title">Smart Water System 💧🌿</h2>
@@ -17,10 +20,9 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
-
-st.markdown("""
-<div class="benefits-section">
-    <h2 class="section-title">🌟 Key Benefits</h2>
+st.markdown(
+    """
+    <h2 class="section-title">⭐ Key Benefits</h2>
 
     <div class="benefits-container">
 
@@ -46,7 +48,8 @@ st.markdown("""
         </div>
 
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 
