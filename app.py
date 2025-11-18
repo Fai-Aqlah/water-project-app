@@ -139,10 +139,12 @@ elif abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
 else:
     if change_rate >= LEAK_PCT:
         st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
+        send_email_alert(curr_use, change_rate)
+        st.info("📧 Alert email has been sent.")
 
 
-    send_email_alert(curr_use, change_rate)
-    st.info("📩 Alert email has been sent.")
+
+    
 
                 
 
