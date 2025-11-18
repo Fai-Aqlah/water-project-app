@@ -5,8 +5,9 @@ import requests
 
 
 
-# Load API key securely
-RESEND_API_KEY = st.secrets["RESEND_API_KEY"]
+import os
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+
 
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
