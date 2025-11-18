@@ -1,49 +1,39 @@
 import streamlit as st
 
-# --- LOAD CSS ---
-def load_home_css():
-    with open("pages/style_home.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# ============================
+#   HOME PAGE (NO HTML)
+# ============================
 
-load_home_css()
+st.title("💧 Smart Water System")
+st.subheader("AI-Powered Leakage Detection & Consumption Analysis")
 
-# --- HTML CONTENT ---
-html_code = """
-<div class="home-container">
+st.info("""
+Smart Water System is an AI-powered platform developed to analyze water consumption,
+detect potential leakages early, and support sustainability efforts.
+By comparing previous and current usage, the system identifies unusual patterns
+that may indicate hidden water loss.
+""")
 
-    <div class="intro-card">
-        <h1 class="home-title">Smart Water System 💧🌿</h1>
-        <p class="home-description">
-            Smart Water System is an AI-powered platform designed to analyze water consumption
-            and detect potential leakages. By comparing previous and current usage,
-            the model identifies abnormal spikes that may indicate hidden water loss.
-            The system supports the Ministry of Environment, Water & Agriculture 
-            in improving sustainability, reducing waste, and enabling smarter decision-making 
-            with accurate monitoring.
-        </p>
-    </div>
+st.markdown("---")
 
-    <h2 class="benefits-title">⭐ Key Benefits</h2>
+st.header("⭐ Key Benefits")
 
-    <div class="benefits-container">
+col1, col2, col3 = st.columns(3)
 
-        <div class="benefit-card blue-border">
-            <h3 class="benefit-title">🔍 Early Leakage Detection</h3>
-            <p>Detects abnormal water usage instantly, allowing early intervention before significant water loss occurs.</p>
-        </div>
+with col1:
+    st.subheader("💧 Early Leakage Detection")
+    st.write("Detects abnormal usage instantly to prevent water loss.")
 
-        <div class="benefit-card green-border">
-            <h3 class="benefit-title">📊 Smarter Consumption Management</h3>
-            <p>Provides accurate monthly consumption analysis and improves awareness on efficient usage.</p>
-        </div>
+with col2:
+    st.subheader("📊 Smarter Consumption")
+    st.write("Provides accurate monthly consumption analytics.")
 
-        <div class="benefit-card aqua-border">
-            <h3 class="benefit-title">🌱 Environmental Sustainability</h3>
-            <p>Supports national sustainability goals by minimizing waste and enhancing resource planning.</p>
-        </div>
+with col3:
+    st.subheader("🌱 Sustainability")
+    st.write("Supports national goals by reducing waste and improving efficiency.")
 
-    </div>
-</div>
-"""
+st.markdown("---")
 
-st.markdown(html_code, unsafe_allow_html=True)
+st.success("🚀 Ready to explore? Go to the prediction page from the sidebar!")
+
+            
