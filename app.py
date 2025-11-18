@@ -1,32 +1,20 @@
 import streamlit as st
 import numpy as np
 from style import load_style
-import requests
-
-
-
-import os
-RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
-
-st.write("API KEY Loaded:", RESEND_API_KEY is not None)
-
-
-
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
 
     payload = {
-    "from": "Fai Aqlah <faialahmary@gmail.com>",
-    "to": ["faialahmary@gmail.com"],
-    "subject": "🚨 Water Leakage Alert Detected!",
-    "html": f"""
-        <h2>🚨 Leakage / Extreme Overuse Detected</h2>
-        <p><b>Current Consumption:</b> {consumption_value} L</p>
-        <p><b>Change Rate:</b> +{change_rate:.1f}%</p>
-        <p>Please check the system immediately.</p>
-    """
-}
-
+        "from": "Smart Water System <alerts@resend.dev>",
+        "to": ["faialahmary@gmail.com"],
+        "subject": "🚨 Water Leakage Alert Detected!",
+        "html": f"""
+            <h2>🚨 Leakage / Extreme Overuse Detected</h2>
+            <p><b>Current Consumption:</b> {consumption_value} L</p>
+            <p><b>Change Rate:</b> +{change_rate:.1f}%</p>
+            <p>Please check the system immediately.</p>
+        """
+    }
 
     headers = {
         "Authorization": f"Bearer {RESEND_API_KEY}",
@@ -36,6 +24,9 @@ def send_email_alert(consumption_value, change_rate):
     response = requests.post(url, json=payload, headers=headers)
     return response.status_code
 
+
+
+   
     
 
 
