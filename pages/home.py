@@ -1,79 +1,71 @@
 import streamlit as st
 
-st.set_page_config(page_title="Home", layout="wide")
+# استدعاء ملف التنسيق
+def load_home_css():
+    with open("pages/style_home.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ---------------- HEADER ----------------
+load_home_css()
+
+# ==========================
+#        الصفحة الرئيسية
+# ==========================
+
+# ---- العنوان الرئيسي ----
 st.markdown(
     """
-    <h1 style='text-align:center; color:#1b4d3e; font-weight:900;'>
-        Smart Water System 💧🌿
-    </h1>
-    <h3 style='text-align:center; color:#4a4a4a; margin-top:-10px;'>
-        AI-Powered Leakage Detection & Consumption Analysis
-    </h3>
+    <div class="intro-card">
+        <h1 class="home-title">Smart Water System 💧🌿</h1>
+        <p class="home-description">
+            Smart Water System is an AI-powered platform developed to analyze water consumption,
+            detect potential leakages early, and support sustainability efforts. By comparing previous
+            and current usage, the system identifies unusual patterns that may indicate hidden water loss.
+            This system assists both citizens and the Ministry in improving water efficiency and informed
+            decision-making.
+        </p>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-st.write("")  
-st.write("")
-
-# --------------- INTRO CARD ---------------
-with st.container():
-    st.markdown(
-        """
-        <div style="background:#f0f8ff; padding:25px; border-radius:15px; box-shadow:0px 4px 12px rgba(0,0,0,0.08);">
-            <p style="font-size:18px; color:#333; text-align:center; line-height:1.7;">
-                Smart Water System is an AI-powered platform developed to analyze water consumption,<br>
-                detect potential leakages early, and support sustainability efforts.<br>
-                By comparing previous and current usage, the system identifies unusual patterns<br>
-                that may indicate hidden water loss.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-st.write("")
-st.write("")
-
-# ===================== IMPACT SECTION =====================
-
+# ---- العنوان الفرعي للفوائد ----
 st.markdown(
     """
-    <h2 style='text-align:center; color:#1b4d3e; font-size:38px; font-weight:900; margin-top:25px;'>
-        How This System Helps the Ministry & Citizens 🌍💧
-    </h2>
+    <h2 class="section-title">🌟 Key Benefits</h2>
     """,
     unsafe_allow_html=True
 )
 
-impact_card = """
-<div style="
-    background:#f7fcff;
-    width:92%;
-    margin:25px auto;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    border-left:12px solid #1b4d3e;
-">
+# ---- كروت الفوائد ----
+st.markdown(
+    """
+    <div class="benefit-card">
+        <h3 class="benefit-title">💧 Early Leakage Detection</h3>
+        <p>Detects abnormal water usage instantly and prevents hidden leaks before major damage occurs.</p>
+    </div>
 
-    <p style="font-size:18px; color:#333; line-height:1.9; text-align:justify;">
-        The Smart Water System delivers real-world impact by enhancing the Ministry of Environment,
-        Water & Agriculture’s ability to monitor water consumption with accuracy, detect hidden
-        leakages early, and support national sustainability programs.  
-        <br><br>
-        For citizens, the system enables better understanding of consumption behavior, sends instant
-        alerts when suspicious usage is detected, and helps reduce waste by providing AI-driven insights.
-        This creates a smarter, more responsible, and highly efficient water management ecosystem for all.
-    </p>
+    <div class="benefit-card">
+        <h3 class="benefit-title">📊 Smarter Consumption Insights</h3>
+        <p>Provides accurate month-to-month usage analysis to help citizens understand and optimize their consumption.</p>
+    </div>
 
-</div>
-"""
+    <div class="benefit-card">
+        <h3 class="benefit-title">📩 Automatic Email Alerts</h3>
+        <p>Sends instant AI-powered email notifications when sudden spikes in consumption indicate a possible leakage.</p>
+    </div>
 
-st.markdown(impact_card, unsafe_allow_html=True)
+    <div class="benefit-card">
+        <h3 class="benefit-title">🌱 Supports Sustainability</h3>
+        <p>Helps reduce water waste and supports the Ministry’s long-term environmental and sustainability goals.</p>
+    </div>
 
+    <div class="benefit-card">
+        <h3 class="benefit-title">🏛️ Ministry Decision Support</h3>
+        <p>Improves monitoring accuracy and supports data-driven planning for better national water management.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ------------------- BUTTON -------------------
