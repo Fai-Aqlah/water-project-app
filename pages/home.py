@@ -1,12 +1,13 @@
 import streamlit as st
 
-# تحميل التنسيق
-def load_home_css():
-    with open("pages/style_home.css") as f:
+# ---------------------- LOAD HOME CSS ----------------------
+def load_home_css(file_name):
+    with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_home_css()
+load_home_css("pages/style_home.css")
 
+# ---------------------- PAGE CONTENT ----------------------
 st.markdown("""
 <div class="hero-card">
 
@@ -48,3 +49,5 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+    
