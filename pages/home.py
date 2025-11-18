@@ -37,52 +37,44 @@ with st.container():
 st.write("")
 st.write("")
 
-# ------------- BENEFITS SECTION -------------
+# ===================== IMPACT SECTION =====================
+
 st.markdown(
-    "<h2 style='text-align:center; color:#1b4d3e;'>⭐ Key Benefits</h2>",
+    """
+    <h2 style='text-align:center; color:#1b4d3e; font-size:38px; font-weight:900; margin-top:25px;'>
+        How This System Helps the Ministry & Citizens 🌍💧
+    </h2>
+    """,
     unsafe_allow_html=True
 )
 
-col1, col2, col3 = st.columns(3, gap="large")
+impact_card = """
+<div style="
+    background:#f7fcff;
+    width:92%;
+    margin:25px auto;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    border-left:12px solid #1b4d3e;
+">
 
-with col1:
-    st.markdown(
-        """
-        <div style="background:white; padding:20px; border-radius:15px; 
-        border-left:6px solid #4cb5ff; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
-            <h3 style="color:#1b4d3e;">💦 Early Leakage Detection</h3>
-            <p style="color:#444; font-size:16px;">Detects abnormal usage instantly to prevent costly water loss.</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    <p style="font-size:18px; color:#333; line-height:1.9; text-align:justify;">
+        The Smart Water System delivers real-world impact by enhancing the Ministry of Environment,
+        Water & Agriculture’s ability to monitor water consumption with accuracy, detect hidden
+        leakages early, and support national sustainability programs.  
+        <br><br>
+        For citizens, the system enables better understanding of consumption behavior, sends instant
+        alerts when suspicious usage is detected, and helps reduce waste by providing AI-driven insights.
+        This creates a smarter, more responsible, and highly efficient water management ecosystem for all.
+    </p>
 
-with col2:
-    st.markdown(
-        """
-        <div style="background:white; padding:20px; border-radius:15px; 
-        border-left:6px solid #34c759; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
-            <h3 style="color:#1b4d3e;">📊 Smarter Consumption</h3>
-            <p style="color:#444; font-size:16px;">Provides accurate monthly analysis for better awareness.</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+</div>
+"""
 
-with col3:
-    st.markdown(
-        """
-        <div style="background:white; padding:20px; border-radius:15px; 
-        border-left:6px solid #00c2a8; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
-            <h3 style="color:#1b4d3e;">🌿 Sustainability</h3>
-            <p style="color:#444; font-size:16px;">Supports efficient usage & national conservation goals.</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+st.markdown(impact_card, unsafe_allow_html=True)
 
-st.write("")
-st.write("")
+
 
 # ------------------- BUTTON -------------------
 st.markdown("<hr>", unsafe_allow_html=True)
