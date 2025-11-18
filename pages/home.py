@@ -6,10 +6,7 @@ def load_home_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_home_css()
-import streamlit as st
 
-# إعداد صفحة الهوم
-st.set_page_config(page_title="Home", layout="wide")
 
 # تنسيق خاص بصفحة الهوم (CSS داخلي)
 st.markdown(
