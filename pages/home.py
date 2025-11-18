@@ -47,7 +47,9 @@ st.divider()
 
 
 # زر الانتقال لصفحة التنبؤ
-if st.button("Go to Prediction Page 🚀"):
+st.markdown("### 🌟 Ready to explore the prediction model?")
+
+if st.button("Go to Prediction Page "):
     st.switch_page("app.py")
 
 
