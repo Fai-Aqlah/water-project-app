@@ -1,70 +1,75 @@
-.hero-card {
-    background-color: #ffffff;
-    padding: 35px;
-    margin: 25px auto;
-    max-width: 950px;
-    border-radius: 25px;
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.08);
-    text-align: center;
+/* الصفحة كاملة */
+.home-container {
+    padding: 30px;
+}
+
+/* مقدمة المشروع */
+.intro-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
 }
 
 .home-title {
-    font-size: 48px;
-    font-weight: 900;
     color: #1b4d3e;
-    margin-bottom: 15px;
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
 }
 
 .home-description {
-    font-size: 20px;
-    line-height: 1.7;
-    color: #333333;
-    margin-top: 10px;
-}
-
-
-
-.benefits-section {
-    margin-top: 40px;
+    font-size: 18px;
+    color: #333;
     text-align: center;
+    line-height: 1.8;
 }
 
+/* عنوان الفوائد */
 .benefits-title {
-    font-size: 36px;
-    font-weight: 900;
+    text-align: center;
     color: #1b4d3e;
-    margin-bottom: 30px;
+    font-size: 32px;
+    margin-top: 30px;
 }
 
+/* بطاقات الفوائد */
 .benefits-container {
     display: flex;
     justify-content: center;
     gap: 25px;
+    margin-top: 30px;
     flex-wrap: wrap;
 }
 
 .benefit-card {
-    background-color: #ffffff;
-    padding: 25px;
-    width: 280px;
-    border-radius: 20px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+    background: #ffffff;
+    padding: 20px;
+    width: 300px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.benefit-card h3 {
-    font-size: 22px;
-    font-weight: 800;
+.benefit-title {
+    font-size: 20px;
+    color: #1b4d3e;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
-.benefit-card p {
-    font-size: 16px;
-    color: #444444;
+/* ألوان حدود البطاقات */
+.blue-border {
+    border-top: 5px solid #4cb3ff;
 }
 
-.blue-border { border-top: 5px solid #4aa3df; }
-.green-border { border-top: 5px solid #2fa05a; }
-.aqua-border { border-top: 5px solid #6ed7cf; }
+.green-border {
+    border-top: 5px solid #34c759;
+}
+
+.aqua-border {
+    border-top: 5px solid #00c2a8;
+}
 
 
-   
