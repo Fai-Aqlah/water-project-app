@@ -7,20 +7,39 @@
     margin-top: 20px;
     margin-bottom: 35px;
 }
-/* ===== Description (Project Intro) ===== */
-.home-description {
-    font-size: 40px;
-    color: #1b66c9; /* الأزرق الجميل */
-    line-height: 1.7;
-    font-weight: 800;
-    padding: 25px;
+.project-description {
+    width: 70%;
+    margin: 0 auto 40px auto;    /* بالنص تماماً */
     background: #ffffff;
-    border-radius: 30px;
-    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.08);
-    margin: 20px auto;
-    width: 80%;
+    padding: 30px 40px;
+    border-radius: 18px;
+
+    /* ظل احترافي */
+    box-shadow: 0px 20px 45px rgba(0, 0, 0, 0.08);
+
+    /* الخط */
+    font-size: 50px;
+    color: #1b66c9;               /* الأزرق الجميل */
+    line-height: 1.8;
+    font-weight: 700;
     text-align: center;
+
+    /* أنيميشن دخول خفيفة */
+    animation: fadeIn 0.8s ease-out;
 }
+
+/* تأثير دخول */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 
 
 /* ===== Benefit Cards ===== */
