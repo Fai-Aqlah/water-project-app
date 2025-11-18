@@ -11,22 +11,12 @@ load_home_css()
 #        الصفحة الرئيسية
 # ==========================
 
-# ---- العنوان الرئيسي ----
-st.markdown(
-    """
-    <div class="intro-card">
-        <h1 class="home-title">Smart Water System 💧🌿</h1>
-        <p class="home-description">
-            Smart Water System is an AI-powered platform developed to analyze water consumption,
-            detect potential leakages early, and support sustainability efforts. By comparing previous
-            and current usage, the system identifies unusual patterns that may indicate hidden water loss.
-            This system assists both citizens and the Ministry in improving water efficiency and informed
-            decision-making.
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+<p class="project-description">
+    Smart Water System is an AI-powered platform developed to analyze water consumption, detect potential leakages early, 
+    and support sustainability efforts. By comparing previous and current usage, the system identifies unusual patterns 
+    that may indicate hidden water loss. This system assists both citizens and the Ministry by improving water efficiency 
+    and informed decision-making.
+</p>
 
 # ---- العنوان الفرعي للفوائد ----
 st.markdown(
