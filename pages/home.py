@@ -7,8 +7,6 @@ def load_home_css():
 
 load_home_css()
 
-# ----------------- محتوى الصفحة -----------------
-
 st.markdown("""
 <div class="hero-card">
 
@@ -16,15 +14,16 @@ st.markdown("""
 
     <p class="home-description">
         Smart Water System is an AI-powered platform designed to analyze water consumption 
-        and detect potential leakages.  
-        By comparing previous and current usage, the model identifies abnormal increases that 
-        may indicate hidden water loss.  
+        and detect potential leakages.
+        <br><br>
+        By comparing previous and current usage, the model identifies abnormal increases 
+        that may indicate hidden water loss.
+        <br><br>
         The project supports the Ministry of Environment, Water & Agriculture in improving 
         sustainability, reducing waste, and enhancing decision-making with accurate data.
     </p>
 
 </div>
-
 
 <div class="benefits-section">
     <h2 class="benefits-title">⭐ Key Benefits</h2>
