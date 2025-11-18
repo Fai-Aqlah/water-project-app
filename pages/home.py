@@ -7,70 +7,47 @@ def load_home_css():
 
 load_home_css()
 
-# ==========================
-#        الصفحة الرئيسية
-# ==========================
 
-<p class="project-description">
-    Smart Water System is an AI-powered platform developed to analyze water consumption, detect potential leakages early, 
-    and support sustainability efforts. By comparing previous and current usage, the system identifies unusual patterns 
-    that may indicate hidden water loss. This system assists both citizens and the Ministry by improving water efficiency 
-    and informed decision-making.
-</p>
+# ===========================
+#    الصفحة الرئيسية
+# ===========================
 
-# ---- العنوان الفرعي للفوائد ----
-st.markdown(
-    """
-    <h2 class="section-title">🌟 Key Benefits</h2>
-    """,
-    unsafe_allow_html=True
-)
+# العنوان الرئيسي
+st.markdown("## Smart Water System 💧🌿", unsafe_allow_html=False)
 
-# ---- كروت الفوائد ----
-st.markdown(
-    """
-    <div class="benefit-card">
-        <h3 class="benefit-title">💧 Early Leakage Detection</h3>
-        <p>Detects abnormal water usage instantly and prevents hidden leaks before major damage occurs.</p>
-    </div>
+# الوصف العام
+st.markdown("""
+### AI-Powered Leakage Detection & Consumption Analysis
 
-    <div class="benefit-card">
-        <h3 class="benefit-title">📊 Smarter Consumption Insights</h3>
-        <p>Provides accurate month-to-month usage analysis to help citizens understand and optimize their consumption.</p>
-    </div>
+Smart Water System is an AI-powered platform developed to analyze water consumption, 
+detect potential leakages early, and support sustainability efforts.  
+By comparing previous and current usage, the system identifies unusual patterns 
+that may indicate hidden water loss — helping both citizens and the Ministry 
+improve water efficiency and make smarter decisions.
+""")
 
-    <div class="benefit-card">
-        <h3 class="benefit-title">📩 Automatic Email Alerts</h3>
-        <p>Sends instant AI-powered email notifications when sudden spikes in consumption indicate a possible leakage.</p>
-    </div>
-
-    <div class="benefit-card">
-        <h3 class="benefit-title">🌱 Supports Sustainability</h3>
-        <p>Helps reduce water waste and supports the Ministry’s long-term environmental and sustainability goals.</p>
-    </div>
-
-    <div class="benefit-card">
-        <h3 class="benefit-title">🏛️ Ministry Decision Support</h3>
-        <p>Improves monitoring accuracy and supports data-driven planning for better national water management.</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.divider()
 
 
-# ------------------- BUTTON -------------------
-st.markdown("<hr>", unsafe_allow_html=True)
+# ===========================
+#   الفوائد (بدون HTML)
+# ===========================
 
-st.markdown(
-    "<h3 style='text-align:center; color:#1b4d3e;'>Ready to explore the prediction model? 🚀</h3>",
-    unsafe_allow_html=True
-)
+st.markdown("## ⭐ Key Benefits")
 
-center = st.columns(3)[1]  # زر بالوسط
+st.success("### 💧 Early Leakage Detection\nDetects abnormal usage instantly and prevents hidden leaks before major damage occurs.")
 
-with center:
-    go = st.button("Go to Prediction Page 👉", use_container_width=True)
+st.info("### 📊 Smarter Consumption Insights\nProvides clear monthly analysis to help citizens understand their water usage better.")
 
-if go:
+st.warning("### 🌱 Supports Sustainability\nHelps reduce waste and supports national environmental goals.")
+
+st.error("### 📩 Smart Email Alerts\nSends automatic email notifications when abnormal consumption or leakage is detected.")
+
+st.divider()
+
+
+# زر الانتقال لصفحة التنبؤ
+if st.button("Go to Prediction Page 🚀"):
     st.switch_page("app.py")
+
 
