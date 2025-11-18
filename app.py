@@ -3,11 +3,11 @@ import numpy as np
 from style import load_style
 import requests
 
-RESEND_API_KEY = "re_2nNQotiq_H1CJpCLPQBK6UAgB6CfYsTab"
+RESEND_API_KEY = "re_WiPh1kXJQ_MGzx6TLNNNBCxX9AEs6MWN87"
 
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
-    
+
     payload = {
         "from": "Smart Water System <alerts@resend.dev>",
         "to": ["faialahmary@gmail.com"],
@@ -15,7 +15,7 @@ def send_email_alert(consumption_value, change_rate):
         "html": f"""
             <h2>🚨 Leakage / Extreme Overuse Detected</h2>
             <p><b>Current Consumption:</b> {consumption_value} L</p>
-            <p><b>Change Rate:</b> {change_rate:.1f}%</p>
+            <p><b>Change Rate:</b> +{change_rate:.1f}%</p>
             <p>Please check the system immediately.</p>
         """
     }
