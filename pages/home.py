@@ -6,22 +6,18 @@ def load_home_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_home_css()
-
-# ------ PROJECT DESCRIPTION ------
 st.markdown("""
 <div class="project-box">
     <h2 class="section-title">Smart Water System 💧🌿</h2>
     <p class="project-description">
-        Smart Water System is an AI-powered platform designed to analyze water consumption and detect potential leakage early. 
+        Smart Water System is an AI-powered platform designed to analyze water consumption and detect potential leakage early.
         The system compares previous and current usage to identify unusual spikes, enabling faster intervention and reducing unnecessary water waste.
-        This project supports the Ministry of Environment, Water & Agriculture in improving sustainability, enhancing monitoring accuracy, 
-        and accelerating digital transformation.
+        This project supports the Ministry of Environment, Water & Agriculture in improving sustainability,
+        enhancing monitoring accuracy, and accelerating digital transformation.
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-
-# ------ PROJECT BENEFITS ------
 st.markdown("""
 <div class="benefits-section">
     <h2 class="section-title">🌟 Key Benefits</h2>
@@ -52,3 +48,5 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+
