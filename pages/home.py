@@ -26,12 +26,12 @@ st.markdown(
 )
 
 # عنوان الفوائد
-st.markdown("<h2 class='benefits-title'>⭐ Key Benefits</h2>", unsafe_allow_html=True)
+st.markdown("<h2 class='benefits-title'> Key Benefits</h2>", unsafe_allow_html=True)
 
 # الفائدة 1
 st.markdown("""
 <div class='benefit-card green-card'>
-    <h3>💧 Early Leakage Detection</h3>
+    <h3>💦 Early Leakage Detection</h3>
     <p>Detects abnormal usage instantly and prevents hidden leaks before major damage occurs.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -47,7 +47,7 @@ st.markdown("""
 # الفائدة 3
 st.markdown("""
 <div class='benefit-card yellow-card'>
-    <h3>🤝 Supports the Ministry & Citizens</h3>
+    <h3>⭐ Supports the Ministry & Citizens</h3>
     <p>Improves national sustainability efforts and guides better resource planning.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -55,7 +55,7 @@ st.markdown("""
 # الفائدة 4 — الإيميل
 st.markdown("""
 <div class='benefit-card orange-card'>
-    <h3>📬 Automatic Email Alerts</h3>
+    <h3>📧 Automatic Email Alerts</h3>
     <p>Sends instant email notifications when the model detects abnormal usage or potential leakage.</p>
 </div>
 """, unsafe_allow_html=True)
