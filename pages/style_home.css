@@ -86,6 +86,31 @@ h3.benefit-title {
     color: #1b4d3e;
 }
 
+/* ===== عنوان Why This System Matters ===== */
+h2 {  
+    text-align: center !important;
+    font-size: 40px !important;
+    color: #1b4d3e !important;   /* أخضر */
+    font-weight: 900 !important;
+    margin-top: 50px !important;
+    margin-bottom: 20px !important;
+}
+
+/* ===== النصوص العادية ===== */
+p, li {
+    font-size: 22px !important;
+    color: #004aad !important;   /* أزرق */
+    line-height: 1.7 !important;
+    text-align: center !important;
+}
+
+/* ترتيب القوائم بالنص */
+ul {
+    padding-left: 0 !important;
+    list-style-position: inside !important;
+}
+
+
 /* ============================================
    PREDICTION BUTTON STYLE — زر الصفحة
 ============================================ */
