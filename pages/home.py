@@ -1,62 +1,62 @@
 import streamlit as st
 
-# استدعاء ملف التنسيق الخاص بالهوم
+# استدعاء تنسيق صفحة الهوم
 def load_home_css():
     with open("pages/style_home.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_home_css()
 
-# ================== الصفحة الرئيسية ==================
+# عنوان رئيسي
+st.markdown("<h1 class='main-title'>Smart Water System 💧🌿</h1>", unsafe_allow_html=True)
 
-# العنوان الرئيسي (بيكون لونه أزرق من ملف CSS)
-st.markdown("# Smart Water System 💧🌿")
+# عنوان فرعي
+st.markdown("<h3 class='subtitle'>AI-Powered Leakage Detection & Consumption Analysis</h3>", unsafe_allow_html=True)
 
-# وصف مختصر تحت العنوان (سطر ثانٍ)
-st.markdown("### AI-Driven Water Consumption Analysis & Early Leakage Detection")
-
-# الوصف العام (تعريف المشروع – بنلوّنه أخضر من الـ CSS)
+# الوصف
 st.markdown(
     """
-Smart Water System is an AI-powered platform developed to analyze water consumption  
-and detect potential leakages early. By comparing previous and current usage,  
-the system identifies unusual patterns that may indicate hidden water loss,  
-helping both citizens and the Ministry improve water efficiency  
-and make smarter, data-driven decisions.
-"""
+    <p class='project-description'>
+    Smart Water System is an AI-powered platform developed to analyze water consumption, detect potential leakages early,  
+    and support sustainability efforts.<br>
+    By comparing previous and current usage, the system identifies unusual patterns that may indicate hidden water loss — helping both citizens and the Ministry improve efficiency and make smarter decisions.
+    </p>
+    """,
+    unsafe_allow_html=True
 )
 
-st.divider()
+# عنوان الفوائد
+st.markdown("<h2 class='benefits-title'>⭐ Key Benefits</h2>", unsafe_allow_html=True)
 
-# ================== الفوائد الرئيسية ==================
+# الفائدة 1
+st.markdown("""
+<div class='benefit-card green-card'>
+    <h3>💧 Early Leakage Detection</h3>
+    <p>Detects abnormal usage instantly and prevents hidden leaks before major damage occurs.</p>
+</div>
+""", unsafe_allow_html=True)
 
-st.markdown("##  Key Benefits")
+# الفائدة 2
+st.markdown("""
+<div class='benefit-card blue-card'>
+    <h3>📊 Smarter Consumption Insights</h3>
+    <p>Provides monthly analytics that help citizens understand their water usage better.</p>
+</div>
+""", unsafe_allow_html=True)
 
-benefits = {
-    "Early Leakage Detection 💧":
-        "Detects abnormal water usage instantly and prevents hidden leaks before major damage occurs.",
-    "Smarter Consumption Insights 📊":
-        "Provides clear monthly insights that help citizens understand and optimize their water usage.",
-    "Supports the Ministry & Citizens ⭐":
-        "Helps the Ministry improve planning and sustainability efforts while guiding citizens to use water more responsibly.",
-    "Automatic Email Alerts 📧":
-        "Sends automatic email notifications when the model predicts extreme over-use that may indicate leakage."
-}
+# الفائدة 3
+st.markdown("""
+<div class='benefit-card yellow-card'>
+    <h3>🤝 Supports the Ministry & Citizens</h3>
+    <p>Improves national sustainability efforts and guides better resource planning.</p>
+</div>
+""", unsafe_allow_html=True)
 
-# كل فائدة تظهر في بلوك مستقل تحت بعض
-for title, text in benefits.items():
-    st.markdown(f"### {title}")
-    st.write(text)
+# الفائدة 4 — الإيميل
+st.markdown("""
+<div class='benefit-card orange-card'>
+    <h3>📬 Automatic Email Alerts</h3>
+    <p>Sends instant email notifications when the model detects abnormal usage or potential leakage.</p>
+</div>
+""", unsafe_allow_html=True)
 
-st.divider()
-
-# ================== زر الانتقال لصفحة التنبؤ ==================
-
-st.markdown("####  Ready to explore the model predictions?")
-
-# نخلي الزر في المنتصف باستخدام الأعمدة
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    if st.button("🚀 Go to Prediction Page"):
-        # الانتقال لصفحة التنبؤ (app.py)
-        st.switch_page("app.py")
