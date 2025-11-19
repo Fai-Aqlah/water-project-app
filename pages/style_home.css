@@ -81,22 +81,5 @@
     line-height: 1.7;
 }
 
-.prediction-btn {
-    background-color: #1E90FF;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 12px;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    transition: 0.3s ease-in-out;
-}
-
-.prediction-btn:hover {
-    background-color: #0F75D3;
-}
-
-
+v
    
