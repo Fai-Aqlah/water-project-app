@@ -57,9 +57,10 @@ st.markdown(
 # ===== Behind the Model =====
 st.markdown(
     """
-    <div class='model-box'>
-        <h3>Behind the Model ⚙️</h3>
+    <div class="model-box">
+        <h3>Behind the Model 🔍</h3>
         <p>We tested multiple machine-learning models to find the most stable and reliable option:</p>
+
         <ul>
             <li>Decision Tree</li>
             <li>Random Forest</li>
