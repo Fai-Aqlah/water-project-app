@@ -36,25 +36,30 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Why This System Matters ---
-st.markdown("## Why This System Matters 💡", help="System importance")
-st.markdown(
-    """
+
+# ========= Why This System Matters =========
+st.markdown("## Why This System Matters 💡")
+
+with st.container():
+    st.markdown(
+        """
 - Helps citizens detect hidden leaks early  
 - Supports national sustainability goals  
 - Reduces wasted water and monthly bills  
 - Enhances awareness about individual water usage  
 - Strengthens Ministry decision-making  
-""",
-)
+"""
+    )
 
-st.write("")  # مسافة صغيرة
+st.write("")  # مسافة بين البوكسين
 
 
-# --- Behind the Model ---
+# ========= Behind the Model =========
 st.markdown("## Behind the Model ⚙️")
-st.markdown(
-    """
+
+with st.container():
+    st.markdown(
+        """
 We tested multiple machine-learning models to find the most stable and reliable one:
 
 - **Decision Tree**  
@@ -67,7 +72,7 @@ We tested multiple machine-learning models to find the most stable and reliable 
 - Works efficiently with real-world patterns  
 - Produces highly reliable predictions  
 """
-)
+    )
 
 st.markdown("###  Key Benefits")
 
