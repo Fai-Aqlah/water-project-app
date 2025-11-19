@@ -3,7 +3,7 @@
 ============================================ */
 .main-title {
     text-align: center;
-    font-size: 58px;
+    font-size: 80px;
     font-weight: 900;
     color: #1b4d3e; /* أخضر جميل */
     margin-top: 40px;
@@ -15,7 +15,7 @@
 ============================================ */
 .subtitle {
     text-align: center;
-    font-size: 34px;
+    font-size: 75px;
     font-weight: 700;
     color: #004aad; /* أزرق قوي */
     margin-bottom: 40px;
@@ -29,7 +29,7 @@
     max-width: 850px;
     margin: auto;
     color: #004aad; /* أزرق */
-    font-size: 22px;
+    font-size: 70px;
     font-weight: 500;
     line-height: 1.7;
     background: #eef7ff;
@@ -115,7 +115,7 @@ h3.benefit-title {
 .footer {
     text-align: center;
     margin-top: 60px;
-    font-size: 16px;
+    font-size: 30px;
     color: #666;
     padding: 20px;
 }
