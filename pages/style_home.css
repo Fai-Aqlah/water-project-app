@@ -1,64 +1,85 @@
-/* ====== الصفحة كاملة ====== */
-body {
-    background-color: #f6faff;
-}
-
-/* ===== ألوان وتنسيق الهوم ===== */
-
-/* العنوان الرئيسي (H1) – أزرق وفي المنتصف */
-h1 {
+/* ====== العنوان الرئيسي ====== */
+.main-title {
     text-align: center;
-    color: #0074D9;          /* أزرق جميل */
-    font-size: 46px;
+    font-size: 42px;
     font-weight: 900;
-    margin-top: 10px;
-    margin-bottom: 6px;
+    color: #004aad;
+    margin-top: 25px;
 }
 
-/* السطر اللي تحته (H3) */
-h3 {
+/* ====== العنوان الفرعي ====== */
+.subtitle {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 600;
     color: #1b4d3e;
-    font-weight: 800;
+    margin-bottom: 25px;
 }
 
-/* تعريف المشروع والفقرات – أخضر ناعم */
-p {
-    color: #0F9D58;           /* أخضر */
+/* ====== وصف المشروع ====== */
+.project-description {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+    margin-bottom: 50px;
     font-size: 18px;
-    line-height: 1.6;
+    color: #333;
+    line-height: 1.7;
 }
 
-/* زر صفحة التنبؤ */
-div.stButton > button {
-    background-color: #1b4d3e;
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 0.6rem 2.5rem;
-    font-size: 16px;
-    font-weight: 700;
-    border: none;
+/* ====== عنوان الفوائد ====== */
+.benefits-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 25px;
 }
 
-/* تأثير بسيط عند مرور الماوس */
-div.stButton > button:hover {
-    background-color: #145236;
+/* ====== تصميم الكروت ====== */
+.benefit-card {
+    width: 85%;
+    margin: 20px auto;
+    padding: 25px 28px;
+    border-radius: 18px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+}
+
+/* كروت الوان مختلفة */
+.green-card {
+    background: #dff4e5;
+    border-left: 8px solid #3fa85f;
+}
+
+.blue-card {
+    background: #e3ecfc;
+    border-left: 8px solid #4a79ff;
+}
+
+.yellow-card {
+    background: #fff5dd;
+    border-left: 8px solid #ffb300;
+}
+
+.orange-card {
+    background: #ffe8d9;
+    border-left: 8px solid #ff7a30;
+}
+
+/* عنوان داخل الكارد */
+.benefit-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1b4d3e;
+    margin-bottom: 8px;
+}
+
+/* نص الكارد */
+.benefit-card p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.7;
 }
 
 
-
-
-/* ====== الفوائد (Streamlit boxes) ====== */
-.stAlert {
-    border-radius: 18px !important;
-    padding: 18px !important;
-    font-size: 18px !important;
-}
-
-.stButton>button {
-    background-color: #1fa8e8 !important;
-    color: white !important;
-    font-size: 20px !important;
-    border-radius: 10px !important;
-    padding: 14px 22px !important;
-    border: none !important;
-}
+   
