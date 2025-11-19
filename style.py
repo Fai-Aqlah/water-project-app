@@ -147,17 +147,7 @@ div.stButton > button:hover {
         margin: 40px auto 20px auto;
     }
 
-    /*  الفوتر  */
-    footer {
-    text-align: center;
-    color: #2e8b57;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 40px;
-    padding-top: 10px;
-    border-top: 2px solid #b7dfc5;
-    line-height: 1.8;
-}
+    
 
 
   section.main > div {
