@@ -60,22 +60,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ------------------------------
-#  زر الانتقال إلى صفحة التنبؤ
-# ------------------------------
+st.write("###  Ready to explore the model predictions?")
 
-st.markdown(
-    """
-    <div style='text-align: center; margin-top: 40px;'>
-        <p style='font-size: 20px; font-weight: 600; color:#1b4d3e;'>
-            🚀 Ready to explore the model predictions?
-        </p>
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    clicked = st.button("Go to Prediction Page ")
 
-        <button class='prediction-btn' onclick="location.href='app.py'">
-            Go to Prediction Page 
-        </button>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+if clicked:
+    st.switch_page("app.py")
+
 
