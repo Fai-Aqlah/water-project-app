@@ -36,32 +36,38 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("### Why This System Matters 💡")
+# --- Why This System Matters ---
+st.markdown("## Why This System Matters 💡", help="System importance")
+st.markdown(
+    """
+- Helps citizens detect hidden leaks early  
+- Supports national sustainability goals  
+- Reduces wasted water and monthly bills  
+- Enhances awareness about individual water usage  
+- Strengthens Ministry decision-making  
+""",
+)
 
-st.write("""
-✔ Helps citizens detect hidden leaks early  
-✔ Supports national sustainability goals  
-✔ Reduces wasted water and monthly bills  
-✔ Enhances awareness about individual water usage  
-✔ Strengthens Ministry decision-making  
-""")
+st.write("")  # مسافة صغيرة
 
-st.markdown("### Behind the Model ⚙️")
 
-st.write("""
+# --- Behind the Model ---
+st.markdown("## Behind the Model ⚙️")
+st.markdown(
+    """
 We tested multiple machine-learning models to find the most stable and reliable one:
 
-- **Decision Tree**
-- **Random Forest**
-- **XGBoost**
+- **Decision Tree**  
+- **Random Forest**  
+- **XGBoost (final model — 91% accuracy)**  
 
-After evaluation, the final selected model is **XGBoost (91% Accuracy)**  
-Why?
+### Why XGBoost?
 - Handles fluctuating data well  
 - Low overfitting  
 - Works efficiently with real-world patterns  
 - Produces highly reliable predictions  
-""")
+"""
+)
 
 st.markdown("###  Key Benefits")
 
