@@ -37,42 +37,47 @@ st.markdown(
 )
 
 
-# ========= Why This System Matters =========
-st.markdown("## Why This System Matters 💡")
+# ===== Why This System Matters =====
+st.markdown(
+    """
+    <div class='why-box'>
+        <h3>Why This System Matters 💡</h3>
+        <ul>
+            <li>Helps citizens detect hidden leaks early</li>
+            <li>Supports national sustainability goals</li>
+            <li>Reduces wasted water and monthly bills</li>
+            <li>Enhances awareness about individual water usage</li>
+            <li>Strengthens Ministry decision-making</li>
+        </ul>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-with st.container():
-    st.markdown(
-        """
-- Helps citizens detect hidden leaks early  
-- Supports national sustainability goals  
-- Reduces wasted water and monthly bills  
-- Enhances awareness about individual water usage  
-- Strengthens Ministry decision-making  
-"""
-    )
+# ===== Behind the Model =====
+st.markdown(
+    """
+    <div class='model-box'>
+        <h3>Behind the Model ⚙️</h3>
+        <p>We tested multiple machine-learning models to find the most stable and reliable option:</p>
+        <ul>
+            <li>Decision Tree</li>
+            <li>Random Forest</li>
+            <li><b>XGBoost</b> (final model — <b>91% accuracy</b>)</li>
+        </ul>
 
-st.write("")  # مسافة بين البوكسين
+        <h4>Why XGBoost?</h4>
+        <ul>
+            <li>Handles fluctuating data well</li>
+            <li>Low overfitting</li>
+            <li>Works efficiently with real-world patterns</li>
+            <li>Produces highly reliable predictions</li>
+        </ul>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-
-# ========= Behind the Model =========
-st.markdown("## Behind the Model ⚙️")
-
-with st.container():
-    st.markdown(
-        """
-We tested multiple machine-learning models to find the most stable and reliable one:
-
-- **Decision Tree**  
-- **Random Forest**  
-- **XGBoost (final model — 91% accuracy)**  
-
-### Why XGBoost?
-- Handles fluctuating data well  
-- Low overfitting  
-- Works efficiently with real-world patterns  
-- Produces highly reliable predictions  
-"""
-    )
 
 st.markdown("###  Key Benefits")
 
