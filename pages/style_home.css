@@ -44,7 +44,7 @@
    BENEFITS SECTION TITLE
 ============================================ */
 h3.benefit-title {
-    font-size: 70px;
+    font-size: 32px;
     font-weight: 800;
     margin-bottom: 12px;
     color: #1b4d3e;
@@ -64,7 +64,7 @@ h3.benefit-title {
 }
 
 .benefit-card p {
-    font-size: 70px;
+    font-size: 32px;
     color: #333;
     line-height: 1.6;
 }
@@ -96,7 +96,7 @@ h3.benefit-title {
     background: #006ce0; /* أزرق جميل */
     color: white !important;
     text-align: center;
-    font-size: 70px;
+    font-size: 32px;
     font-weight: 700;
     border-radius: 12px;
     text-decoration: none;
