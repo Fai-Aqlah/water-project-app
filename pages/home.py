@@ -60,3 +60,41 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# زر التنبؤ
+st.markdown("""
+<div class='predict-container'>
+    <a href='/Prediction' class='predict-button'>
+        🚀 Go to Prediction Page
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+# زر التنبؤ
+st.markdown("""
+<div class='predict-container'>
+    <a href='/Prediction' class='predict-button'>
+        🚀 Go to Prediction Page
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+
+# زر التنبؤ
+st.markdown("""
+<div class='predict-container'>
+    <a href='/Prediction' class='predict-button'>
+        🚀 Go to Prediction Page
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+# زر التنبؤ
+st.markdown("""
+<div class='predict-container'>
+    <a href='/Prediction' class='predict-button'>
+        🚀 Go to Prediction Page
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+
