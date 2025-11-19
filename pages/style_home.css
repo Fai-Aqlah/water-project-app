@@ -3,41 +3,49 @@ body {
     background-color: #f6faff;
 }
 
-/* العنوان الرئيسي */
+/* ===== ألوان وتنسيق الهوم ===== */
+
+/* العنوان الرئيسي (H1) – أزرق وفي المنتصف */
 h1 {
     text-align: center;
-    color: #1f76d1;        /* الأزرق */
-    font-size: 48px;
+    color: #0074D9;          /* أزرق جميل */
+    font-size: 46px;
     font-weight: 900;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 6px;
 }
 
-
-/* الوصف العام */
+/* السطر اللي تحته (H3) */
 h3 {
-    text-align: center;
-    color: #1b4d3e;         /* الأخضر */
-    font-size: 26px;
+    color: #1b4d3e;
     font-weight: 800;
-    margin-bottom: 20px;
 }
 
+/* تعريف المشروع والفقرات – أخضر ناعم */
 p {
-    text-align: center;
-    color: #1b4d3e;         /* الأخضر */
-    font-size: 20px;
-    line-height: 1.7;
-    width: 75%;
-    margin: auto;
+    color: #0F9D58;           /* أخضر */
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* زر صفحة التنبؤ */
+div.stButton > button {
+    background-color: #1b4d3e;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 0.6rem 2.5rem;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+}
+
+/* تأثير بسيط عند مرور الماوس */
+div.stButton > button:hover {
+    background-color: #145236;
 }
 
 
-p {
-    font-size: 20px;
-    line-height: 1.7;
-    color: #333;
-    text-align: center;
-}
+
 
 /* ====== الفوائد (Streamlit boxes) ====== */
 .stAlert {
