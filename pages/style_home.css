@@ -1,7 +1,7 @@
 /* ====== العنوان الرئيسي ====== */
 .main-title {
     text-align: center;
-    font-size: 42px;
+    font-size: 50px;
     font-weight: 900;
     color: #004aad;
     margin-top: 25px;
@@ -10,7 +10,7 @@
 /* ====== العنوان الفرعي ====== */
 .subtitle {
     text-align: center;
-    font-size: 35px;
+    font-size: 40px;
     font-weight: 600;
     color: #1b4d3e;
     margin-bottom: 25px;
