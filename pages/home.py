@@ -103,9 +103,14 @@ if st.button("🔵 Go to Prediction Page"):
     st.switch_page("app.py")
 
 
-st.markdown(
-    "<p class='footer'>Developed by Fai — Smart Water System © 2025</p>",
-    unsafe_allow_html=True
-)
+# الفوتر
+st.markdown("""
+<hr style='margin-top:15px; margin-bottom:10px; border: 1px solid #4CAF50;'>
 
+<div style='text-align:center; color:#156b3a; font-weight:bold; font-size:22px;'>
+    Developed by <b style="color:#0277bd;">Fai Aqlah</b> | Ministry of Environment, Water & Agriculture 🌿💧 – Hail Branch
+    <br>
+    Powered by <b>XGBoost</b> & <b>Streamlit</b>
+</div>
+""", unsafe_allow_html=True)
 
