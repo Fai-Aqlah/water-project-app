@@ -1,100 +1,124 @@
-/* ====== العنوان الرئيسي ====== */
+/* ============================================
+   MAIN TITLE — العنوان الرئيسي
+============================================ */
 .main-title {
     text-align: center;
-    font-size: 70px;
+    font-size: 58px;
     font-weight: 900;
-    color: #1b4d3e;
-    margin-top: 30px;
+    color: #1b4d3e; /* أخضر جميل */
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
-/* ====== العنوان الفرعي ====== */
+/* ============================================
+   SUBTITLE — العنوان الفرعي
+============================================ */
 .subtitle {
     text-align: center;
-    font-size: 65px;
+    font-size: 34px;
     font-weight: 700;
-    color: #1b4d3e;
-    margin-bottom: 25px;
+    color: #004aad; /* أزرق قوي */
+    margin-bottom: 40px;
 }
 
-/* ====== وصف المشروع ====== */
+/* ============================================
+   PROJECT DESCRIPTION — وصف المشروع
+============================================ */
 .project-description {
     text-align: center;
     max-width: 850px;
     margin: auto;
-    margin-bottom: 60px;
-    font-size: 50px;
-    color: #004aad;
+    color: #004aad; /* أزرق */
+    font-size: 22px;
+    font-weight: 500;
     line-height: 1.7;
+    background: #eef7ff;
+    padding: 25px 35px;
+    border-radius: 15px;
+    border-left: 8px solid #1b4d3e;
+    margin-bottom: 60px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ====== عنوان الفوائد ====== */
-.benefits-title {
-    text-align: center;
-    font-size: 32px;
+/* ============================================
+   BENEFITS SECTION TITLE
+============================================ */
+h3.benefit-title {
+    font-size: 28px;
     font-weight: 800;
-    color: #222;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
+    color: #1b4d3e;
 }
 
-/* ====== تصميم الكروت ====== */
+/* ============================================
+   BENEFIT CARDS — البوكسات
+============================================ */
 .benefit-card {
     width: 85%;
     margin: 20px auto;
     padding: 25px 28px;
-    border-radius: 18px;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.08);
+    background: #ffffff;
+    border-left: 10px solid #1b4d3e;
 }
 
-/* كروت الوان مختلفة */
-.green-card {
-    background: #dff4e5;
-    border-left: 8px solid #3fa85f;
+.benefit-card p {
+    font-size: 20px;
+    color: #333;
+    line-height: 1.6;
 }
 
-.blue-card {
-    background: #e3ecfc;
-    border-left: 8px solid #4a79ff;
-}
+/* ===== ألوان البوكسات ===== */
+.green-card { background: #e5f8e5; border-left-color: #3c9d47; }
+.blue-card { background: #e7f1ff; border-left-color: #2774d9; }
+.yellow-card { background: #fff7da; border-left-color: #c9a125; }
+.orange-card { background: #ffe6d8; border-left-color: #d96b2b; }
 
-.yellow-card {
-    background: #fff5dd;
-    border-left: 8px solid #ffb300;
-}
-
-.orange-card {
-    background: #ffe8d9;
-    border-left: 8px solid #ff7a30;
-}
-
-/* عنوان داخل الكارد */
-.benefit-card h3 {
-    font-size: 24px;
+/* ============================================
+   SECTION SMALL TITLES (Why this matters, etc)
+============================================ */
+.stMarkdown h3, .stMarkdown h2 {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 20px;
     font-weight: 800;
     color: #1b4d3e;
-    margin-bottom: 8px;
 }
 
-/* نص الكارد */
-.benefit-card p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.7;
-}
-
-/* زر Streamlit الرئيسي */
-.stButton>button {
-    background-color: #1E90FF !important;   /* الأزرق */
+/* ============================================
+   PREDICTION BUTTON STYLE — زر الصفحة
+============================================ */
+.prediction-button {
+    display: block;
+    margin: 40px auto;
+    padding: 15px 35px;
+    background: #006ce0; /* أزرق جميل */
     color: white !important;
-    padding: 12px 26px !important;
-    border-radius: 12px !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    border: none !important;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    width: 260px;
 }
 
-/* تأثير hover */
-.stButton>button:hover {
-    background-color: #0F75D3 !important;   /* الأزرق الداكن */
+.prediction-button:hover {
+    background: #004aad;
+    transform: scale(1.03);
 }
+
+/* ============================================
+   FOOTER — الفوتر
+============================================ */
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 16px;
+    color: #666;
+    padding: 20px;
+}
+
 
    
