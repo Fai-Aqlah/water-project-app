@@ -53,7 +53,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-# ===== Behind the Model =====
 st.markdown(
     """
 <div class="model-box">
