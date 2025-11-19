@@ -109,16 +109,16 @@ h3.benefit-title {
     transform: scale(1.03);
 }
 
-/* ============================================
-   FOOTER — الفوتر
-============================================ */
-.footer {
+/*  الفوتر  */
+    footer {
     text-align: center;
-    margin-top: 60px;
-    font-size: 30px;
-    color: #666;
-    padding: 20px;
+    color: #2e8b57;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 2px solid #b7dfc5;
+    line-height: 1.8;
 }
-
 
    
