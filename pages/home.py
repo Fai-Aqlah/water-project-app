@@ -56,26 +56,27 @@ st.markdown(
 st.markdown(
     """
 <div class="model-box">
-    <h3>Behind the Model 🔍</h3>
-    <p>We tested multiple machine-learning models to find the most stable and reliable option:</p>
+<h3>Behind the Model 🔍</h3>
+<p>We tested multiple machine-learning models to find the most stable and reliable option:</p>
 
-    <ul>
-        <li>Decision Tree</li>
-        <li>Random Forest</li>
-        <li><b>XGBoost</b> (final model — <b>91% accuracy</b>)</li>
-    </ul>
+<ul>
+<li>Decision Tree</li>
+<li>Random Forest</li>
+<li><b>XGBoost</b> (final model — <b>91% accuracy</b>)</li>
+</ul>
 
-    <h4>Why XGBoost?</h4>
-    <ul>
-        <li>Handles fluctuating data well</li>
-        <li>Low overfitting</li>
-        <li>Works efficiently with real-world patterns</li>
-        <li>Produces highly reliable predictions</li>
-    </ul>
+<h4>Why XGBoost?</h4>
+<ul>
+<li>Handles fluctuating data well</li>
+<li>Low overfitting</li>
+<li>Works efficiently with real-world patterns</li>
+<li>Produces highly reliable predictions</li>
+</ul>
 </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
