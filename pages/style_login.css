@@ -74,6 +74,16 @@ main > div {
     margin-left: 20px;
 }
 
+/* إزالة اللون الأصفر من حقول الإدخال */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+    background-color: white !important;
+    color: #000 !important;
+}
+
 /* ===== تنسيق صندوق الإدخال ===== */
 
 div[data-testid="stTextInput"] input {
@@ -83,7 +93,7 @@ div[data-testid="stTextInput"] input {
     border-radius: 15px !important;
     border: 3px solid #1b4d3e !important;
     background: #f8fff8 !important;
-    color: #1b4d3e !important;
+    color: #6ECF82 !important;
 }
 
 /* ===== تنسيق اسم الحقل (الليبل) ===== */
