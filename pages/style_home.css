@@ -5,7 +5,7 @@
     text-align: center;
     font-size: 60px !important;
     font-weight: 1000;
-    color: #1b4d3e; /* أخضر جميل */
+    color: #4CAF50;
     margin-top: 40px;
     margin-bottom: 10px;
 }
@@ -93,7 +93,7 @@ h3.benefit-title {
     margin: 30px auto;
     width: 85%;
     box-shadow: 0px 6px 18px rgba(0,0,0,0.08);
-    font-size: 18px;
+    font-size: 22px !important;
 }
 
 .why-box h3 {
@@ -110,7 +110,7 @@ h3.benefit-title {
     width: 90%;          /* ← توسيع الصندوق */
     max-width: 800px;    /* ← يمنع الانضغاط */
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.08);
-    font-size: 18px;
+    font-size: 22px !important;
     text-align: left;    /* ← منع تمركز النص */
     line-height: 1.6;    /* ← تحسين المسافات بين الأسطر */
 }
