@@ -114,14 +114,25 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("### 📌 Project Timeline")
+st.markdown(
+    """
+<h2 class="project-timeline-title">
+    <span class="timeline-icon">📌</span> Project Timeline
+</h2>
 
-st.write("""
-- **Week 1-2:** Data cleaning & preprocessing  
-- **Week 3-4:** Model training & evaluation  
-- **Week 5-9:** Building the interactive Streamlit app  
-- **Week 10-12:** Email alert integration & UI polishing  
-""")
+<div class="project-timeline-text">
+<ul class="project-timeline-list">
+    <li>Week 1-2: Data cleaning & preprocessing</li>
+    <li>Week 3-4: Model training & evaluation</li>
+    <li>Week 5-6: Building the interactive Streamlit app</li>
+    <li>Week 7-8: Email alert integration & UI polishing</li>
+    <li>Week 9-10: Final system refinement & testing</li>
+</ul>
+</div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 
 # العبارة في الوسط
