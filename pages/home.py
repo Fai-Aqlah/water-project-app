@@ -121,9 +121,9 @@ st.markdown(
 <div class="timeline-content">
 <strong>Week 1-2:</strong> Data cleaning & preprocessing<br>
 <strong>Week 3-4:</strong> Model training & evaluation<br>
-<strong>Week 5-6:</strong> Building the interactive Streamlit app<br>
-<strong>Week 7-8:</strong> Email alert integration & UI polishing<br>
-<strong>Week 9-10:</strong> Final system refinement & testing<br>
+<strong>Week 5-9:</strong> Building the interactive Streamlit app<br>
+<strong>Week 10-11:</strong> Email alert integration & UI polishing<br>
+<strong>Week 12-14:</strong> Final system refinement & testing<br>
 </div>
 """,
     unsafe_allow_html=True
