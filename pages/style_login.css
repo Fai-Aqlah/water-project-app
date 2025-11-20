@@ -91,15 +91,11 @@ div[data-testid="stTextInput"] input {
 div[data-testid="stTextInput"] label {
     font-size: 24px !important;
     font-weight: 800 !important;
-    color: #1b4d3e !important;
+    color: #6ECF82 !important;
 }
 
-/* ===== تأثير تركيز ===== */
 
-div[data-testid="stTextInput"] input:focus {
-    border: 3px solid #87CEFA !important;
-    outline: none !important;
-}
+
 /* ===== تكبير الليبل (Username / Password) ===== */
 
 div[data-testid="stTextInput"] label p {
