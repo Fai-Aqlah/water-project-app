@@ -124,7 +124,14 @@ st.write("""
 """)
 
 
-st.markdown("<h3 class='prediction-title'>Ready to explore the model predictions?</h3>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div style="text-align:center; margin-top: 40px;">
+        <h3>Ready to explore the model predictions?</h3>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 if st.button("🔵 Go to Prediction Page"):
     st.switch_page("app.py")
