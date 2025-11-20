@@ -113,6 +113,8 @@ st.markdown("""
     <p>Sends instant notifications when the system detects abnormal usage or potential leakage.</p>
 </div>
 """, unsafe_allow_html=True)
+st.markdown('<h3 class="timeline-title">📌 Project Timeline</h3>', unsafe_allow_html=True)
+
 
 st.markdown('<div class="timeline-content">', unsafe_allow_html=True)
 
