@@ -155,6 +155,24 @@ h3.benefit-title {
     background: #004aad;
     transform: scale(1.03);
 }
+.custom-button {
+    background-color: #1e88e5; /* Blue */
+    color: white !important;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    transition: 0.25s;
+}
+
+.custom-button:hover {
+    background-color: #1565c0; /* Darker blue */
+}
+
 
 /*  الفوتر  */
     footer {
