@@ -145,19 +145,19 @@ button[kind="secondary"] {
 
 
 .timeline-title {
-    font-size: 40px !important;
+    font-size: 30px !important;
     font-weight: 900 !important;
     color: #5b49c1 !important;   /* بنفسجي جميل */
     text-align: left !important;
-    margin-left: 30px !important;
+    margin-left: 50px !important;
     margin-bottom: 15px !important;
 }
 .timeline-content {
-    font-size: 28px !important;
+    font-size: 25px !important;
     font-weight: 600 !important;
     color: #444 !important;  /* أنعم من الأسود */
     line-height: 1.7 !important;
-    margin-left: 30px !important;
+    margin-left: 50px !important;
 }
 
 
