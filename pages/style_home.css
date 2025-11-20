@@ -142,44 +142,25 @@ button[kind="secondary"] {
     font-size: 18px !important;
     font-weight: 600 !important;
 }
-/* ===== PROJECT TIMELINE TITLE ===== */
-.project-timeline-title {
+
+
+.timeline-title {
+    text-align: left;
     font-size: 32px;
-    font-weight: 900;
-    color: #4CAF50;     /* أخضر جميل وواضح */
-    margin-top: 60px;
-    margin-bottom: 20px;
-    text-align: center;
-    letter-spacing: 1px;
-}
-
-/* ===== PROJECT TIMELINE TEXT ===== */
-.project-timeline-text {
-    font-size: 20px;
-    color: #333333;
-    line-height: 1.8;
-    text-align: center;
-}
-
-/* ===== PROJECT TIMELINE LIST ===== */
-.project-timeline-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.project-timeline-list li {
-    font-size: 18px;
+    font-weight: 800;
+    color: #333; /* تقدرين تغيرينه */
+    margin-left: 10px;
     margin-bottom: 8px;
-    color: #555555;
 }
 
-/* أيقونة الدبوس */
-.timeline-icon {
-    font-size: 28px;
-    margin-right: 8px;
+.timeline-content {
+    text-align: left;
+    font-size: 20px;
+    color: #444;
+    margin-left: 10px;
+    line-height: 1.7;
 }
+
 
 
 
