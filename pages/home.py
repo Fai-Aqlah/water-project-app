@@ -135,11 +135,10 @@ st.markdown(
 
 
 
-# العبارة في الوسط
-st.markdown(
-    "<h3 style='text-align:center;'>Ready to explore the model predictions?</h3>",
-    unsafe_allow_html=True
-)
+st.markdown("<h3 style='text-align:center;'>Ready to explore the model predictions?</h3>", unsafe_allow_html=True)
+st.write("")
+st.write("")   # ← ينزل العبارة للأسفل
+
 
 # الزر في الوسط
 col1, col2, col3 = st.columns([1, 1, 1])
