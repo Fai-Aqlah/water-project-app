@@ -149,7 +149,7 @@ button[kind="secondary"] {
     font-weight: 900 !important;
     color: #5b49c1 !important;   /* بنفسجي جميل */
     text-align: left !important;
-    margin-left: 20px !important;
+    margin-left: 30px !important;
     margin-bottom: 15px !important;
 }
 .timeline-content {
@@ -157,7 +157,7 @@ button[kind="secondary"] {
     font-weight: 600 !important;
     color: #444 !important;  /* أنعم من الأسود */
     line-height: 1.7 !important;
-    margin-left: 25px !important;
+    margin-left: 30px !important;
 }
 
 
