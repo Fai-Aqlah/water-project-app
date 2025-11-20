@@ -133,19 +133,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <div style='text-align:center; margin-top: 20px;'>
-        <button class="custom-button" onclick="window.location.href='app.py'">
-            Go to Prediction Page
-        </button>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-if st.button(" ", key="go_prediction_hidden"):
+if st.button("Go to Prediction Page", key="go_btn"):
     st.switch_page("app.py")
+
 
 
 
