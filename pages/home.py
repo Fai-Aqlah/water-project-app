@@ -133,8 +133,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-if st.button("Go to Prediction Page", key="go_btn"):
+
+if st.button("Go to Prediction Page", type="secondary"):
     st.switch_page("app.py")
+
 
 
 
