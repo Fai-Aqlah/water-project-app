@@ -67,10 +67,10 @@ st.markdown(
 
 <h4>Why XGBoost?</h4>
 <ul>
-<li>-Handles fluctuating data well</li>
-<li>-Low overfitting</li>
-<li>-Works efficiently with real-world patterns</li>
-<li>-Produces highly reliable predictions</li>
+<li>Handles fluctuating data well</li>
+<li>Low overfitting</li>
+<li>Works efficiently with real-world patterns</li>
+<li>Produces highly reliable predictions</li>
 </ul>
 </div>
     """,
