@@ -1,5 +1,13 @@
 body {
-    background-color: #d9f2ff !important;
+    background-color: #E8F8FF !important;
+}
+
+main > div {
+    background-color: #E8F8FF !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #E8F8FF !important;
 }
 
 
