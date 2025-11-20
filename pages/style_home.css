@@ -146,17 +146,17 @@ button[kind="secondary"] {
 
 .timeline-title {
     text-align: left;
-    font-size: 32px;
+    font-size: 38px !important;
     font-weight: 800;
-    color: #333; /* تقدرين تغيرينه */
+    color: #1565C0 !important;
     margin-left: 10px;
     margin-bottom: 8px;
 }
 
 .timeline-content {
     text-align: left;
-    font-size: 20px;
-    color: #444;
+    font-size: 30px !important;
+   color: #5B49C1 !important;
     margin-left: 10px;
     line-height: 1.7;
 }
