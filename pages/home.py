@@ -135,9 +135,10 @@ st.markdown(
 
 
 
-st.markdown("<h3 style='text-align:center;'>Ready to explore the model predictions?</h3>", unsafe_allow_html=True)
-st.write("")
-st.write("")   # ← ينزل العبارة للأسفل
+st.markdown(
+    "<h3 style='text-align:center; margin-top:80px;'>Ready to explore the model predictions?</h3>",
+    unsafe_allow_html=True
+)
 
 
 # الزر في الوسط
