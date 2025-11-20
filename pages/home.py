@@ -113,20 +113,24 @@ st.markdown("""
     <p>Sends instant notifications when the system detects abnormal usage or potential leakage.</p>
 </div>
 """, unsafe_allow_html=True)
-st.markdown('<h3 class="timeline-title">📌 Project Timeline</h3>', unsafe_allow_html=True)
 
+st.markdown(
+    """
+<div class="timeline-box">
+    <h3 class="timeline-title">📌 Project Timeline</h3>
 
-st.markdown('<div class="timeline-content">', unsafe_allow_html=True)
+    <p class="timeline-content">
+        <b>Week 1–2:</b> Data cleaning & preprocessing<br>
+        <b>Week 3–4:</b> Model training & evaluation<br>
+        <b>Week 5–9:</b> Building the interactive Streamlit app<br>
+        <b>Week 10–11:</b> Email alert integration & UI polishing<br>
+        <b>Week 12–14:</b> Final system refinement & testing<br>
+    </p>
+</div>
+    """,
+    unsafe_allow_html=True
+)
 
-st.write("""
-**Week 1–2:** Data cleaning & preprocessing  
-**Week 3–4:** Model training & evaluation  
-**Week 5–6:** Building the interactive Streamlit app  
-**Week 7–8:** Email alert integration & UI polishing  
-**Week 9–10:** Final system refinement & testing  
-""")
-
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 # العبارة في الوسط
