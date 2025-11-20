@@ -124,19 +124,18 @@ st.write("""
 """)
 
 
+# العبارة في الوسط
 st.markdown(
-    """
-    <div style="text-align:center; margin-top: 40px;">
-        <h3>Ready to explore the model predictions?</h3>
-    </div>
-    """,
+    "<h3 style='text-align:center;'>Ready to explore the model predictions?</h3>",
     unsafe_allow_html=True
 )
 
+# الزر في الوسط
+col1, col2, col3 = st.columns([1, 1, 1])
 
-if st.button("Go to Prediction Page", type="secondary"):
-    st.switch_page("app.py")
-
+with col2:
+    if st.button("Go to Prediction Page"):
+        st.switch_page("app.py")
 
 
 
