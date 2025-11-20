@@ -133,44 +133,13 @@ h3.benefit-title {
 
 
 
-/* ============================================
-   PREDICTION BUTTON STYLE — زر الصفحة
-============================================ */
-.prediction-button {
-    display: block;
-    margin: 40px auto;
-    padding: 15px 35px;
-    background: #006ce0; /* أزرق جميل */
-    color: white !important;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: 0.3s ease;
-    width: 260px;
-}
-
-.prediction-button:hover {
-    background: #004aad;
-    transform: scale(1.03);
-}
-.custom-button {
-    background-color: #1e88e5; /* Blue */
-    color: white !important;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    transition: 0.25s;
-}
-
-.custom-button:hover {
-    background-color: #1565c0; /* Darker blue */
+button[kind="secondary"] {
+    background-color: #1E88E5 !important;  /* أزرق جميل */
+    color: white !important;               /* خط أبيض */
+    border-radius: 8px !important;
+    padding: 10px 25px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
 }
 
 
