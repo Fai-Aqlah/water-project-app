@@ -114,20 +114,22 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ----- PROJECT TIMELINE -----
-st.markdown('<h3 class="timeline-title">📌 Project Timeline</h3>', unsafe_allow_html=True)
-
 st.markdown(
-    '<p class="timeline-content">'
-    'Week 1–2: Data cleaning & preprocessing <br>'
-    'Week 3–4: Model training & evaluation <br>'
-    'Week 5–6: Building the interactive Streamlit app <br>'
-    'Week 7–8: Email alert integration & UI polishing <br>'
-    'Week 9–10: Final system refinement & testing'
-    '</p>',
+    """
+<div class="timeline-container">
+    <h3 class="timeline-title">📌 Project Timeline</h3>
+
+    <p class="timeline-content">
+        <b>Week 1–2:</b> Data cleaning & preprocessing<br>
+        <b>Week 3–4:</b> Model training & evaluation<br>
+        <b>Week 5–6:</b> Building the interactive Streamlit app<br>
+        <b>Week 7–8:</b> Email alert integration & UI polishing<br>
+        <b>Week 9–10:</b> Final system refinement & testing
+    </p>
+</div>
+    """,
     unsafe_allow_html=True
 )
-
 
 
 
