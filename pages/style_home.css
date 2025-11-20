@@ -1,11 +1,16 @@
-.stApp {
-    background-color: #eef7ff !important;
+body {
+    background-color: #f3f6fa !important;   /* اللون اللي تبينه */
+}
+
+.block-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 MAIN TITLE — العنوان الرئيسي
 ============================================ */
 .main-title {
-    text-align: center;
+    text-align: center !important;
     font-size: 60px !important;
     font-weight: 1000;
     color: #81C784 !important;
