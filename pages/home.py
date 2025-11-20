@@ -119,8 +119,8 @@ st.markdown("### 📌 Project Timeline")
 st.write("""
 - **Week 1-2:** Data cleaning & preprocessing  
 - **Week 3-4:** Model training & evaluation  
-- **Week 5-6:** Building the interactive Streamlit app  
-- **Week 7-8:** Email alert integration & UI polishing  
+- **Week 5-9:** Building the interactive Streamlit app  
+- **Week 10-12:** Email alert integration & UI polishing  
 """)
 
 
