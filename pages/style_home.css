@@ -1,5 +1,8 @@
-/* ============================================
-   MAIN TITLE — العنوان الرئيسي
+body {
+    background: linear-gradient(to bottom, #E9F3FF, #F8FAFC) !important;
+}
+
+MAIN TITLE — العنوان الرئيسي
 ============================================ */
 .main-title {
     text-align: center;
