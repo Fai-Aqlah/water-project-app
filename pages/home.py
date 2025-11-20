@@ -83,7 +83,14 @@ st.markdown(
 
 
 
-st.markdown("###  Key Benefits")
+st.markdown(
+    """
+<div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+    <h2 style="font-weight: 800;">Key Benefits</h2>
+</div>
+""",
+    unsafe_allow_html=True
+)
 
 st.markdown("""
 <div class='benefit-card green-card'>
