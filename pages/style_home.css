@@ -144,28 +144,25 @@ button[kind="secondary"] {
 }
 
 
-.timeline-container {
-    text-align: left !important;
-    margin-left: 0 !important;
-}
-
+/* عنوان Project Timeline */
 .timeline-title {
-    font-size: 30px !important;
+    font-size: 32px !important;
     font-weight: 900 !important;
-    color: #5b49c1 !important;
-    margin-bottom: 10px !important;
+    color: #5b49c1 !important;   /* لون بنفسجي أنيق */
     text-align: left !important;
+    margin-left: 10px !important;  /* زحزحة لليسار */
+    margin-bottom: 5px !important;
 }
 
+/* محتوى Project Timeline */
 .timeline-content {
-    font-size: 24px !important;
-    font-weight: 600 !important;
-    color: #444 !important;
-    margin-left: 0 !important;
-    line-height: 1.7 !important;
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    color: #444 !important;  /* رمادي أنعم من الأسود */
     text-align: left !important;
+    margin-left: 10px !important; /* نفس المسافة */
+    line-height: 1.5 !important; /* ترتيب الأسطر */
 }
-
 
 
 
