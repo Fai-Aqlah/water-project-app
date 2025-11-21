@@ -102,7 +102,7 @@ if st.session_state.get("clicked_login") and not username_errors and not passwor
             <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
                 Welcome, {st.session_state.username}! 👋💧
             </h2>
-            <p style="color:#5EC9E8; font-size:30px; font-weight:800;">
+            <p style="color:#00FFFF; font-size:30px; font-weight:800;">
                 ⭐ Great! Let's take you to your Home page 🌿💧
             </p>
         </div>
