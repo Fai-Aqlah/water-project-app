@@ -3,65 +3,115 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# إعداد الصفحة
-st.set_page_config(page_title="Analytics Dashboard", layout="wide")
+# ---------------- تحميل ملف CSS ----------------
+with open("pages/style_analytics.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# تحميل ملف CSS
-def load_analytics_style():
-    with open("style_analytics.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# ---------------- عنوان الصفحة ----------------
+st.title("📊 Water Analytics Dashboard")
+st.markdown("### Deep insights into water consumption & leakage patterns 💧")
 
-load_analytics_style()
-
-# تحميل البيانات
+# ---------------- تحميل البيانات ----------------
 df = pd.read_csv("water_data_clean.csv")
 
-st.title("📊 Water Consumption Analytics Dashboard")
+required_cols = [
+    "previous_consumption",
+    "current_consumption",
+    "consumption_diff",
+    "leak_detected",
+    "district",
+    "temperature",
+    "humidity",
+]
 
-# ------------------------------------------------
-# 1. Summary Statistics
-# ------------------------------------------------
-st.subheader("📌 Summary Statistics")
+missing = [c for c in required_cols if c not in df.columns]
+if missing:
+    st.error(f"❌ Missing columns in dataset: {', '.join(missing)}")
+    st.stop()
 
+# ---------------- إحصائيات عامة ----------------
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Avg Previous", round(df["previous_consumption"].mean(), 2))
-col2.metric("Avg Current", round(df["current_consumption"].mean(), 2))
-col3.metric("Avg Difference", round(df["consumption_diff"].mean(), 2))
-col4.metric("Leak Count", int(df["leak_detected"].sum()))
 
-# ------------------------------------------------
-# 2. Histogram – Previous Consumption
-# ------------------------------------------------
-st.subheader("📈 Distribution of Previous Consumption")
-fig1, ax1 = plt.subplots()
-sns.histplot(df["previous_consumption"], kde=True, ax=ax1)
-st.pyplot(fig1)
+col1.metric("Average Previous", round(df["previous_consumption"].mean(), 2))
+col2.metric("Average Current", round(df["current_consumption"].mean(), 2))
+col3.metric("Average Diff", round(df["consumption_diff"].mean(), 2))
+col4.metric("Leakage Count", int(df["leak_detected"].sum()))
 
-# ------------------------------------------------
-# 3. Histogram – Current Consumption
-# ------------------------------------------------
-st.subheader("📈 Distribution of Current Consumption")
-fig2, ax2 = plt.subplots()
-sns.histplot(df["current_consumption"], kde=True, ax=ax2)
-st.pyplot(fig2)
+st.markdown("---")
 
-# ------------------------------------------------
-# 4. Leakage Rate
-# ------------------------------------------------
-st.subheader("🚨 Leakage Detection Rate")
+# ---------------- Tabs ----------------
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["Consumption Distribution", "Leakage Analysis", "Trends", "Correlations"]
+)
 
-leak_counts = df["leak_detected"].value_counts()
-fig3, ax3 = plt.subplots()
-plt.pie(leak_counts, labels=["No Leak", "Leak"], autopct="%1.1f%%", colors=["#5EC9E8", "#FF7070"])
-plt.title("Leak Percentage")
-st.pyplot(fig3)
+# ================= TAB 1 =================
+with tab1:
+    st.subheader("Water Consumption Distribution")
 
-# ------------------------------------------------
-# 5. Correlation Heatmap
-# ------------------------------------------------
-st.subheader("🔍 Feature Correlation Heatmap")
+    left, right = st.columns(2)
 
-fig4, ax4 = plt.subplots()
-sns.heatmap(df.corr(), annot=True, cmap="Blues", linewidths=0.5, ax=ax4)
-st.pyplot(fig4)
+    with left:
+        st.markdown("**Previous Consumption**")
+        fig1, ax1 = plt.subplots()
+        sns.histplot(df["previous_consumption"], kde=True, ax=ax1)
+        ax1.set_xlabel("Previous Consumption (m³)")
+        st.pyplot(fig1)
 
+    with right:
+        st.markdown("**Current Consumption**")
+        fig2, ax2 = plt.subplots()
+        sns.histplot(df["current_consumption"], kde=True, ax=ax2)
+        ax2.set_xlabel("Current Consumption (m³)")
+        st.pyplot(fig2)
+
+# ================= TAB 2 =================
+with tab2:
+    st.subheader("Leakage Analysis by District")
+
+    leak_by_district = (
+        df.groupby("district")["leak_detected"].sum().sort_values(ascending=False)
+    )
+
+    fig3, ax3 = plt.subplots()
+    leak_by_district.plot(kind="bar", ax=ax3)
+    ax3.set_xlabel("District")
+    ax3.set_ylabel("Leakage Count")
+    plt.xticks(rotation=45)
+    st.pyplot(fig3)
+
+    leakage_rate = df["leak_detected"].mean() * 100
+    st.metric("Overall Leakage Rate", f"{leakage_rate:.2f}%")
+
+# ================= TAB 3 =================
+with tab3:
+    st.subheader("Consumption Trends (Index-based)")
+
+    fig4, ax4 = plt.subplots()
+    ax4.plot(df.index, df["previous_consumption"], label="Previous")
+    ax4.plot(df.index, df["current_consumption"], label="Current")
+    ax4.set_xlabel("Record Index")
+    ax4.set_ylabel("Consumption (m³)")
+    ax4.legend()
+    st.pyplot(fig4)
+
+# ================= TAB 4 =================
+with tab4:
+    st.subheader("Correlation Heatmap")
+
+    numeric_cols = [
+        "previous_consumption",
+        "current_consumption",
+        "consumption_diff",
+        "temperature",
+        "humidity",
+    ]
+
+    if pd.api.types.is_numeric_dtype(df["leak_detected"]):
+        numeric_cols.append("leak_detected")
+
+    corr = df[numeric_cols].corr()
+
+    fig5, ax5 = plt.subplots()
+    sns.heatmap(corr, annot=True, cmap="Blues", fmt=".2f", square=True, ax=ax5)
+    ax5.set_title("Correlation Matrix")
+    st.pyplot(fig5)
