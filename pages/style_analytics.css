@@ -1,0 +1,30 @@
+/* Title */
+h1 {
+    text-align: center;
+    color: #0E96A8;
+    font-weight: 900;
+}
+
+/* Subheaders */
+h3 {
+    color: #1b4d3e;
+    font-weight: 800;
+}
+
+/* Metrics Styling */
+[data-testid="metric-container"] {
+    background: #e7f7f9;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #bde7ec;
+    margin-bottom: 10px;
+}
+
+/* Plots styling */
+svg, img {
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
