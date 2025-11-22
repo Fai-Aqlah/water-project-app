@@ -23,9 +23,10 @@ col4.metric("Difference", f"{diff:.2f}")
 
 st.divider()
 
-tab1, tab2, tab3, tab4 = st.tabs(
-    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends"]
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
+    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends", "🎨 Overlay"]
 )
+
 
 with tab1:
     c1, c2 = st.columns(2)
@@ -75,5 +76,23 @@ with tab4:
         color_discrete_sequence=["#1f77b4", "#2ca02c"]
     )
     st.plotly_chart(fig5, use_container_width=True)
+    with tab5:
+    fig_overlay = px.histogram(
+        df,
+        x=["previous_consumption", "current_consumption"],
+        nbins=40,
+        opacity=0.6,
+        barmode="overlay",
+        color_discrete_sequence=["#1f77b4", "#2ca02c"]
+    )
+
+    fig_overlay.update_layout(
+        legend_title_text="Type",
+        xaxis_title="Consumption Value",
+        yaxis_title="Count"
+    )
+
+    st.plotly_chart(fig_overlay, use_container_width=True)
+
 
          
