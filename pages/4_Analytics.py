@@ -6,71 +6,74 @@ with open("pages/style_analytics.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.title("📊 Water Analytics Dashboard")
-st.write("Deep insights into water consumption & leakage behavior.")
 
 df = pd.read_csv("water_data_clean.csv")
 
-col1, col2, col3 = st.columns(3)
-col1.metric("Avg Previous", round(df["previous_consumption"].mean(), 2))
-col2.metric("Avg Current", round(df["current_consumption"].mean(), 2))
-col3.metric("Leakage Count", int(df["leak_detected"].sum()))
+col1, col2, col3, col4 = st.columns(4)
+
+avg_prev = df["previous_consumption"].mean()
+avg_curr = df["current_consumption"].mean()
+leaks = df["leak_detected"].sum()
+diff = avg_curr - avg_prev
+
+col1.metric("Avg Previous", f"{avg_prev:.2f}")
+col2.metric("Avg Current", f"{avg_curr:.2f}")
+col3.metric("Leakage Count", str(leaks))
+col4.metric("Difference", f"{diff:.2f}")
 
 st.divider()
 
-tab1, tab2, tab3 = st.tabs(["📦 Distributions", "💧 Leakage Impact", "📈 Trends"])
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends"]
+)
 
 with tab1:
-    st.subheader("Distribution of Water Consumption")
-
     c1, c2 = st.columns(2)
 
     with c1:
-        fig_prev = px.histogram(
+        fig1 = px.histogram(
             df,
             x="previous_consumption",
-            nbins=30,
-            title="Previous Consumption Distribution",
-            color_discrete_sequence=["#4F8BD4"]
+            nbins=40,
+            color_discrete_sequence=["#1f77b4"]
         )
-        st.plotly_chart(fig_prev, use_container_width=True)
+        st.plotly_chart(fig1, use_container_width=True)
 
     with c2:
-        fig_curr = px.histogram(
+        fig2 = px.histogram(
             df,
             x="current_consumption",
-            nbins=30,
-            title="Current Consumption Distribution",
-            color_discrete_sequence=["#1D976C"]
+            nbins=40,
+            color_discrete_sequence=["#2ca02c"]
         )
-        st.plotly_chart(fig_curr, use_container_width=True)
+        st.plotly_chart(fig2, use_container_width=True)
 
 with tab2:
-    st.subheader("Leakage Effect on Consumption")
-
-    fig_box = px.box(
+    fig3 = px.box(
         df,
         x="leak_detected",
         y="current_consumption",
         color="leak_detected",
-        title="Consumption Levels: Leak vs No Leak",
-        color_discrete_sequence=["#4F8BD4", "#D9534F"],
+        color_discrete_sequence=["#1f77b4", "#d62728"]
     )
-    fig_box.update_layout(xaxis_title="Leak Detected (0 = No, 1 = Yes)")
-    st.plotly_chart(fig_box, use_container_width=True)
-
-    leak_rate = df["leak_detected"].mean() * 100
-    st.metric("Leakage Percentage", f"{leak_rate:.2f}%")
+    st.plotly_chart(fig3, use_container_width=True)
 
 with tab3:
-    st.subheader("Consumption Trend Over Records")
+    fig4 = px.scatter(
+        df,
+        x="previous_consumption",
+        y="current_consumption",
+        color="leak_detected",
+        color_discrete_sequence=["#1f77b4", "#d62728"]
+    )
+    st.plotly_chart(fig4, use_container_width=True)
 
-    fig_line = px.line(
+with tab4:
+    fig5 = px.line(
         df,
         y=["previous_consumption", "current_consumption"],
-        title="Previous vs Current Consumption Trend",
-        labels={"index": "Record Index"},
-        color_discrete_sequence=["#4F8BD4", "#1D976C"]
+        color_discrete_sequence=["#1f77b4", "#2ca02c"]
     )
-    st.plotly_chart(fig_line, use_container_width=True)
+    st.plotly_chart(fig5, use_container_width=True)
 
-   
+         
