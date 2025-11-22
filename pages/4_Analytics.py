@@ -29,7 +29,7 @@ st.divider()
 
 # ========== TABS ==========
 tab1, tab2, tab3, tab4, tab5 = st.tabs(
-    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends", "🎨 Overlay"]
+    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends", "🎨 Smooth Curve"]
 )
 
 # ========== TAB 1: DISTRIBUTIONS ==========
@@ -85,19 +85,28 @@ with tab4:
     )
     st.plotly_chart(fig5, use_container_width=True)
 
-# ========== TAB 5: OVERLAY (NEW) ==========
+# ========== TAB 5: KDE SMOOTH CURVE (NEW) ==========
 with tab5:
-    fig6 = px.histogram(
+    fig6 = px.kde(
         df,
-        x=["previous_consumption", "current_consumption"],
-        nbins=40,
-        opacity=0.6,
-        barmode="overlay",
-        color_discrete_sequence=["#1f77b4", "#2ca02c"]
+        x="previous_consumption",
+        color_discrete_sequence=["#1f77b4"],
+        labels={"x": "Consumption"}
     )
+    fig6.add_traces(
+        px.kde(
+            df,
+            x="current_consumption",
+            color_discrete_sequence=["#2ca02c"]
+        ).data
+    )
+
     fig6.update_layout(
         legend_title_text="Type",
         xaxis_title="Consumption Value",
-        yaxis_title="Count"
+        yaxis_title="Density"
     )
+
     st.plotly_chart(fig6, use_container_width=True)
+
+      
