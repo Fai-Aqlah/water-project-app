@@ -6,6 +6,10 @@ import plotly.express as px
 with open("pages/style_analytics.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.warning("🚫 You must log in first from the Login page.")
+    st.stop()
+
 # Title
 st.title("📊 Water Analytics Dashboard")
 
