@@ -160,6 +160,7 @@ else:
 
 st.markdown(f"**Previous Level:** {prev_level}  |  **Current Level:** {curr_level}")
 
+st.switch_page("pages/Analytics.py")
 
 
 
