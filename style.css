@@ -40,7 +40,7 @@ h2, h3 {
 /* 💧 زر التنبؤ */
 button[kind="primary"] {
   background: linear-gradient(90deg, #1b8a5a, #0277bd) !important; /* دمج الأخضر والأزرق */
-  color: white !important;
+  color: #ffffff !important;
   font-size: 20px !important;
   font-weight: 600 !important;
   border-radius: 10px !important;
