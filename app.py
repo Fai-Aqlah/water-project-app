@@ -163,7 +163,7 @@ st.markdown(f"**Previous Level:** {prev_level}  |  **Current Level:** {curr_leve
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
     if st.button("📊 Go To Analytics Page", use_container_width=True):
-        st.switch_page("pages/analytics.py")
+        st.switch_page("pages/4_Analytics.py")
 
 
 
