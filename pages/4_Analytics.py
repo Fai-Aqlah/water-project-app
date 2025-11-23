@@ -6,10 +6,6 @@ import plotly.express as px
 with open("pages/style_analytics.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("🚫 You must log in first from the Login page.")
-    st.stop()
-
 # Title
 st.title("📊 Water Analytics Dashboard")
 
@@ -32,8 +28,8 @@ col4.metric("Difference", f"{diff:.2f}")
 st.divider()
 
 # ========== TABS ==========
-tab1, tab2, tab3, tab4, tab5 = st.tabs(
-    ["📦 Distributions", "💧 Leakage", "🟦 Comparison", "📈 Trends", "🎨 Smooth Curve"]
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["📦 Distributions", "💧 Leakage Analysis", "🟦 Comparison", "📈 Trends"]
 )
 
 # ========== TAB 1: DISTRIBUTIONS ==========
@@ -47,6 +43,7 @@ with tab1:
             nbins=40,
             color_discrete_sequence=["#1f77b4"]
         )
+        fig1.update_layout(xaxis_title="Previous Consumption", yaxis_title="Count")
         st.plotly_chart(fig1, use_container_width=True)
 
     with c2:
@@ -56,6 +53,7 @@ with tab1:
             nbins=40,
             color_discrete_sequence=["#2ca02c"]
         )
+        fig2.update_layout(xaxis_title="Current Consumption", yaxis_title="Count")
         st.plotly_chart(fig2, use_container_width=True)
 
 # ========== TAB 2: LEAKAGE ==========
@@ -66,6 +64,10 @@ with tab2:
         y="current_consumption",
         color="leak_detected",
         color_discrete_sequence=["#1f77b4", "#d62728"]
+    )
+    fig3.update_layout(
+        xaxis_title="Leak Detected (0 = No, 1 = Yes)",
+        yaxis_title="Current Consumption"
     )
     st.plotly_chart(fig3, use_container_width=True)
 
@@ -78,6 +80,11 @@ with tab3:
         color="leak_detected",
         color_discrete_sequence=["#1f77b4", "#d62728"]
     )
+    fig4.update_layout(
+        xaxis_title="Previous Consumption",
+        yaxis_title="Current Consumption",
+        legend_title="Leak Detected"
+    )
     st.plotly_chart(fig4, use_container_width=True)
 
 # ========== TAB 4: TRENDS ==========
@@ -87,30 +94,9 @@ with tab4:
         y=["previous_consumption", "current_consumption"],
         color_discrete_sequence=["#1f77b4", "#2ca02c"]
     )
+    fig5.update_layout(
+        xaxis_title="Index",
+        yaxis_title="Consumption",
+        legend_title="Type"
+    )
     st.plotly_chart(fig5, use_container_width=True)
-
-# ========== TAB 5: KDE SMOOTH CURVE (NEW) ==========
-with tab5:
-    fig6 = px.kde(
-        df,
-        x="previous_consumption",
-        color_discrete_sequence=["#1f77b4"],
-        labels={"x": "Consumption"}
-    )
-    fig6.add_traces(
-        px.kde(
-            df,
-            x="current_consumption",
-            color_discrete_sequence=["#2ca02c"]
-        ).data
-    )
-
-    fig6.update_layout(
-        legend_title_text="Type",
-        xaxis_title="Consumption Value",
-        yaxis_title="Density"
-    )
-
-    st.plotly_chart(fig6, use_container_width=True)
-
-      
