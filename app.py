@@ -94,9 +94,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# القيم الإحصائية من البيانات (من التحليل بالكولاب)
-low_threshold = 197.22
-high_threshold = 482.60
+
 
 # إدخال القيم من المستخدم
 prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.1)
