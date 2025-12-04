@@ -43,6 +43,7 @@ if st.button("Login", type="secondary"):
         re.search(r'[!@#$%^&*]', username)
     ):
         username_errors.append("English letters and numbers only")
+         username_errors.append("username must be at least 8 characters")
         username_errors.append("No Arabic characters")
         username_errors.append("No spaces")
         username_errors.append("No symbols (!@#$%^&*)")
