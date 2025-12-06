@@ -25,23 +25,23 @@ def create_table():
     conn.close()
 
 
-def save_prediction(previous, current, diff, predicted_leak):
+def save_prediction(previous, current, diff, change_rate, status):
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("""
-        INSERT INTO prediction_logs (previous, current, diff, predicted_leak, created_at)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO prediction_logs (previous, current, diff, change_rate, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
     """, (
         previous,
         current,
         diff,
-        predicted_leak,
+        change_rate,
+        status,
         datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     ))
-
     conn.commit()
     conn.close()
+
 
 
 def load_predictions_df():
