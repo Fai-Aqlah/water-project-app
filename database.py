@@ -101,6 +101,23 @@ def clear_records():
     conn.commit()
     conn.close()
 
+# 6) Load predictions into DataFrame (for Analytics page)
+def load_predictions_df():
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    df = pd.DataFrame(
+        rows,
+        columns=["id", "previous", "current", "diff", "change_rate", "status", "created_at"]
+    )
+    return df
+
+
    
 
    
