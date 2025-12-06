@@ -1,23 +1,22 @@
 import sqlite3
 from datetime import datetime
 
-DB_NAME = "predictions.db"
-
+# --------------------------
+# 1) اتصال دائم بالقاعدة
+# --------------------------
 def get_connection():
-    conn = sqlite3.connect(DB_NAME)
+    # يخزن قاعدة البيانات في ملف دائم database.db
+    conn = sqlite3.connect("database.db", check_same_thread=False)
     return conn
 
-def reset_database():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("DROP TABLE IF EXISTS prediction_logs")
-    conn.commit()
-    conn.close()
 
-
+# --------------------------
+# 2) إنشاء الجدول (مرة وحدة فقط)
+# --------------------------
 def create_table():
     conn = get_connection()
     cursor = conn.cursor()
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS prediction_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,13 +28,18 @@ def create_table():
             created_at TEXT
         )
     """)
+
     conn.commit()
     conn.close()
 
 
+# --------------------------
+# 3) حفظ التنبؤ داخل قاعدة البيانات
+# --------------------------
 def save_prediction(previous, current, diff, change_rate, status):
     conn = get_connection()
     cursor = conn.cursor()
+
     cursor.execute("""
         INSERT INTO prediction_logs (previous, current, diff, change_rate, status, created_at)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -47,21 +51,37 @@ def save_prediction(previous, current, diff, change_rate, status):
         status,
         datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     ))
+
     conn.commit()
     conn.close()
 
 
-def load_predictions_df():
+# --------------------------
+# 4) جلب كل السجلات لصفحة DatabaseView
+# --------------------------
+def get_all_records():
     conn = get_connection()
     cursor = conn.cursor()
+
     cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
     rows = cursor.fetchall()
+
+    conn.close()
+    return rows
+
+
+# --------------------------
+# 5) حذف كل السجلات (إن احتجتي)
+# --------------------------
+def clear_records():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM prediction_logs")
+
+    conn.commit()
     conn.close()
 
-    import pandas as pd
-    df = pd.DataFrame(rows, columns=[
-        "id", "previous", "current", "diff", "change_rate", "status", "created_at"
-    ])
-    return df
+   
 
-  
+   
