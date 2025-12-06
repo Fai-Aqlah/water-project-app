@@ -1,5 +1,7 @@
 import sqlite3
 from datetime import datetime
+import pandas as pd
+
 
 # --------------------------
 # 1) اتصال دائم بالقاعدة
@@ -68,6 +70,23 @@ def get_all_records():
 
     conn.close()
     return rows
+
+def get_all_records_df():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    df = pd.DataFrame(
+        rows,
+        columns=["id", "previous", "current", "diff", "change_rate", "status", "created_at"]
+    )
+    return df
+
+
+
+
 
 
 # --------------------------
