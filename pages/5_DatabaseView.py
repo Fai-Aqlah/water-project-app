@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 from database import get_all_records
+with open("pages/style_database.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 st.title("📄 Prediction Records (Database Logs)")
 st.markdown("💧 This page displays all prediction logs stored in the system.")
