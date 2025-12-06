@@ -45,3 +45,21 @@ def save_prediction(previous, current, diff, predicted_leak):
 
     conn.commit()
     conn.close()
+    def load_predictions_df():
+    """تحميل جميع السجلات من قاعدة البيانات كـ DataFrame"""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    # تحويل النتائج إلى DataFrame
+    import pandas as pd
+    df = pd.DataFrame(rows, columns=[
+        "id", "previous", "current", "diff", "predicted_leak", "created_at"
+    ])
+
+    return df
+
