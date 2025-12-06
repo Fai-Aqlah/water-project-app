@@ -1,88 +1,64 @@
 import streamlit as st
 import pandas as pd
-from database import load_predictions_df
-
-st.set_page_config(page_title="Database Records", layout="wide")
+from database import get_all_records
 
 st.title("📄 Prediction Records (Database Logs)")
-st.markdown("هذه الصفحة تعرض السجلّات الفعلية المحفوظة داخل قاعدة البيانات بعد كل عملية تنبؤ 💧")
+st.markdown("💧 This page displays all prediction logs stored in the system.")
 
-# ======================
-# Load database data
-# ======================
-df = load_predictions_df()
+# -------------------------------
+# 1) Load records from database
+# -------------------------------
+records = get_all_records()
 
-if df.empty:
-    st.warning("⚠️ لا توجد أي سجلات بعد. قومي بعمل تنبؤ واحد على الأقل.")
+if not records or len(records) == 0:
+    st.warning("⚠️ No records found. Please perform at least one prediction.")
     st.stop()
 
-# ======================
-# Search & Filter Section
-# ======================
-st.subheader("🔎 البحث والفلترة")
+# Convert to DataFrame
+df = pd.DataFrame(records, columns=[
+    "ID",
+    "Previous",
+    "Current",
+    "Difference",
+    "Change Rate",
+    "Status",
+    "Created At"
+])
 
-col1, col2, col3 = st.columns(3)
+# --------------------------------
+# 2) Show the full table
+# --------------------------------
+st.subheader("📌 Latest Prediction Records")
+st.dataframe(df, use_container_width=True)
 
-# Filter by status
-status_filter = col1.selectbox(
-    "فلترة حسب حالة التنبؤ",
-    options=["الكل", "Stable", "Warning", "Leak", "Normal", "Decrease", "Zero-Prev"],
-    index=0
-)
+# --------------------------------
+# 3) Quick Statistics
+# --------------------------------
+st.subheader("📊 Quick Statistics")
 
-# Search by number
-search_value = col2.text_input("ابحث بالقيمة (Previous / Current / Change Rate)")
+total = len(df)
+stable_count = (df["Status"] == "Stable").sum()
+leak_count = (df["Status"] == "Leak").sum()
+warning_count = (df["Status"] == "Warning").sum()
 
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Total Records", total)
+col2.metric("Stable Cases", stable_count)
+col3.metric("Leak Cases", leak_count)
+col4.metric("Warnings", warning_count)
 
-# Apply filters
-filtered_df = df.copy()
+# --------------------------------
+# 4) Download CSV
+# --------------------------------
+st.subheader("⬇️ Download Records")
 
-if status_filter != "الكل":
-    filtered_df = filtered_df[filtered_df["status"] == status_filter]
-
-if search_value:
-    try:
-        search_value_num = float(search_value)
-        filtered_df = filtered_df[
-            (filtered_df["previous"] == search_value_num) |
-            (filtered_df["current"] == search_value_num) |
-            (filtered_df["change_rate"] == search_value_num)
-        ]
-    except:
-        st.info("اكتبي رقم صحيح للبحث.")
-
-st.markdown("### 📋 السجلّات بعد الفلترة")
-st.dataframe(filtered_df, use_container_width=True)
-
-st.markdown("---")
-
-# ======================
-# Download Section
-# ======================
-st.subheader("⬇️ تحميل السجلّات")
-
-download_df = filtered_df.to_csv(index=False).encode("utf-8")
+csv = df.to_csv(index=False).encode("utf-8")
 
 st.download_button(
     label="Download CSV",
-    data=download_df,
-    file_name="database_records.csv",
-    mime="text/csv",
-    use_container_width=True
+    data=csv,
+    file_name="prediction_logs.csv",
+    mime="text/csv"
 )
 
-st.markdown("---")
 
-# ======================
-# Summary Cards
-# ======================
-st.subheader("📦 إحصائيات سريعة")
-
-colA, colB, colC, colD = st.columns(4)
-
-colA.metric("Total Records", df.shape[0])
-colB.metric("Leak Cases", df[df["status"] == "Leak"].shape[0])
-colC.metric("Stable Cases", df[df["status"] == "Stable"].shape[0])
-colD.metric("Warnings", df[df["status"] == "Warning"].shape[0])
-
-st.success("✨ تم عرض بيانات الداتا بيز بنجاح!")
