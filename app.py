@@ -4,8 +4,11 @@ from style import load_style
 import requests
 import os
 from database import create_table, save_prediction
+
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+
 create_table()
+
 
 
 
