@@ -1,15 +1,12 @@
 import sqlite3
 from datetime import datetime
 
-# اسم ملف قاعدة البيانات
 DB_NAME = "predictions.db"
 
 def get_connection():
-    """إنشاء اتصال بقاعدة البيانات"""
     return sqlite3.connect(DB_NAME)
 
 def create_table():
-    """إنشاء جدول لتخزين سجلات التنبؤ إذا ما كان موجود"""
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -27,8 +24,8 @@ def create_table():
     conn.commit()
     conn.close()
 
+
 def save_prediction(previous, current, diff, predicted_leak):
-    """حفظ سجل جديد للتنبؤ داخل الجدول"""
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -45,8 +42,9 @@ def save_prediction(previous, current, diff, predicted_leak):
 
     conn.commit()
     conn.close()
-    def load_predictions_df():
-    """تحميل جميع السجلات من قاعدة البيانات كـ DataFrame"""
+
+
+def load_predictions_df():
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -55,11 +53,8 @@ def save_prediction(previous, current, diff, predicted_leak):
 
     conn.close()
 
-    # تحويل النتائج إلى DataFrame
     import pandas as pd
     df = pd.DataFrame(rows, columns=[
         "id", "previous", "current", "diff", "predicted_leak", "created_at"
     ])
-
     return df
-
