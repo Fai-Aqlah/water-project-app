@@ -154,6 +154,6 @@ with tab4:
 
 # زر الانتقال إلى صفحة عرض البيانات (Database Logs)
 if st.button("📄 Go To Database Records", type="primary"):
-    st.switch_page("5_DatabaseView.py")
+    st.switch_page("pages/5_DatabaseView.py")
 
 
