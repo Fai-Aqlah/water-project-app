@@ -154,9 +154,9 @@ with tab4:
 df = load_predictions_df()
 
 if df.empty:
-    st.warning("No records found in the database.")
+    st.warning("No data available for charts.")
 else:
-    st.dataframe(df)
+    pass
 
 
 
