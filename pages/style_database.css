@@ -1,0 +1,92 @@
+/* ============================
+   DATABASE PAGE CUSTOM STYLING
+   ============================ */
+
+/* العنوان الأساسي */
+.db-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #0A66C2;
+    margin-bottom: -5px;
+    text-align: center;
+}
+
+/* العنوان الفرعي */
+.db-subtitle {
+    font-size: 18px;
+    color: #444;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* قسم الإحصائيات */
+.stats-box {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    border-left: 5px solid #0A66C2;
+}
+
+.stats-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0A66C2;
+}
+
+.stats-label {
+    font-size: 15px;
+    color: #666;
+    margin-top: -6px;
+}
+
+/* الجدول */
+.dataframe {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 2px solid #e6e6e6 !important;
+}
+
+/* صفوف الجدول */
+.dataframe tbody tr:nth-child(odd) {
+    background-color: #f9fbff !important;
+}
+
+.dataframe tbody tr:hover {
+    background-color: #e8f0fe !important;
+    transition: 0.2s;
+}
+
+/* عمود الحالة */
+.status-normal {
+    color: #00a651;
+    font-weight: 700;
+}
+
+.status-warning {
+    color: #ff9900;
+    font-weight: 700;
+}
+
+.status-leak {
+    color: #cc0000;
+    font-weight: 700;
+}
+
+/* زر التحميل */
+.download-btn {
+    background-color: #0A66C2;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.download-btn:hover {
+    background-color: #084a94;
+}
