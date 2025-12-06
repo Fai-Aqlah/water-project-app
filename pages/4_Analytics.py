@@ -150,3 +150,8 @@ with tab4:
         yaxis_title="Change Rate (%)"
     )
     st.plotly_chart(fig7, use_container_width=True)
+
+
+if st.button("📄 View Prediction Records (Database Logs)", use_container_width=True):
+    st.switch_page("5_DatabaseView.py")
+
