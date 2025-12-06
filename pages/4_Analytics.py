@@ -151,6 +151,14 @@ with tab4:
     )
     st.plotly_chart(fig7, use_container_width=True)
 
+df = load_predictions_df()
+
+if df.empty:
+    st.warning("No records found in the database.")
+else:
+    st.dataframe(df)
+
+
 
 # زر الانتقال إلى صفحة عرض البيانات (Database Logs)
 if st.button("📄 Go To Database Records", type="primary"):
