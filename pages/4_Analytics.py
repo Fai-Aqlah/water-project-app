@@ -152,6 +152,8 @@ with tab4:
     st.plotly_chart(fig7, use_container_width=True)
 
 
-if st.button("📄 View Prediction Records (Database Logs)", use_container_width=True):
+# زر الانتقال إلى صفحة عرض البيانات (Database Logs)
+if st.button("📄 Go To Database Records", type="primary"):
     st.switch_page("5_DatabaseView.py")
+
 
