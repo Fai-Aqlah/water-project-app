@@ -3,7 +3,10 @@ import numpy as np
 from style import load_style
 import requests
 import os
+from database import create_table, save_prediction
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+create_table()
+
 
 
 def send_email_alert(consumption_value, change_rate):
@@ -133,36 +136,42 @@ prev_level = level(prev_use)
 curr_level = level(curr_use)
 
 # ==== decision logic ====
+diff = curr_use - prev_use   # فرق الاستهلاك
+
 if prev_use == 0:
     st.info("ℹ️ Previous consumption is 0, change rate set to 0%.")
+    save_prediction(prev_use, curr_use, diff, 0, "Zero-Prev")
+    
 elif abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
-    st.success(f"✅ Stable usage (Δ={abs_delta:.0f} L, {change_rate:.1f}%). No action needed.")
+    st.success(f"🟢 Stable usage (Δ{abs_delta:.0f}L, {change_rate:.1f}%). No action needed.")
+    save_prediction(prev_use, curr_use, diff, change_rate, "Stable")
+
 else:
     if change_rate >= LEAK_PCT:
-        st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
+        st.error(f"🚨 Leak/Extreme overuse detected! (+{change_rate:.1f}%). Check the system immediately.")
         send_email_alert(curr_use, change_rate)
         st.info("📧 Alert email has been sent.")
-
-
-
-    
-
-                
+        save_prediction(prev_use, curr_use, diff, change_rate, "Leak")
 
     elif change_rate >= WARN_PCT:
-        st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
+        st.warning(f"🟡 High increase (+{change_rate:.1f}%). Please monitor usage.")
+        save_prediction(prev_use, curr_use, diff, change_rate, "Warning")
+
     elif change_rate <= -PCT_TOL:
-        st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
+        st.success(f"🟢 Excellent! Usage decreased by {abs(change_rate):.1f}%.")
+        save_prediction(prev_use, curr_use, diff, change_rate, "Decrease")
+
     else:
-        st.success(f"✅ Normal change ({change_rate:.1f}%).")
+        st.success(f"🔵 Normal change ({change_rate:.1f}%).")
+        save_prediction(prev_use, curr_use, diff, change_rate, "Normal")
 
-st.markdown(f"**Previous Level:** {prev_level}  |  **Current Level:** {curr_level}")
-
+# ==== Summary Section ====
+st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
 col1, col2, col3 = st.columns([1,2,1])
+
 with col2:
     if st.button("📊 Go To Analytics Page", use_container_width=True):
         st.switch_page("pages/4_Analytics.py")
-
 
 
 
