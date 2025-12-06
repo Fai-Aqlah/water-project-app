@@ -4,23 +4,23 @@ from datetime import datetime
 DB_NAME = "predictions.db"
 
 def get_connection():
-    return sqlite3.connect(DB_NAME)
+    conn = sqlite3.connect(DB_NAME)
+    return conn
 
 def create_table():
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS prediction_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             previous REAL,
             current REAL,
             diff REAL,
-            predicted_leak INTEGER,
+            change_rate REAL,
+            status TEXT,
             created_at TEXT
         )
     """)
-
     conn.commit()
     conn.close()
 
@@ -43,18 +43,17 @@ def save_prediction(previous, current, diff, change_rate, status):
     conn.close()
 
 
-
 def load_predictions_df():
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
     rows = cursor.fetchall()
-
     conn.close()
 
     import pandas as pd
     df = pd.DataFrame(rows, columns=[
-        "id", "previous", "current", "diff", "predicted_leak", "created_at"
+        "id", "previous", "current", "diff", "change_rate", "status", "created_at"
     ])
     return df
+
+  
