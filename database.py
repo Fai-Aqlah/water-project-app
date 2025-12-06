@@ -7,6 +7,14 @@ def get_connection():
     conn = sqlite3.connect(DB_NAME)
     return conn
 
+def reset_database():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DROP TABLE IF EXISTS prediction_logs")
+    conn.commit()
+    conn.close()
+
+
 def create_table():
     conn = get_connection()
     cursor = conn.cursor()
