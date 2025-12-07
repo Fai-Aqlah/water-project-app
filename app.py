@@ -3,23 +3,15 @@ import numpy as np
 from style import load_style
 import requests
 import os
-from database import init_db, save_prediction
+from database import save_prediction   # مهم
 
-# Initialize the database (creates table if not exist)
-init_db()
-
+# ============================================================
+#  EMAIL ALERT FUNCTION
+# ============================================================
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
-
-
-
-
-
-
-
 
 def send_email_alert(consumption_value, change_rate):
     url = "https://api.resend.com/emails"
-
     payload = {
         "from": "Smart Water System <alerts@resend.dev>",
         "to": ["faialahmary@gmail.com"],
@@ -31,73 +23,46 @@ def send_email_alert(consumption_value, change_rate):
             <p>Please check the system immediately.</p>
         """
     }
-
     headers = {
         "Authorization": f"Bearer {RESEND_API_KEY}",
         "Content-Type": "application/json"
     }
-
     response = requests.post(url, json=payload, headers=headers)
     return response.status_code
 
 
-
-   
-    
-
-
-
-
-
+# ============================================================
+#  LOGIN CHECK
+# ============================================================
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.warning("🚫 You must log in first from the Login page.")
     st.stop()
 
+st.markdown(f"""
+    <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
+        Welcome, {st.session_state.username}! 💧
+    </h2>
+""", unsafe_allow_html=True)
 
-
-
-
-
-if "logged_in" in st.session_state and st.session_state.logged_in:
-    st.markdown(f"""
-        <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
-            Welcome, {st.session_state.username}! 💧
-        </h2>
-
-        
-    """, unsafe_allow_html=True)
-
-
-
-# زر تسجيل الخروج
 if st.button("Logout"):
     st.session_state.logged_in = False
     st.rerun()
 
 
-
-
-
+# ============================================================
+#  STYLE
+# ============================================================
 load_style()
-
-st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
-
-
-# Apply CSS style
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([4, 1])  
+st.markdown("<header>Ministry of Environment, Water & Agriculture 🌿</header>", unsafe_allow_html=True)
 
-with col2:  
+col1, col2 = st.columns([4, 1])
+with col2:
     st.image("Green.jpg", width=550, use_column_width=False)
 
-
-
-
-
 st.markdown("<div class='main-title'>Smart Water Consumption Prediction & Leak Detection 💧</div>", unsafe_allow_html=True)
-
 st.markdown("""
 <div class='sub-title'>
 نظام مدعوم بالذكاء الاصطناعي لإدارة المياه الذكية ومنع التسريبات 💧<br>
@@ -106,79 +71,100 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ============================================================
+#  THRESHOLDS
+# ============================================================
+MEAN = 339.91
+STD  = 142.69
+LOW_MAX = MEAN - STD
+MED_MAX = MEAN + STD
 
-# إدخال القيم من المستخدم
+WARN_PCT = 113.0
+LEAK_PCT = 190.0
+PCT_TOL  = 5.0
+ABS_TOL  = 10.0
+
+
+# ============================================================
+#  INPUTS
+# ============================================================
 prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.1)
 curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
-# عند الضغط على زر التنبؤ
-if st.button("🔍 Predict"):
-    if prev_use == 0:
-        st.warning("⚠️ Please enter a valid previous consumption value.")
-    else:
-    #  حساب نسبة التغير
-       change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0
+predict_btn = st.button("🔍 Predict")
 
-# ==== configurable thresholds ====
-MEAN = 339.91
-STD  = 142.69
+# ============================================================
+#  منع تكرار حفظ السجل (مهم جداً)
+# ============================================================
+if "saved_once" not in st.session_state:
+    st.session_state.saved_once = False
 
-LOW_MAX    = MEAN - STD      # 197.22
-MED_MAX    = MEAN + STD      # 482.60
 
-WARN_PCT   = 113.0           # بداية التحذير
-LEAK_PCT   = 190.0           # تسريب فعلي
-PCT_TOL    = 5.0             # تجاهل تغيّر أقل من 5%
-ABS_TOL    = 10.0            # أو أقل من 10 لتر
+# ============================================================
+#  PREDICTION LOGIC
+# ============================================================
+if predict_btn:
 
-# ==== compute features ====
-change_rate = ((curr_use - prev_use) / prev_use) * 100 if prev_use != 0 else 0.0
-abs_delta   = abs(curr_use - prev_use)
+    # إعادة التهيئة لكل عملية تنبؤ جديدة
+    st.session_state.saved_once = False
 
-def level(x):
-    if x < LOW_MAX: return "Low"
-    if x <= MED_MAX: return "Medium"
-    return "High"
+    if prev_use <= 0:
+        st.error("⚠️ Previous consumption must be greater than 0.")
+        st.stop()
 
-prev_level = level(prev_use)
-curr_level = level(curr_use)
+    diff = curr_use - prev_use
+    change_rate = (diff / prev_use) * 100
 
-# ====================================================
-# DECISION LOGIC (same logic + database support)
-# ====================================================
+    def level(x):
+        if x < LOW_MAX: return "Low"
+        if x <= MED_MAX: return "Medium"
+        return "High"
 
-if abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
-    st.success(f"✅ Stable usage (Δ={abs_delta:.0f} L, {change_rate:.1f}%). No action needed.")
-    save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Stable")
+    prev_level = level(prev_use)
+    curr_level = level(curr_use)
 
-else:
-    if change_rate >= LEAK_PCT:
-        st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
-        send_email_alert(curr_use, change_rate)
-        st.info("📧 Alert email has been sent.")
-        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Leak")
-
-    elif change_rate >= WARN_PCT:
-        st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
-        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Warning")
-
-    elif change_rate <= -PCT_TOL:
-        st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
-        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Decrease")
+    # == Stable ==
+    if abs(diff) < ABS_TOL or abs(change_rate) < PCT_TOL:
+        st.success(f"✅ Stable usage (Δ={diff:.0f} L, {change_rate:.1f}%). No action needed.")
+        if not st.session_state.saved_once:
+            save_prediction(prev_use, curr_use, diff, change_rate, "Stable")
+            st.session_state.saved_once = True
 
     else:
-        st.success(f"✅ Normal change ({change_rate:.1f}%).")
-        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Normal")
+        # == Leak ==
+        if change_rate >= LEAK_PCT:
+            st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
+            send_email_alert(curr_use, change_rate)
+            st.info("📧 Alert email has been sent.")
+            if not st.session_state.saved_once:
+                save_prediction(prev_use, curr_use, diff, change_rate, "Leak")
+                st.session_state.saved_once = True
 
+        # == Warning ==
+        elif change_rate >= WARN_PCT:
+            st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
+            if not st.session_state.saved_once:
+                save_prediction(prev_use, curr_use, diff, change_rate, "Warning")
+                st.session_state.saved_once = True
 
-# ==== Summary Section ====
-st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
-col1, col2, col3 = st.columns([1,2,1])
+        # == Decrease ==
+        elif change_rate <= -PCT_TOL:
+            st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
+            if not st.session_state.saved_once:
+                save_prediction(prev_use, curr_use, diff, change_rate, "Decrease")
+                st.session_state.saved_once = True
 
-with col2:
-    if st.button("📊 Go To Analytics Page", use_container_width=True):
-        st.switch_page("pages/4_Analytics.py")
+        # == Normal ==
+        else:
+            st.success(f"✅ Normal change ({change_rate:.1f}%).")
+            if not st.session_state.saved_once:
+                save_prediction(prev_use, curr_use, diff, change_rate, "Normal")
+                st.session_state.saved_once = True
 
+    st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
 
-
+    colA, colB, colC = st.columns([1, 2, 1])
+    with colB:
+        if st.button("📊 Go To Analytics Page", use_container_width=True):
+            st.switch_page("pages/4_Analytics.py")
 
