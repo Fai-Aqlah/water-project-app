@@ -166,5 +166,13 @@ if predict_btn:
     colA, colB, colC = st.columns([1, 2, 1])
     with colB:
         if st.button("📊 Go To Analytics Page", use_container_width=True):
-            st.switch_page("4_Analytics.py")
+            st.switch_page("pages/4_Analytics.py")
+
+
+
+
+
+
+
+
 
