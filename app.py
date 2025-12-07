@@ -140,35 +140,33 @@ def level(x):
 prev_level = level(prev_use)
 curr_level = level(curr_use)
 
-# ==== decision logic ====
-diff = curr_use - prev_use   # فرق الاستهلاك
+# ====================================================
+# DECISION LOGIC (same logic + database support)
+# ====================================================
 
-if prev_use == 0:
-    st.info("ℹ️ Previous consumption is 0, change rate set to 0%.")
-    save_prediction(prev_use, curr_use, diff, 0, "Zero-Prev")
-    
-elif abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
-    st.success(f"🟢 Stable usage (Δ{abs_delta:.0f}L, {change_rate:.1f}%). No action needed.")
-    save_prediction(prev_use, curr_use, diff, change_rate, "Stable")
+if abs_delta < ABS_TOL or abs(change_rate) < PCT_TOL:
+    st.success(f"✅ Stable usage (Δ={abs_delta:.0f} L, {change_rate:.1f}%). No action needed.")
+    save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Stable")
 
 else:
     if change_rate >= LEAK_PCT:
-        st.error(f"🚨 Leak/Extreme overuse detected! (+{change_rate:.1f}%). Check the system immediately.")
+        st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
         send_email_alert(curr_use, change_rate)
         st.info("📧 Alert email has been sent.")
-        save_prediction(prev_use, curr_use, diff, change_rate, "Leak")
+        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Leak")
 
     elif change_rate >= WARN_PCT:
-        st.warning(f"🟡 High increase (+{change_rate:.1f}%). Please monitor usage.")
-        save_prediction(prev_use, curr_use, diff, change_rate, "Warning")
+        st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
+        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Warning")
 
     elif change_rate <= -PCT_TOL:
-        st.success(f"🟢 Excellent! Usage decreased by {abs(change_rate):.1f}%.")
-        save_prediction(prev_use, curr_use, diff, change_rate, "Decrease")
+        st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
+        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Decrease")
 
     else:
-        st.success(f"🔵 Normal change ({change_rate:.1f}%).")
-        save_prediction(prev_use, curr_use, diff, change_rate, "Normal")
+        st.success(f"✅ Normal change ({change_rate:.1f}%).")
+        save_prediction(prev_use, curr_use, curr_use - prev_use, change_rate, "Normal")
+
 
 # ==== Summary Section ====
 st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
