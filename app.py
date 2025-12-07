@@ -3,7 +3,7 @@ import numpy as np
 from style import load_style
 import requests
 import os
-from database import save_prediction   # important
+from database import save_prediction   # مهم
 
 # ============================================================
 #  EMAIL ALERT FUNCTION
@@ -86,24 +86,15 @@ ABS_TOL  = 10.0
 
 
 # ============================================================
-#  USER INPUTS (prevent 0)
+#  INPUTS
 # ============================================================
-prev_use = st.number_input(
-    "Enter previous consumption:",
-    min_value=1.0,
-    step=0.1
-)
-curr_use = st.number_input(
-    "Enter current consumption:",
-    min_value=1.0,
-    step=0.1
-)
+prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.1)
+curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
 predict_btn = st.button("🔍 Predict")
 
-
 # ============================================================
-#  PREVENT DUPLICATE SAVING
+#  منع تكرار حفظ السجل (مهم جداً)
 # ============================================================
 if "saved_once" not in st.session_state:
     st.session_state.saved_once = False
@@ -114,18 +105,16 @@ if "saved_once" not in st.session_state:
 # ============================================================
 if predict_btn:
 
-    # Reset saving flag for new prediction
+    # إعادة التهيئة لكل عملية تنبؤ جديدة
     st.session_state.saved_once = False
 
-    # Extra validation to stop zero or negative values
-    if prev_use <= 0 or curr_use <= 0:
-        st.error("⚠️ Consumption values must be greater than 0.")
+    if prev_use <= 0:
+        st.error("⚠️ Previous consumption must be greater than 0.")
         st.stop()
 
     diff = curr_use - prev_use
     change_rate = (diff / prev_use) * 100
 
-    # Level classification
     def level(x):
         if x < LOW_MAX: return "Low"
         if x <= MED_MAX: return "Medium"
@@ -134,9 +123,7 @@ if predict_btn:
     prev_level = level(prev_use)
     curr_level = level(curr_use)
 
-    # ====================================================
-    #  STABLE USAGE
-    # ====================================================
+    # == Stable ==
     if abs(diff) < ABS_TOL or abs(change_rate) < PCT_TOL:
         st.success(f"✅ Stable usage (Δ={diff:.0f} L, {change_rate:.1f}%). No action needed.")
         if not st.session_state.saved_once:
@@ -144,9 +131,7 @@ if predict_btn:
             st.session_state.saved_once = True
 
     else:
-        # ====================================================
-        #  LEAK DETECTED
-        # ====================================================
+        # == Leak ==
         if change_rate >= LEAK_PCT:
             st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
             send_email_alert(curr_use, change_rate)
@@ -155,44 +140,31 @@ if predict_btn:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Leak")
                 st.session_state.saved_once = True
 
-        # ====================================================
-        #  WARNING
-        # ====================================================
+        # == Warning ==
         elif change_rate >= WARN_PCT:
             st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Warning")
                 st.session_state.saved_once = True
 
-        # ====================================================
-        #  DECREASE
-        # ====================================================
+        # == Decrease ==
         elif change_rate <= -PCT_TOL:
             st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Decrease")
                 st.session_state.saved_once = True
 
-        # ====================================================
-        #  NORMAL CHANGE
-        # ====================================================
+        # == Normal ==
         else:
             st.success(f"✅ Normal change ({change_rate:.1f}%).")
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Normal")
                 st.session_state.saved_once = True
 
-    # SUMMARY
     st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
 
-    # Go to Analytics Page
     colA, colB, colC = st.columns([1, 2, 1])
     with colB:
         if st.button("📊 Go To Analytics Page", use_container_width=True):
             st.switch_page("pages/4_Analytics.py")
-
-  
-
-   
-      
 
