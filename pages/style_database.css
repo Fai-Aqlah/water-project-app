@@ -1,3 +1,15 @@
+body {
+    background-color: #E8F8FF !important;
+}
+
+main > div {
+    background-color: #E8F8FF !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #E8F8FF !important;
+}
+
 /* ============================
    DATABASE PAGE CUSTOM STYLING
    ============================ */
