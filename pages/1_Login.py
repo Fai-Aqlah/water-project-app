@@ -37,6 +37,7 @@ if st.button("Login", type="secondary"):
 
     if (
         username.strip() == "" or
+        len(username) <8 or
         not re.match(r'^[A-Za-z0-9]+$', username) or
         re.search(r'[\u0600-\u06FF]', username) or
         " " in username or
