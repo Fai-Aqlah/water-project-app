@@ -1,125 +1,87 @@
 import sqlite3
 from datetime import datetime
-import pandas as pd
 import pytz
 
+DB_NAME = "predictions.db"
 
-
-# --------------------------
-# 1) اتصال دائم بالقاعدة
-# --------------------------
-def get_connection():
-    # يخزن قاعدة البيانات في ملف دائم database.db
-    conn = sqlite3.connect("database.db", check_same_thread=False)
-    return conn
-
-
-# --------------------------
-# 2) إنشاء الجدول (مرة وحدة فقط)
-# --------------------------
-def create_table():
-    conn = get_connection()
+# ============================================================
+#  CREATE TABLE
+# ============================================================
+def init_db():
+    conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
-
+    
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS prediction_logs (
+        CREATE TABLE IF NOT EXISTS predictions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            previous REAL,
-            current REAL,
+            prev_use REAL,
+            curr_use REAL,
             diff REAL,
             change_rate REAL,
-            status TEXT,
-            created_at TEXT
+            result TEXT,
+            timestamp TEXT
         )
     """)
-
+    
     conn.commit()
     conn.close()
 
 
-# --------------------------
-# 3) حفظ التنبؤ داخل قاعدة البيانات
-# --------------------------
-def save_prediction(previous, current, diff, change_rate, status):
-    conn = get_connection()
+# ============================================================
+#  SAVE PREDICTION
+# ============================================================
+def save_prediction(prev_use, curr_use, diff, change_rate, result):
+
+    # Reject zero or negative values (not allowed in your model logic)
+    if prev_use <= 0 or curr_use <= 0:
+        print("❌ Invalid values: zero or negative inputs are not allowed.")
+        return
+
+    # Saudi time
+    sa_tz = pytz.timezone("Asia/Riyadh")
+    timestamp = datetime.now(sa_tz).strftime("%Y-%m-%d %H:%M:%S")
+
+    conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO prediction_logs (previous, current, diff, change_rate, status, created_at)
+        INSERT INTO predictions (prev_use, curr_use, diff, change_rate, result, timestamp)
         VALUES (?, ?, ?, ?, ?, ?)
-    """, (
-        previous,
-        current,
-        diff,
-        change_rate,
-        status,
-        datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ))
+    """, (prev_use, curr_use, diff, change_rate, result, timestamp))
 
     conn.commit()
     conn.close()
 
 
-# --------------------------
-# 4) جلب كل السجلات لصفحة DatabaseView
-# --------------------------
-def get_all_records():
-    conn = get_connection()
+# ============================================================
+#  LOAD ALL RECORDS
+# ============================================================
+def load_predictions():
+    conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
-    rows = cursor.fetchall()
+    cursor.execute("""
+        SELECT id, prev_use, curr_use, diff, change_rate, result, timestamp
+        FROM predictions
+        ORDER BY id DESC
+    """)
 
+    data = cursor.fetchall()
     conn.close()
-    return rows
+    return data
 
-def get_all_records_df():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
-    rows = cursor.fetchall()
-    conn.close()
 
-    df = pd.DataFrame(
-        rows,
-        columns=["id", "previous", "current", "diff", "change_rate", "status", "created_at"]
-    )
-    return df
+# Initialize DB on import
+init_db()
+
+       
+  
 
 
 
 
 
 
-# --------------------------
-# 5) حذف كل السجلات (إن احتجتي)
-# --------------------------
-def clear_records():
-    conn = get_connection()
-    cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM prediction_logs")
-
-    conn.commit()
-    conn.close()
-
-# 6) Load predictions into DataFrame (for Analytics page)
-def load_predictions_df():
-    conn = get_connection()
-    cursor = conn.cursor()
     
-    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
-    rows = cursor.fetchall()
     
-    conn.close()
-    
-    df = pd.DataFrame(
-        rows,
-        columns=["id", "previous", "current", "diff", "change_rate", "status", "created_at"]
-    )
-    return df
-
-
-   
-
-   
