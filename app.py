@@ -9,7 +9,7 @@ from database import init_db, save_prediction
 init_db()
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
-create_table()
+
 
 
 
