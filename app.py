@@ -3,7 +3,10 @@ import numpy as np
 from style import load_style
 import requests
 import os
-from database import create_table, save_prediction
+from database import init_db, save_prediction
+
+# Initialize the database (creates table if not exist)
+init_db()
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 create_table()
