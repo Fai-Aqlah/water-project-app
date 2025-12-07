@@ -159,16 +159,15 @@ if predict_btn:
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Normal")
                 st.session_state.saved_once = True
+                st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
 
-  
-    
-st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
+
+
 st.divider()
-    colA, colB, colC = st.columns([1, 2, 1])
-    with colB:
-        if st.button("📊 Go To Analytics Page", use_container_width=True):
-            st.switch_page("pages/4_Analytics.py")
-
+colA, colB, colC = st.columns([1,2,1])
+with colB:
+    if st.button("Go To Analytics Page", use_container_width=True):
+        st.switch_page("pages/4_Analytics.py")
 
 
 
