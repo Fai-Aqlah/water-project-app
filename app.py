@@ -162,6 +162,9 @@ if predict_btn:
 
     st.markdown(f"**Previous Level:** {prev_level} | **Current Level:** {curr_level}")
 
+   
+    
+    st.divider()
     colA, colB, colC = st.columns([1, 2, 1])
     with colB:
         if st.button("📊 Go To Analytics Page", use_container_width=True):
