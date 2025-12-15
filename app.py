@@ -97,7 +97,7 @@ curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1
 predict_btn = st.button("🔍 Predict")
 
 # ============================================================
-#  منع تكرار حفظ السجل (مهم جداً)
+#  منع تكرار حفظ السجل 
 # ============================================================
 if "saved_once" not in st.session_state:
     st.session_state.saved_once = False
