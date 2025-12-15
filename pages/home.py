@@ -114,20 +114,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<h3 class="timeline-title">📌 Project Timeline</h3>', unsafe_allow_html=True)
 
-st.markdown(
-    """
-<div class="timeline-content">
-<strong>Week 1-2:</strong> Data cleaning & preprocessing<br>
-<strong>Week 3-4:</strong> Model training & evaluation<br>
-<strong>Week 5-9:</strong> Building the interactive Streamlit app<br>
-<strong>Week 10-11:</strong> Email alert integration & UI polishing<br>
-<strong>Week 12-14:</strong> Final system refinement & testing<br>
-</div>
-""",
-    unsafe_allow_html=True
-)
 
 
 
