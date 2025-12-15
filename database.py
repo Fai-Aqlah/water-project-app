@@ -27,9 +27,7 @@ def init_db():
     conn.close()
 
 
-# ============================================================
 #  SAVE PREDICTION
-# ============================================================
 def save_prediction(prev_use, curr_use, diff, change_rate, result):
 
     # Reject zero or negative values (not allowed in your model logic)
