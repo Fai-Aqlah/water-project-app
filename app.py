@@ -4,8 +4,11 @@ from style import load_style
 import requests
 import os
 from database import save_prediction   # مهم
+import joblib
 
-# ============================================================
+model = joblib.load("xgboost_model.pkl")
+
+
 #  EMAIL ALERT FUNCTION
 # ============================================================
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
