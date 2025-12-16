@@ -68,11 +68,6 @@ st.markdown("""
     <p>Detects abnormal usage instantly and prevents hidden leaks before major damage occurs.</p>
 </div>
 
-<div class='benefit-card blue-card'>
-    <h3 class='benefit-title'>📊 Smarter Consumption Insights</h3>
-    <p>Provides clear monthly analytics to help citizens understand and improve their water usage.</p>
-</div>
-
 <div class='benefit-card yellow-card'>
     <h3 class='benefit-title'>⭐ Supports the Ministry & Citizens</h3>
     <p>Improves planning efforts and guides better resource distribution across regions.</p>
@@ -83,11 +78,6 @@ st.markdown("""
     <p>Sends instant notifications when the system detects abnormal usage or potential leakage.</p>
 </div>
 """, unsafe_allow_html=True)
-
-
-
-
-
 
 
 
