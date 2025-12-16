@@ -23,6 +23,18 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    header {
+        visibility: hidden;
+    }
+
+    .block-container {
+        padding-top: 0.3rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 
 username = st.text_input("Username (English only)", key="username_input")
 password = st.text_input("Password", type="password", key="password_input")
