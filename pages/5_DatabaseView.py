@@ -5,18 +5,14 @@ from database import load_predictions
 st.title("📊 Stored Predictions History")
 st.write("Below is the full history of all water consumption predictions stored in the system.")
 
-# ============================================================
 # LOAD PAGE-SPECIFIC CSS
-# ============================================================
 try:
     with open("pages/style_database.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 except:
     st.warning("⚠️ style_database.css not found.")
 
-# ============================================================
 # LOAD DATA
-# ============================================================
 data = load_predictions()
 
 if not data:
