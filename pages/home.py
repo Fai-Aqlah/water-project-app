@@ -22,13 +22,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
+st.markdown("""
+<p class='project-description'>
 An AI-based system designed to detect abnormal water consumption and potential leakages to support smarter and more sustainable water management.
-    </p>
-    """,
-    unsafe_allow_html=True
-)
+</p>
+""", unsafe_allow_html=True)
 
 
 # ===== Why This System Matters =====
