@@ -47,16 +47,7 @@ def send_email_alert(consumption_value, change_rate):
     return response.status_code
 
 
-# ============================================================
-#  LOGIN CHECK
-# ============================================================
 
-
-st.markdown(f"""
-    <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
-        Welcome, {st.session_state.username}! 💧
-    </h2>
-""", unsafe_allow_html=True)
 
 if st.button("Logout"):
     st.session_state.logged_in = False
