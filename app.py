@@ -47,9 +47,15 @@ def send_email_alert(consumption_value, change_rate):
     return response.status_code
 
 
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("🚫 You must log in first from the Login page.")
-    st.stop()
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.switch_page("pages/login.py")
+
+
+
+
 
 if st.button("Logout"):
     st.session_state.logged_in = False
