@@ -75,3 +75,7 @@ else:
         mime="text/csv"
     )
 
+if st.button("⬅️ Back to Home"):
+    st.switch_page("pages/hoome.py")
+
+
