@@ -24,13 +24,7 @@ st.markdown(
 
 st.markdown(
     """
-    <p class='project-description'>
-    Smart Water System is an AI-powered platform designed to analyze water consumption, 
-    detect potential leakages early, and support sustainability goals.  
-    By comparing previous and current usage, the system identifies 
-    unusual patterns that may indicate hidden water loss — helping 
-    citizens reduce waste and enabling the Ministry to make smarter 
-    national water decisions.
+An AI-based system designed to detect abnormal water consumption and potential leakages to support smarter and more sustainable water management.
     </p>
     """,
     unsafe_allow_html=True
