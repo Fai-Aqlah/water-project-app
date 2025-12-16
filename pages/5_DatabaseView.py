@@ -9,6 +9,11 @@ if not st.session_state.get("logged_in"):
 
 username = st.session_state.get("username", "User")
 
+with st.sidebar:
+    st.page_link("pages/home.py", label="Home")
+    st.page_link("pages/prediction.py", label="Prediction")
+    st.page_link("pages/analytics.py", label="Analytics")
+
 
 st.title("📊 Stored Predictions History")
 st.write("Below is the full history of all water consumption predictions stored in the system.")
