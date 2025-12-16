@@ -2,6 +2,14 @@ import streamlit as st
 import pandas as pd
 from database import load_predictions
 
+
+if not st.session_state.get("logged_in"):
+    st.warning("You must log in first from the Login page.")
+    st.stop()
+
+username = st.session_state.get("username", "User")
+
+
 st.title("📊 Stored Predictions History")
 st.write("Below is the full history of all water consumption predictions stored in the system.")
 # LOAD PAGE-SPECIFIC CSS
