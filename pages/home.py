@@ -97,7 +97,7 @@ st.markdown("""
 
 
 st.markdown(
-    "<h3 style='text-align:center; margin-top:20px;'>Ready to explore the model predictions?</h3>",
+    "<h3 style='text-align:center; margin-top:10px;'>Ready to explore the model predictions?</h3>",
     unsafe_allow_html=True
 )
 
