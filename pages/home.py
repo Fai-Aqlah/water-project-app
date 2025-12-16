@@ -13,8 +13,12 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
 
 st.markdown("""
 <style>
+    header {
+        visibility: hidden;
+    }
+
     .block-container {
-        padding-top: 1rem !important;
+        padding-top: 0rem !important;
     }
 </style>
 """, unsafe_allow_html=True)
