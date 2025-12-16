@@ -8,6 +8,19 @@ import joblib
 
 model = joblib.load("xgboost_model.pkl")
 
+st.markdown("""
+<style>
+    header {
+        visibility: hidden;
+    }
+
+    .block-container {
+        padding-top: 0.3rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
 
 #  EMAIL ALERT FUNCTION
 # ============================================================
