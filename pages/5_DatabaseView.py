@@ -75,7 +75,7 @@ else:
         mime="text/csv"
     )
 
-if st.button("⬅️ Back to Home"):
-    st.switch_page("pages/home.py")
+if st.button("⬅️ Back to Prediction"):
+    st.switch_page("app.py")
 
 
