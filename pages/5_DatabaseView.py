@@ -4,7 +4,6 @@ from database import load_predictions
 
 st.title("📊 Stored Predictions History")
 st.write("Below is the full history of all water consumption predictions stored in the system.")
-
 # LOAD PAGE-SPECIFIC CSS
 try:
     with open("pages/style_database.css") as f:
