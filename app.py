@@ -50,9 +50,7 @@ def send_email_alert(consumption_value, change_rate):
 # ============================================================
 #  LOGIN CHECK
 # ============================================================
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("🚫 You must log in first from the Login page.")
-    st.stop()
+
 
 st.markdown(f"""
     <h2 style="color:#1b4d3e; font-size:40px; margin-top:10px;">
