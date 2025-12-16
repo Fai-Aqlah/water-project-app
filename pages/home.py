@@ -69,7 +69,7 @@ st.markdown(
 
 st.markdown(
     """
-<div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+<div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
     <h2 style="font-weight: 800;">Key Benefits</h2>
 </div>
 """,
