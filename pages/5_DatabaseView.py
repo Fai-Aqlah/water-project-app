@@ -11,7 +11,7 @@ username = st.session_state.get("username", "User")
 
 with st.sidebar:
     st.page_link("pages/home.py", label="Home")
-    st.page_link("pages/prediction.py", label="Prediction")
+    st.page_link("pages/app.py", label="app")
     st.page_link("pages/analytics.py", label="Analytics")
 
 
