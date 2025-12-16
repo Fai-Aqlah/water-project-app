@@ -3,15 +3,19 @@ import pandas as pd
 import plotly.express as px
 from database import load_predictions
 
+if not st.session_state.get("logged_in"):
+    st.warning("You must log in first from the Login page.")
+    st.stop()
+
+username = st.session_state.get("username", "User")
+
+
 # Load CSS styling
 with open("pages/style_analytics.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-# LOGIN CHECK
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("🚫 You must log in first from the Login page.")
-    st.stop()
+
 
 
 st.markdown("""
