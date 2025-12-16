@@ -11,9 +11,7 @@ def load_local_css(file_name):
 load_local_css("pages/style_login.css")
 st.set_page_config(page_title="Login", layout="centered")
 
-if "logged_in" not in st.session_state or not st.session_state.logged_in:
-    st.warning("🚫 You must log in first from the Login page.")
-    st.stop()
+
 
 st.markdown("""
 <div style="
