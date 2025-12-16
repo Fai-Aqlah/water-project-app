@@ -3,8 +3,15 @@ import numpy as np
 from style import load_style
 import requests
 import os
-from database import save_prediction   # مهم
+from database import save_prediction  
 import joblib
+
+if not st.session_state.get("logged_in"):
+    st.warning("You must log in first from the Login page.")
+    st.stop()
+
+username = st.session_state.get("username", "User")
+
 
 model = joblib.load("xgboost_model.pkl")
 
