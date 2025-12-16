@@ -10,6 +10,16 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.warning("🚫 You must log in first from the Login page.")
     st.stop()
 
+
+st.markdown("""
+<style>
+    .block-container {
+        padding-top: 1rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
 # العنوان الرئيسي
 st.markdown(
     "<h1 class='main-title'>Smart Water System 💧🌿</h1>",
