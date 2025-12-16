@@ -114,7 +114,7 @@ with col2:
 
 # الفوتر
 st.markdown("""
-<hr style='margin-top:15px; margin-bottom:10px; border: 1px solid #4CAF50;'>
+<hr style='margin-top:5px; margin-bottom:10px; border: 1px solid #4CAF50;'>
 
 <div style='text-align:center; color:#156b3a; font-weight:bold; font-size:22px;'>
     Developed by <b style="color:#0277bd;">Fai Aqlah</b> | Ministry of Environment, Water & Agriculture 🌿💧 – Hail Branch
