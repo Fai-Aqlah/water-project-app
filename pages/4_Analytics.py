@@ -13,6 +13,20 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.warning("🚫 You must log in first from the Login page.")
     st.stop()
 
+
+st.markdown("""
+<style>
+    header {
+        visibility: hidden;
+    }
+
+    .block-container {
+        padding-top: 0.3rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
 # PAGE TITLE
 st.title("📊 Water Analytics Dashboard 💧")
 
