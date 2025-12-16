@@ -47,13 +47,12 @@ main > div {
     padding: 25px 35px;
     border-radius: 15px;
     border-left: 8px solid #1b4d3e;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ============================================
-   BENEFITS SECTION TITLE
-============================================ */
+  */ BENEFITS SECTION TITLE
+ */
 h3.benefit-title {
     font-size: 22px;
     font-weight: 800;
@@ -61,9 +60,9 @@ h3.benefit-title {
     color: #1b4d3e;
 }
 
-/* ============================================
+/* 
    BENEFIT CARDS — البوكسات
-============================================ */
+ */
 .benefit-card {
     width: 85%;
     margin: 20px auto;
@@ -80,13 +79,13 @@ h3.benefit-title {
     line-height: 1.6;
 }
 
-/* ===== ألوان البوكسات ===== */
+/* ألوان البوكس */
 .green-card { background: #e5f8e5; border-left-color: #3c9d47; }
 .blue-card { background: #e7f1ff; border-left-color: #2774d9; }
 .yellow-card { background: #fff7da; border-left-color: #c9a125; }
 .orange-card { background: #ffe6d8; border-left-color: #d96b2b; }
 
-/* ===== القاعدة الأساسية لكل البوكسات ===== */
+/*  القاعدة الأساسية لكل البوكسات  */
 .container {
     padding: 30px;
     margin: 20px auto;
@@ -110,7 +109,7 @@ h3.benefit-title {
 .why-box h3 {
     color: #cc6600;  /* Orange headline */
     font-weight: 800;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .model-box {
