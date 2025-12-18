@@ -39,35 +39,51 @@ password = st.text_input("Password", type="password", key="password_input")
 if st.button("Login", type="secondary"):
 
     username_rules = [
-        ("Cannot be empty", username.strip() != ""),
-        ("At least 8 characters", len(username) >= 8),
-        ("English letters and numbers only", bool(re.match(r'^[A-Za-z0-9]+$', username))),
-        ("No Arabic characters", not re.search(r'[\u0600-\u06FF]', username)),
-        ("No spaces allowed", " " not in username),
-        ("No symbols (!@#$%^&*)", not re.search(r'[!@#$%^&*]', username)),
+        "Cannot be empty",
+        "At least 8 characters",
+        "English letters and numbers only",
+        "No Arabic characters",
+        "No spaces allowed",
+        "No symbols (!@#$%^&*)",
     ]
 
     password_rules = [
-        ("Cannot be empty", password.strip() != ""),
-        ("At least 8 characters", len(password) >= 8),
-        ("Must include letters", bool(re.search(r'[A-Za-z]', password))),
-        ("Must include numbers", bool(re.search(r'[0-9]', password))),
-        ("No Arabic characters", not re.search(r'[\u0600-\u06FF]', password)),
-        ("No spaces allowed", " " not in password),
+        "Cannot be empty",
+        "At least 8 characters",
+        "Must include letters",
+        "Must include numbers",
+        "No Arabic characters",
+        "No spaces allowed",
     ]
 
-    username_valid = all(rule[1] for rule in username_rules)
-    password_valid = all(rule[1] for rule in password_rules)
+    # التحقق الفعلي (بدون عرض)
+    username_valid = (
+        username.strip() != "" and
+        len(username) >= 8 and
+        re.match(r'^[A-Za-z0-9]+$', username) and
+        not re.search(r'[\u0600-\u06FF]', username) and
+        " " not in username and
+        not re.search(r'[!@#$%^&*]', username)
+    )
+
+    password_valid = (
+        password.strip() != "" and
+        len(password) >= 8 and
+        re.search(r'[A-Za-z]', password) and
+        re.search(r'[0-9]', password) and
+        not re.search(r'[\u0600-\u06FF]', password) and
+        " " not in password
+    )
 
     if not username_valid:
-        st.error("❌ Username Rules")
-        for rule, passed in username_rules:
-            st.write(f"{'✅' if passed else '❌'} {rule}")
+        st.error("Username Requirements")
+        for r in username_rules:
+            st.write(f"- {r}")
 
     if not password_valid:
-        st.warning("⚠️ Password Rules")
-        for rule, passed in password_rules:
-            st.write(f"{'✅' if passed else '❌'} {rule}")
+        st.warning("Password Requirements")
+        for r in password_rules:
+            st.write(f"- {r}")
 
     if username_valid and password_valid:
         st.session_state.logged_in = True
