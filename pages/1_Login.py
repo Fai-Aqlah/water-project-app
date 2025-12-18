@@ -42,24 +42,27 @@ username_errors = []
 password_errors = []
 
 if st.button("Login", type="secondary"):
-    st.session_state.clicked_login = True
-    # ثم قواعد التحقق...
 
+    username_errors = []
+    password_errors = []
+
+    # ---------- Username validation ----------
     if (
         username.strip() == "" or
-        len(username) <8 or
+        len(username) < 8 or
         not re.match(r'^[A-Za-z0-9]+$', username) or
         re.search(r'[\u0600-\u06FF]', username) or
         " " in username or
         re.search(r'[!@#$%^&*]', username)
     ):
         username_errors.append("English letters and numbers only")
-        username_errors.append("username must be at least 8 characters")
+        username_errors.append("Username must be at least 8 characters")
         username_errors.append("No Arabic characters")
         username_errors.append("No spaces")
         username_errors.append("No symbols (!@#$%^&*)")
         username_errors.append("Cannot be empty")
 
+    # ---------- Password validation ----------
     if (
         password.strip() == "" or
         len(password) < 8 or
@@ -73,40 +76,74 @@ if st.button("Login", type="secondary"):
         password_errors.append("No spaces allowed")
         password_errors.append("Cannot be empty")
 
+    # ---------- Show errors ----------
     if username_errors:
-        st.markdown(
-            f"""
-            <div class="error-box">
-                <div class="error-title">❌ Username Errors</div>
-                <ul class="error-list">
-                    {"".join(f"<li>{e}</li>" for e in username_errors)}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.error("❌ Username Errors")
+        for e in username_errors:
+            st.write(f"- {e}")
 
     if password_errors:
-        st.markdown(
-            f"""
-            <div class="warning-box">
-                <div class="warning-title">⚠️ Password Errors</div>
-                <ul class="warning-list">
-                    {"".join(f"<li>{e}</li>" for e in password_errors)}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
- 
-       )
+        st.warning("⚠️ Password Errors")
+        for e in password_errors:
+            st.write(f"- {e}")
 
-if not st.session_state.get("clicked_login"):
-    pass
+    # ---------- FINAL VALIDATION ----------
+    if not username_errors and not password_errors:
+        st.session_state.logged_in = True
+        st.session_state.username = username
+        st.success("Login Successful!")
+if st.button("Login", type="secondary"):
 
-if st.session_state.get("clicked_login") and not username_errors and not password_errors:
-    st.session_state.logged_in = True
-    st.session_state.username = username
-    st.success("Login Successful!")
+    username_errors = []
+    password_errors = []
+
+    # ---------- Username validation ----------
+    if (
+        username.strip() == "" or
+        len(username) < 8 or
+        not re.match(r'^[A-Za-z0-9]+$', username) or
+        re.search(r'[\u0600-\u06FF]', username) or
+        " " in username or
+        re.search(r'[!@#$%^&*]', username)
+    ):
+        username_errors.append("English letters and numbers only")
+        username_errors.append("Username must be at least 8 characters")
+        username_errors.append("No Arabic characters")
+        username_errors.append("No spaces")
+        username_errors.append("No symbols (!@#$%^&*)")
+        username_errors.append("Cannot be empty")
+
+    # ---------- Password validation ----------
+    if (
+        password.strip() == "" or
+        len(password) < 8 or
+        not re.search(r'[A-Za-z]', password) or
+        not re.search(r'[0-9]', password) or
+        re.search(r'[\u0600-\u06FF]', password)
+    ):
+        password_errors.append("Password must be at least 8 characters")
+        password_errors.append("Must include letters and numbers")
+        password_errors.append("No Arabic characters")
+        password_errors.append("No spaces allowed")
+        password_errors.append("Cannot be empty")
+
+    # ---------- Show errors ----------
+    if username_errors:
+        st.error("❌ Username Errors")
+        for e in username_errors:
+            st.write(f"- {e}")
+
+    if password_errors:
+        st.warning("⚠️ Password Errors")
+        for e in password_errors:
+            st.write(f"- {e}")
+
+    # ---------- FINAL VALIDATION ----------
+    if not username_errors and not password_errors:
+        st.session_state.logged_in = True
+        st.session_state.username = username
+        st.success("Login Successful!")
+
 
 
 
