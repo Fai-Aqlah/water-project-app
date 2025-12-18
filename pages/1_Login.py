@@ -1,6 +1,7 @@
 import streamlit as st
 import re
 import time
+def final_validation(username, password):
 
 
 
@@ -103,16 +104,17 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
  
        )
-
+        
 if st.session_state.get("clicked_login"):
-
-    # دخول فقط إذا لا يوجد أي أخطاء
-    if not username_errors and not password_errors:
+    # فقط استخدم الدالة بدون التحقق من القوائم
+    if final_validation(username, password):
         st.session_state.logged_in = True
         st.session_state.username = username
-        st.success("Login Successful!")
+        st.success("✅ Login Successful!")
     else:
         st.session_state.logged_in = False
+        # لا حاجة لرسالة لأن الأخطاء معروضة أصلاً
+
 
         
 
