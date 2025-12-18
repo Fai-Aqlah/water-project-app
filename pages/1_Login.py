@@ -32,6 +32,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 # ===============================
 # Session state defaults
 # ===============================
@@ -43,7 +44,28 @@ if "show_requirements" not in st.session_state:
 
 
 # ===============================
-# Inputs
+# IF USER IS LOGGED IN → STOP PAGE
+# ===============================
+if st.session_state.logged_in:
+
+    st.markdown(
+        f"""
+        <div style="text-align:center; margin-top:40px;">
+            <h2>Welcome, {st.session_state.username} 👋💧</h2>
+            <p>Great! Let's take you to your Home page 🌿</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    time.sleep(4)
+    st.switch_page("pages/home.py")
+
+    st.stop()   # ⛔️ مهم جداً: يوقف تنفيذ الصفحة هنا
+
+
+# ===============================
+# LOGIN FORM (ONLY IF NOT LOGGED IN)
 # ===============================
 username = st.text_input("Username (English only)")
 password = st.text_input("Password", type="password")
@@ -53,7 +75,7 @@ password_errors = []
 
 
 # ===============================
-# Login Button (ONE BUTTON ONLY)
+# Login Button
 # ===============================
 if st.button("Login", type="secondary"):
 
@@ -66,7 +88,7 @@ if st.button("Login", type="secondary"):
         username_errors.append("Cannot be empty")
 
     if len(username) < 8:
-        username_errors.append("Username must be at least 8 characters")
+        username_errors.append("At least 8 characters")
 
     if not re.match(r'^[A-Za-z0-9]+$', username):
         username_errors.append("English letters and numbers only")
@@ -75,10 +97,10 @@ if st.button("Login", type="secondary"):
         username_errors.append("No Arabic characters")
 
     if " " in username:
-        username_errors.append("No spaces allowed")
+        username_errors.append("No spaces")
 
     if re.search(r'[!@#$%^&*]', username):
-        username_errors.append("No symbols allowed")
+        username_errors.append("No symbols")
 
 
     # ---------- Password validation ----------
@@ -86,7 +108,7 @@ if st.button("Login", type="secondary"):
         password_errors.append("Cannot be empty")
 
     if len(password) < 8:
-        password_errors.append("Password must be at least 8 characters")
+        password_errors.append("At least 8 characters")
 
     if not re.search(r'[A-Za-z]', password):
         password_errors.append("Must include letters")
@@ -98,26 +120,26 @@ if st.button("Login", type="secondary"):
         password_errors.append("No Arabic characters")
 
     if " " in password:
-        password_errors.append("No spaces allowed")
+        password_errors.append("No spaces")
 
 
-    # ---------- Show requirements only if errors ----------
+    # ---------- Show requirements if errors ----------
     if username_errors or password_errors:
         st.session_state.show_requirements = True
 
 
-    # ---------- Final validation ----------
+    # ---------- Success ----------
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
-        st.session_state.show_requirements = False
         st.session_state.username = username
+        st.session_state.show_requirements = False
         st.success("Login Successful!")
 
 
 # ===============================
-# Requirements (ONLY after error)
+# REQUIREMENTS (ONLY IF ERROR)
 # ===============================
-if st.session_state.show_requirements and not st.session_state.logged_in:
+if st.session_state.show_requirements:
 
     st.markdown("### Username Requirements")
     st.write("- At least 8 characters")
@@ -137,6 +159,7 @@ if st.session_state.show_requirements and not st.session_state.logged_in:
 
 
 
+
       
         
 
@@ -147,26 +170,6 @@ if st.session_state.show_requirements and not st.session_state.logged_in:
 
 
       
-# بعد نجاح الدخول فقط
-if st.session_state.get("logged_in"):
-    st.markdown(
-        f"""
-        <div style="text-align:center; margin-top:20px;">
-            <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
-                Welcome, {st.session_state.username}! 👋💧
-            </h2>
-            <p style="color:#008B8B; font-size:30px; font-weight:800;">
-                ⭐ Great! Let's take you to your Home page 🌿💧
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    time.sleep(4)
-    st.switch_page("pages/home.py")
-
-     
 
 
 
