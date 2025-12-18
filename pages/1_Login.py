@@ -49,42 +49,43 @@ if st.button("Login", type="secondary"):
     password_errors.clear()
 
     # ---------- Username validation ----------
-    if username.strip() == "":
-        username_errors.append("Cannot be empty")
+if username.strip() == "":
+    username_errors.append("Cannot be empty")
 
-    if len(username) < 8:
-        username_errors.append("Username must be at least 8 characters")
+if len(username) < 8:
+    username_errors.append("Username must be at least 8 characters")
 
-    if not re.match(r'^[A-Za-z0-9]+$', username):
-        username_errors.append("English letters and numbers only")
+if not re.match(r'^[A-Za-z0-9]+$', username):
+    username_errors.append("English letters and numbers only")
 
-    if re.search(r'[\u0600-\u06FF]', username):
-        username_errors.append("No Arabic characters")
+if re.search(r'[\u0600-\u06FF]', username):
+    username_errors.append("No Arabic characters")
 
-    if " " in username:
-        username_errors.append("No spaces allowed")
+if " " in username:
+    username_errors.append("No spaces allowed")
 
-    if re.search(r'[!@#$%^&*]', username):
-        username_errors.append("No symbols (!@#$%^&*)")
+if re.search(r'[!@#$%^&*]', username):
+    username_errors.append("No symbols (!@#$%^&*)")
 
     # ---------- Password validation ----------
-    if password.strip() == "":
-        password_errors.append("Cannot be empty")
+if password.strip() == "":
+    password_errors.append("Cannot be empty")
 
-    if len(password) < 8:
-        password_errors.append("Password must be at least 8 characters")
+if len(password) < 8:
+    password_errors.append("Password must be at least 8 characters")
 
-    if not re.search(r'[A-Za-z]', password):
-        password_errors.append("Must include letters")
+if not re.search(r'[A-Za-z]', password):
+    password_errors.append("Must include at least one letter")
 
-    if not re.search(r'[0-9]', password):
-        password_errors.append("Must include numbers")
+if not re.search(r'[0-9]', password):
+    password_errors.append("Must include at least one number")
 
-    if re.search(r'[\u0600-\u06FF]', password):
-        password_errors.append("No Arabic characters")
+if re.search(r'[\u0600-\u06FF]', password):
+    password_errors.append("No Arabic characters")
 
-    if " " in password:
-        password_errors.append("No spaces allowed")
+if " " in password:
+    password_errors.append("No spaces allowed")
+
 
     # ---------- Show errors ----------
     if username_errors:
