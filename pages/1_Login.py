@@ -32,17 +32,17 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-
-username = st.text_input("Username (English only)", key="username_input")
-password = st.text_input("Password", type="password", key="password_input")
-
+# inputs
+username = st.text_input("Username (English only)")
+password = st.text_input("Password", type="password")
 
 username_errors = []
 password_errors = []
 
+# زر واحد فقط
 if st.button("Login", type="secondary"):
 
+    # إعادة تهيئة الأخطاء عند كل ضغطة
     username_errors = []
     password_errors = []
 
@@ -55,12 +55,7 @@ if st.button("Login", type="secondary"):
         " " in username or
         re.search(r'[!@#$%^&*]', username)
     ):
-        username_errors.append("English letters and numbers only")
-        username_errors.append("Username must be at least 8 characters")
-        username_errors.append("No Arabic characters")
-        username_errors.append("No spaces")
-        username_errors.append("No symbols (!@#$%^&*)")
-        username_errors.append("Cannot be empty")
+        username_errors.append("Invalid username format")
 
     # ---------- Password validation ----------
     if (
@@ -70,11 +65,7 @@ if st.button("Login", type="secondary"):
         not re.search(r'[0-9]', password) or
         re.search(r'[\u0600-\u06FF]', password)
     ):
-        password_errors.append("Password must be at least 8 characters")
-        password_errors.append("Must include letters and numbers")
-        password_errors.append("No Arabic characters")
-        password_errors.append("No spaces allowed")
-        password_errors.append("Cannot be empty")
+        password_errors.append("Invalid password format")
 
     # ---------- Show errors ----------
     if username_errors:
@@ -87,62 +78,17 @@ if st.button("Login", type="secondary"):
         for e in password_errors:
             st.write(f"- {e}")
 
-    # ---------- FINAL VALIDATION ----------
+    # ---------- FINAL VALIDATION (زر فقط) ----------
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
-if st.button("Login", type="secondary"):
 
-    username_errors = []
-    password_errors = []
+# بعد نجاح الدخول فقط
+if st.session_state.get("logged_in"):
+    st.write(f"Welcome, {st.session_state.username}")
 
-    # ---------- Username validation ----------
-    if (
-        username.strip() == "" or
-        len(username) < 8 or
-        not re.match(r'^[A-Za-z0-9]+$', username) or
-        re.search(r'[\u0600-\u06FF]', username) or
-        " " in username or
-        re.search(r'[!@#$%^&*]', username)
-    ):
-        username_errors.append("English letters and numbers only")
-        username_errors.append("Username must be at least 8 characters")
-        username_errors.append("No Arabic characters")
-        username_errors.append("No spaces")
-        username_errors.append("No symbols (!@#$%^&*)")
-        username_errors.append("Cannot be empty")
 
-    # ---------- Password validation ----------
-    if (
-        password.strip() == "" or
-        len(password) < 8 or
-        not re.search(r'[A-Za-z]', password) or
-        not re.search(r'[0-9]', password) or
-        re.search(r'[\u0600-\u06FF]', password)
-    ):
-        password_errors.append("Password must be at least 8 characters")
-        password_errors.append("Must include letters and numbers")
-        password_errors.append("No Arabic characters")
-        password_errors.append("No spaces allowed")
-        password_errors.append("Cannot be empty")
-
-    # ---------- Show errors ----------
-    if username_errors:
-        st.error("❌ Username Errors")
-        for e in username_errors:
-            st.write(f"- {e}")
-
-    if password_errors:
-        st.warning("⚠️ Password Errors")
-        for e in password_errors:
-            st.write(f"- {e}")
-
-    # ---------- FINAL VALIDATION ----------
-    if not username_errors and not password_errors:
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        st.success("Login Successful!")
 
 
 
