@@ -36,74 +36,43 @@ st.markdown("""
 username = st.text_input("Username (English only)", key="username_input")
 password = st.text_input("Password", type="password", key="password_input")
 
-username_errors = []
-password_errors = []
-
 if st.button("Login", type="secondary"):
 
-    username_errors.clear()
-    password_errors.clear()
+    username_rules = [
+        ("Cannot be empty", username.strip() != ""),
+        ("At least 8 characters", len(username) >= 8),
+        ("English letters and numbers only", bool(re.match(r'^[A-Za-z0-9]+$', username))),
+        ("No Arabic characters", not re.search(r'[\u0600-\u06FF]', username)),
+        ("No spaces allowed", " " not in username),
+        ("No symbols (!@#$%^&*)", not re.search(r'[!@#$%^&*]', username)),
+    ]
 
-    # Username validation
-    if username.strip() == "":
-        username_errors.append("Cannot be empty")
+    password_rules = [
+        ("Cannot be empty", password.strip() != ""),
+        ("At least 8 characters", len(password) >= 8),
+        ("Must include letters", bool(re.search(r'[A-Za-z]', password))),
+        ("Must include numbers", bool(re.search(r'[0-9]', password))),
+        ("No Arabic characters", not re.search(r'[\u0600-\u06FF]', password)),
+        ("No spaces allowed", " " not in password),
+    ]
 
-    if len(username) < 8:
-        username_errors.append("Username must be at least 8 characters")
+    username_valid = all(rule[1] for rule in username_rules)
+    password_valid = all(rule[1] for rule in password_rules)
 
-    if not re.match(r'^[A-Za-z0-9]+$', username):
-        username_errors.append("English letters and numbers only")
+    if not username_valid:
+        st.error("❌ Username Rules")
+        for rule, passed in username_rules:
+            st.write(f"{'✅' if passed else '❌'} {rule}")
 
-    if re.search(r'[\u0600-\u06FF]', username):
-        username_errors.append("No Arabic characters")
+    if not password_valid:
+        st.warning("⚠️ Password Rules")
+        for rule, passed in password_rules:
+            st.write(f"{'✅' if passed else '❌'} {rule}")
 
-    if " " in username:
-        username_errors.append("No spaces allowed")
-
-    if re.search(r'[!@#$%^&*]', username):
-        username_errors.append("No symbols (!@#$%^&*)")
-
-    # Password validation
-    if password.strip() == "":
-        password_errors.append("Cannot be empty")
-
-    if len(password) < 8:
-        password_errors.append("Password must be at least 8 characters")
-
-    if not re.search(r'[A-Za-z]', password):
-        password_errors.append("Must include letters")
-
-    if not re.search(r'[0-9]', password):
-        password_errors.append("Must include numbers")
-
-    if re.search(r'[\u0600-\u06FF]', password):
-        password_errors.append("No Arabic characters")
-
-    if " " in password:
-        password_errors.append("No spaces allowed")
-
-    # Show errors
-    if username_errors:
-        st.error("❌ Username Errors")
-        for e in username_errors:
-            st.write(f"- {e}")
-
-    if password_errors:
-        st.warning("⚠️ Password Errors")
-        for e in password_errors:
-            st.write(f"- {e}")
-
-    # Final validation
-    if not username_errors and not password_errors:
+    if username_valid and password_valid:
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
-
-
-
-# بعد نجاح الدخول فقط
-if st.session_state.get("logged_in"):
-    st.write(f"Welcome, {st.session_state.username} 👋")
 
 
 
