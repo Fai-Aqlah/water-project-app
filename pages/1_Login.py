@@ -58,7 +58,7 @@ if st.session_state.logged_in:
         unsafe_allow_html=True
     )
 
-    time.sleep(4)
+    time.sleep(2)
     st.switch_page("pages/home.py")
 
     st.stop()   # ⛔️ مهم جداً: يوقف تنفيذ الصفحة هنا
