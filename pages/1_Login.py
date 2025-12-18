@@ -32,100 +32,108 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-# ================== INPUTS ==================
-username = st.text_input("Username (English only)")
-password = st.text_input("Password", type="password")
-
-# ================== SESSION STATE ==================
+# ===============================
+# Session state defaults
+# ===============================
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# ================== SHOW REQUIREMENTS (قبل الدخول فقط) ==================
-if not st.session_state.logged_in:
+if "show_requirements" not in st.session_state:
+    st.session_state.show_requirements = False
 
-    st.subheader("Username Requirements")
+
+# ===============================
+# Inputs
+# ===============================
+username = st.text_input("Username (English only)")
+password = st.text_input("Password", type="password")
+
+username_errors = []
+password_errors = []
+
+
+# ===============================
+# Login Button (ONE BUTTON ONLY)
+# ===============================
+if st.button("Login", type="secondary"):
+
+    username_errors.clear()
+    password_errors.clear()
+    st.session_state.show_requirements = False
+
+    # ---------- Username validation ----------
+    if username.strip() == "":
+        username_errors.append("Cannot be empty")
+
+    if len(username) < 8:
+        username_errors.append("Username must be at least 8 characters")
+
+    if not re.match(r'^[A-Za-z0-9]+$', username):
+        username_errors.append("English letters and numbers only")
+
+    if re.search(r'[\u0600-\u06FF]', username):
+        username_errors.append("No Arabic characters")
+
+    if " " in username:
+        username_errors.append("No spaces allowed")
+
+    if re.search(r'[!@#$%^&*]', username):
+        username_errors.append("No symbols allowed")
+
+
+    # ---------- Password validation ----------
+    if password.strip() == "":
+        password_errors.append("Cannot be empty")
+
+    if len(password) < 8:
+        password_errors.append("Password must be at least 8 characters")
+
+    if not re.search(r'[A-Za-z]', password):
+        password_errors.append("Must include letters")
+
+    if not re.search(r'[0-9]', password):
+        password_errors.append("Must include numbers")
+
+    if re.search(r'[\u0600-\u06FF]', password):
+        password_errors.append("No Arabic characters")
+
+    if " " in password:
+        password_errors.append("No spaces allowed")
+
+
+    # ---------- Show requirements only if errors ----------
+    if username_errors or password_errors:
+        st.session_state.show_requirements = True
+
+
+    # ---------- Final validation ----------
+    if not username_errors and not password_errors:
+        st.session_state.logged_in = True
+        st.session_state.show_requirements = False
+        st.session_state.username = username
+        st.success("Login Successful!")
+
+
+# ===============================
+# Requirements (ONLY after error)
+# ===============================
+if st.session_state.show_requirements and not st.session_state.logged_in:
+
+    st.markdown("### Username Requirements")
     st.write("- At least 8 characters")
     st.write("- English letters and numbers only")
     st.write("- No Arabic characters")
     st.write("- No spaces")
     st.write("- No symbols")
 
-    st.subheader("Password Requirements")
+    st.markdown("### Password Requirements")
     st.write("- At least 8 characters")
     st.write("- Must include letters")
     st.write("- Must include numbers")
     st.write("- No Arabic characters")
     st.write("- No spaces")
 
-# ================== ERRORS LIST ==================
-username_errors = []
-password_errors = []
 
-# ================== LOGIN BUTTON ==================
-if st.button("Login", type="secondary"):
-
-    username_errors.clear()
-    password_errors.clear()
-
-    # ---------- Username validation ----------
-    if username.strip() == "":
-        username_errors.append("empty")
-
-    if len(username) < 8:
-        username_errors.append("length")
-
-    if not re.match(r'^[A-Za-z0-9]+$', username):
-        username_errors.append("format")
-
-    if re.search(r'[\u0600-\u06FF]', username):
-        username_errors.append("arabic")
-
-    if " " in username:
-        username_errors.append("space")
-
-    if re.search(r'[!@#$%^&*]', username):
-        username_errors.append("symbols")
-
-    # ---------- Password validation ----------
-    if password.strip() == "":
-        password_errors.append("empty")
-
-    if len(password) < 8:
-        password_errors.append("length")
-
-    if not re.search(r'[A-Za-z]', password):
-        password_errors.append("letters")
-
-    if not re.search(r'[0-9]', password):
-        password_errors.append("numbers")
-
-    if re.search(r'[\u0600-\u06FF]', password):
-        password_errors.append("arabic")
-
-    if " " in password:
-        password_errors.append("space")
-
-    # ---------- FINAL VALIDATION ----------
-    if not username_errors and not password_errors:
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        st.success("Login Successful")
-
-# ================== AFTER LOGIN ==================
-if st.session_state.logged_in:
-    st.markdown(
-        f"""
-        <div style="text-align:center; margin-top:30px;">
-            <h2>Welcome, {st.session_state.username}</h2>
-            <p>Redirecting to Home page...</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    time.sleep(3)
-    st.switch_page("pages/home.py")
 
 
 
