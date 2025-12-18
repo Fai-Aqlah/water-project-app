@@ -32,10 +32,12 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 # inputs
 username = st.text_input("Username (English only)")
 password = st.text_input("Password", type="password")
 
+# قوائم الأخطاء
 username_errors = []
 password_errors = []
 
@@ -43,29 +45,46 @@ password_errors = []
 if st.button("Login", type="secondary"):
 
     # إعادة تهيئة الأخطاء عند كل ضغطة
-    username_errors = []
-    password_errors = []
+    username_errors.clear()
+    password_errors.clear()
 
     # ---------- Username validation ----------
-    if (
-        username.strip() == "" or
-        len(username) < 8 or
-        not re.match(r'^[A-Za-z0-9]+$', username) or
-        re.search(r'[\u0600-\u06FF]', username) or
-        " " in username or
-        re.search(r'[!@#$%^&*]', username)
-    ):
-        username_errors.append("Invalid username format")
+    if username.strip() == "":
+        username_errors.append("Cannot be empty")
+
+    if len(username) < 8:
+        username_errors.append("Username must be at least 8 characters")
+
+    if not re.match(r'^[A-Za-z0-9]+$', username):
+        username_errors.append("English letters and numbers only")
+
+    if re.search(r'[\u0600-\u06FF]', username):
+        username_errors.append("No Arabic characters")
+
+    if " " in username:
+        username_errors.append("No spaces allowed")
+
+    if re.search(r'[!@#$%^&*]', username):
+        username_errors.append("No symbols (!@#$%^&*)")
 
     # ---------- Password validation ----------
-    if (
-        password.strip() == "" or
-        len(password) < 8 or
-        not re.search(r'[A-Za-z]', password) or
-        not re.search(r'[0-9]', password) or
-        re.search(r'[\u0600-\u06FF]', password)
-    ):
-        password_errors.append("Invalid password format")
+    if password.strip() == "":
+        password_errors.append("Cannot be empty")
+
+    if len(password) < 8:
+        password_errors.append("Password must be at least 8 characters")
+
+    if not re.search(r'[A-Za-z]', password):
+        password_errors.append("Must include letters")
+
+    if not re.search(r'[0-9]', password):
+        password_errors.append("Must include numbers")
+
+    if re.search(r'[\u0600-\u06FF]', password):
+        password_errors.append("No Arabic characters")
+
+    if " " in password:
+        password_errors.append("No spaces allowed")
 
     # ---------- Show errors ----------
     if username_errors:
@@ -78,16 +97,11 @@ if st.button("Login", type="secondary"):
         for e in password_errors:
             st.write(f"- {e}")
 
-    # ---------- FINAL VALIDATION (زر فقط) ----------
+    # ---------- FINAL VALIDATION ----------
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
-
-# بعد نجاح الدخول فقط
-if st.session_state.get("logged_in"):
-    st.write(f"Welcome, {st.session_state.username}")
-
 
 
 
