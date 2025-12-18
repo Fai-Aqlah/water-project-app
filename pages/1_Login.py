@@ -103,23 +103,19 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
  
        )
-        
+
 if st.session_state.get("clicked_login"):
 
-    # ما فيه أخطاء + البيانات صحيحة
-    if (
-        not username_errors
-        and not password_errors
-        and username == CORRECT_USERNAME
-        and password == CORRECT_PASSWORD
-    ):
+    # دخول فقط إذا لا يوجد أي أخطاء
+    if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
-
-    # فيه محاولة لكن البيانات غير صحيحة
     else:
         st.session_state.logged_in = False
+
+        
+
 
 # بعد نجاح الدخول فقط
 if st.session_state.get("logged_in"):
