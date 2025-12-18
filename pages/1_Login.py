@@ -105,7 +105,7 @@ if st.button("Login", type="secondary"):
        )
         
 # زر تسجيل الدخول
-if st.button("Login"):
+if st.button("Login", key="login_btn_main"):
     if username == CORRECT_USERNAME and password == CORRECT_PASSWORD:
         st.session_state.logged_in = True
         st.session_state.username = username
