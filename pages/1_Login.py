@@ -1,7 +1,6 @@
 import streamlit as st
 import re
 import time
-def final_validation(username, password):
     
 def load_local_css(file_name):
     with open(file_name) as f:
@@ -101,21 +100,18 @@ if st.button("Login", type="secondary"):
             unsafe_allow_html=True
  
        )
-        
-if st.session_state.get("clicked_login"):
-    # فقط استخدم الدالة بدون التحقق من القوائم
-    if final_validation(username, password):
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        st.success("✅ Login Successful!")
-    else:
-        st.session_state.logged_in = False
-        # لا حاجة لرسالة لأن الأخطاء معروضة أصلاً
+
+if not st.session_state.get("clicked_login"):
+    pass
+
+if st.session_state.get("clicked_login") and not username_errors and not password_errors:
+    st.session_state.logged_in = True
+    st.session_state.username = username
+    st.success("Login Successful!")
 
 
-        
 
-
+      
 # بعد نجاح الدخول فقط
 if st.session_state.get("logged_in"):
     st.markdown(
