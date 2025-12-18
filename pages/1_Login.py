@@ -104,14 +104,18 @@ if st.button("Login", type="secondary"):
  
        )
         
-if not st.session_state.get("clicked_login"):
-    pass
+# زر تسجيل الدخول
+if st.button("Login"):
+    if username == CORRECT_USERNAME and password == CORRECT_PASSWORD:
+        st.session_state.logged_in = True
+        st.session_state.username = username
+        st.success("Login Successful!")
+    else:
+        st.session_state.logged_in = False
+        st.error("Invalid username or password")
 
-if st.session_state.get("clicked_login") and not username_errors and not password_errors:
-    st.session_state.logged_in = True
-    st.session_state.username = username
-    st.success("Login Successful!")
-
+# بعد نجاح الدخول فقط
+if st.session_state.get("logged_in"):
     st.markdown(
         f"""
         <div style="text-align:center; margin-top:20px;">
@@ -126,11 +130,8 @@ if st.session_state.get("clicked_login") and not username_errors and not passwor
         unsafe_allow_html=True
     )
 
-
     time.sleep(4)
-
     st.switch_page("pages/home.py")
-
 
      
 
