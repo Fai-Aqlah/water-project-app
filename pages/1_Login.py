@@ -33,22 +33,18 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# inputs
-username = st.text_input("Username (English only)")
-password = st.text_input("Password", type="password")
+username = st.text_input("Username (English only)", key="username_input")
+password = st.text_input("Password", type="password", key="password_input")
 
-# قوائم الأخطاء
 username_errors = []
 password_errors = []
 
-# زر واحد فقط
 if st.button("Login", type="secondary"):
 
-    # إعادة تهيئة الأخطاء عند كل ضغطة
     username_errors.clear()
     password_errors.clear()
 
-    # ---------- Username validation ----------
+    # Username validation
     if username.strip() == "":
         username_errors.append("Cannot be empty")
 
@@ -67,7 +63,7 @@ if st.button("Login", type="secondary"):
     if re.search(r'[!@#$%^&*]', username):
         username_errors.append("No symbols (!@#$%^&*)")
 
-    # ---------- Password validation ----------
+    # Password validation
     if password.strip() == "":
         password_errors.append("Cannot be empty")
 
@@ -86,7 +82,7 @@ if st.button("Login", type="secondary"):
     if " " in password:
         password_errors.append("No spaces allowed")
 
-    # ---------- Show errors ----------
+    # Show errors
     if username_errors:
         st.error("❌ Username Errors")
         for e in username_errors:
@@ -97,11 +93,13 @@ if st.button("Login", type="secondary"):
         for e in password_errors:
             st.write(f"- {e}")
 
-    # ---------- FINAL VALIDATION ----------
+    # Final validation
     if not username_errors and not password_errors:
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
+
+
 
 # بعد نجاح الدخول فقط
 if st.session_state.get("logged_in"):
