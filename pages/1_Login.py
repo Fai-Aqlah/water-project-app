@@ -104,15 +104,22 @@ if st.button("Login", type="secondary"):
  
        )
         
-# زر تسجيل الدخول
-if st.button("Login", key="login_btn_main"):
-    if username == CORRECT_USERNAME and password == CORRECT_PASSWORD:
+if st.session_state.get("clicked_login"):
+
+    # ما فيه أخطاء + البيانات صحيحة
+    if (
+        not username_errors
+        and not password_errors
+        and username == CORRECT_USERNAME
+        and password == CORRECT_PASSWORD
+    ):
         st.session_state.logged_in = True
         st.session_state.username = username
         st.success("Login Successful!")
+
+    # فيه محاولة لكن البيانات غير صحيحة
     else:
         st.session_state.logged_in = False
-        st.error("Invalid username or password")
 
 # بعد نجاح الدخول فقط
 if st.session_state.get("logged_in"):
