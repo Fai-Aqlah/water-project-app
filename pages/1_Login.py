@@ -33,118 +33,102 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# تهيئة الحالة
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-    st.session_state.show_validation = False
-    st.session_state.login_success = False
+username = st.text_input("Username (English only)", key="username_input")
+password = st.text_input("Password", type="password", key="password_input")
 
 
-# =========================
-# صفحة تسجيل الدخول
-# =========================
-if not st.session_state.logged_in:
+username_errors = []
+password_errors = []
 
-    username = st.text_input("Username (English only)")
-    password = st.text_input("Password", type="password")
+if st.button("Login", type="secondary"):
+    st.session_state.clicked_login = True
+    # ثم قواعد التحقق...
 
-    username_errors = []
-    password_errors = []
+    if (
+        username.strip() == "" or
+        len(username) <8 or
+        not re.match(r'^[A-Za-z0-9]+$', username) or
+        re.search(r'[\u0600-\u06FF]', username) or
+        " " in username or
+        re.search(r'[!@#$%^&*]', username)
+    ):
+        username_errors.append("English letters and numbers only")
+        username_errors.append("username must be at least 8 characters")
+        username_errors.append("No Arabic characters")
+        username_errors.append("No spaces")
+        username_errors.append("No symbols (!@#$%^&*)")
+        username_errors.append("Cannot be empty")
 
-    if st.button("Login", type="secondary"):
-        st.session_state.show_validation = True
+    if (
+        password.strip() == "" or
+        len(password) < 8 or
+        not re.search(r'[A-Za-z]', password) or
+        not re.search(r'[0-9]', password) or
+        re.search(r'[\u0600-\u06FF]', password)
+    ):
+        password_errors.append("Password must be at least 8 characters")
+        password_errors.append("Must include letters and numbers")
+        password_errors.append("No Arabic characters")
+        password_errors.append("No spaces allowed")
+        password_errors.append("Cannot be empty")
 
-        # ---------- Username validation ----------
-        if username.strip() == "":
-            username_errors.append("Cannot be empty")
-        if len(username) < 8:
-            username_errors.append("At least 8 characters")
-        if not re.match(r'^[A-Za-z0-9]+$', username):
-            username_errors.append("English letters and numbers only")
-        if re.search(r'[\u0600-\u06FF]', username):
-            username_errors.append("No Arabic characters")
-        if " " in username:
-            username_errors.append("No spaces allowed")
-        if re.search(r'[!@#$%^&*]', username):
-            username_errors.append("No symbols allowed")
-
-        # ---------- Password validation ----------
-        if password.strip() == "":
-            password_errors.append("Cannot be empty")
-        if len(password) < 8:
-            password_errors.append("At least 8 characters")
-        if not re.search(r'[A-Za-z]', password):
-            password_errors.append("Must include letters")
-        if not re.search(r'[0-9]', password):
-            password_errors.append("Must include numbers")
-        if re.search(r'[\u0600-\u06FF]', password):
-            password_errors.append("No Arabic characters")
-        if " " in password:
-            password_errors.append("No spaces allowed")
-
-        # ---------- نجاح ----------
-        if not username_errors and not password_errors:
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.session_state.login_success = True
-            st.rerun()
-
-    # =========================
-    # عرض الشروط + الأخطاء فقط عند الخطأ
-    # =========================
-    if st.session_state.show_validation:
-
-        st.subheader("Username Requirements")
-        st.write("- At least 8 characters")
-        st.write("- English letters and numbers only")
-        st.write("- No Arabic characters")
-        st.write("- No spaces")
-        st.write("- No symbols")
-
-        st.subheader("Password Requirements")
-        st.write("- At least 8 characters")
-        st.write("- Must include letters")
-        st.write("- Must include numbers")
-        st.write("- No Arabic characters")
-        st.write("- No spaces")
-
-        if username_errors:
-            st.error("Username Errors")
-            for e in username_errors:
-                st.write(f"- {e}")
-
-        if password_errors:
-            st.warning("Password Errors")
-            for e in password_errors:
-                st.write(f"- {e}")
-
-
-# =========================
-# بعد تسجيل الدخول
-# =========================
-else:
-
-    if st.session_state.login_success:
-        st.success("Login Successful!")
-
+    if username_errors:
         st.markdown(
             f"""
-            <div style="text-align:center; margin-top:20px;">
-                <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
-                    Welcome, {st.session_state.username} 👋💧
-                </h2>
-                <p style="color:#008B8B; font-size:30px; font-weight:800;">
-                    ⭐ Great! Let's take you to your Home page 🌿💧
-                </p>
+            <div class="error-box">
+                <div class="error-title">❌ Username Errors</div>
+                <ul class="error-list">
+                    {"".join(f"<li>{e}</li>" for e in username_errors)}
+                </ul>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-        st.session_state.login_success = False
-        time.sleep(3)
-        st.switch_page("pages/home.py")
+    if password_errors:
+        st.markdown(
+            f"""
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Password Errors</div>
+                <ul class="warning-list">
+                    {"".join(f"<li>{e}</li>" for e in password_errors)}
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+ 
+       )
+        
+if not st.session_state.get("clicked_login"):
+    pass
 
+if st.session_state.get("clicked_login") and not username_errors and not password_errors:
+    st.session_state.logged_in = True
+    st.session_state.username = username
+    st.success("Login Successful!")
+
+    st.markdown(
+        f"""
+        <div style="text-align:center; margin-top:20px;">
+            <h2 style="color:#1b4d3e; font-size:32px; font-weight:900;">
+                Welcome, {st.session_state.username}! 👋💧
+            </h2>
+            <p style="color:#008B8B; font-size:30px; font-weight:800;">
+                ⭐ Great! Let's take you to your Home page 🌿💧
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+    time.sleep(4)
+
+    st.switch_page("pages/home.py")
+
+
+
+    
 
 
    
