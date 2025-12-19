@@ -122,7 +122,7 @@ if st.session_state.get("clicked_login") and not username_errors and not passwor
     )
 
 
-    time.sleep(4)
+    time.sleep(6)
 
     st.switch_page("pages/home.py")
 
