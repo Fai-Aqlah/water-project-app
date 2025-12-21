@@ -6,11 +6,12 @@ import os
 from database import save_prediction  
 import joblib
 
+
+
 if not st.session_state.get("logged_in"):
     st.warning("You must log in first from the Login page.")
     st.stop()
 
-username = st.session_state.get("username", "User")
 
 
 model = joblib.load("xgboost_model.pkl")
@@ -29,8 +30,7 @@ st.markdown("""
 
 
 
-#  EMAIL ALERT FUNCTION
-# ============================================================
+#  Email alert fuction
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
 def send_email_alert(consumption_value, change_rate):
