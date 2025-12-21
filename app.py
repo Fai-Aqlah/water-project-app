@@ -65,9 +65,7 @@ if st.button("Logout"):
     st.rerun()
 
 
-# ============================================================
 #  STYLE
-# ============================================================
 load_style()
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -87,9 +85,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ============================================================
-#  THRESHOLDS
-# ============================================================
+# Thresholds
 MEAN = 339.91
 STD  = 142.69
 LOW_MAX = MEAN - STD
@@ -101,24 +97,19 @@ PCT_TOL  = 5.0
 ABS_TOL  = 10.0
 
 
-# ============================================================
-#  INPUTS
-# ============================================================
+
+#  Input
 prev_use = st.number_input("Enter previous consumption:", min_value=0.0, step=0.1)
 curr_use = st.number_input("Enter current consumption:", min_value=0.0, step=0.1)
 
 predict_btn = st.button("🔍 Predict")
 
-# ============================================================
 #  منع تكرار حفظ السجل 
-# ============================================================
 if "saved_once" not in st.session_state:
     st.session_state.saved_once = False
 
 
-# ============================================================
-#  PREDICTION LOGIC
-# ============================================================
+#  Prediction logic
 if predict_btn:
 
     # إعادة التهيئة لكل عملية تنبؤ جديدة
@@ -138,7 +129,7 @@ if predict_btn:
     prev_level = level(prev_use)
     curr_level = level(curr_use)
 
-    # == Stable ==
+    #  Stable 
     if abs(diff) < ABS_TOL or abs(change_rate) < PCT_TOL:
         st.success(f"✅ Stable usage (Δ={diff:.0f} L, {change_rate:.1f}%). No action needed.")
         if not st.session_state.saved_once:
@@ -146,7 +137,7 @@ if predict_btn:
             st.session_state.saved_once = True
 
     else:
-        # == Leak ==
+        # Leak 
         if change_rate >= LEAK_PCT:
             st.error(f"🚨 Leak/Extreme overuse detected! +{change_rate:.1f}%. Check the system immediately.")
             send_email_alert(curr_use, change_rate)
@@ -155,21 +146,21 @@ if predict_btn:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Leak")
                 st.session_state.saved_once = True
 
-        # == Warning ==
+        # Warning 
         elif change_rate >= WARN_PCT:
             st.warning(f"⚠️ High increase (+{change_rate:.1f}%). Please monitor usage.")
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Warning")
                 st.session_state.saved_once = True
 
-        # == Decrease ==
+        #  Decrease 
         elif change_rate <= -PCT_TOL:
             st.success(f"✅ Excellent! Usage decreased by {abs(change_rate):.1f}%.")
             if not st.session_state.saved_once:
                 save_prediction(prev_use, curr_use, diff, change_rate, "Decrease")
                 st.session_state.saved_once = True
 
-        # == Normal ==
+        #  Normal 
         else:
             st.success(f"✅ Normal change ({change_rate:.1f}%).")
             if not st.session_state.saved_once:
