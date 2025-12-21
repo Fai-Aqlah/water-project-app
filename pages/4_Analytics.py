@@ -34,14 +34,14 @@ st.markdown("""
 # PAGE TITLE
 st.title("📊 Water Analytics Dashboard 💧")
 
-# LOAD DATABASE DATA
+# Load database data
 data = load_predictions()
 
 if not data:
     st.warning("⚠️ No data available for analytics.")
     st.stop()
 
-# Convert to DataFrame
+# Convert to dataframe
 df = pd.DataFrame(data, columns=[
     "ID",
     "Previous",
