@@ -25,7 +25,7 @@ def init_db():
     conn.close()
 
 
-#  SAVE PREDICTION
+#  Seved prediction
 def save_prediction(prev_use, curr_use, diff, change_rate, result):
 
     # Reject zero or negative values (not allowed in your model logic)
@@ -49,9 +49,7 @@ def save_prediction(prev_use, curr_use, diff, change_rate, result):
     conn.close()
 
 
-# ============================================================
-#  LOAD ALL RECORDS
-# ============================================================
+#  Load all records
 def load_predictions():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
