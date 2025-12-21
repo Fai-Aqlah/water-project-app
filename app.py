@@ -117,6 +117,7 @@ if predict_btn:
 
     if prev_use <= 0:
         st.error("⚠️ Previous consumption must be greater than 0.")
+        st.stop()
 
     diff = curr_use - prev_use
     change_rate = (diff / prev_use) * 100
