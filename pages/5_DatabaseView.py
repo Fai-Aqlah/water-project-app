@@ -9,10 +9,7 @@ if not st.session_state.get("logged_in"):
 
 username = st.session_state.get("username", "User")
 
-with st.sidebar:
-    st.page_link("pages/home.py", label="Home")
-    st.page_link("app.py", label="app")
-    st.page_link("pages/4_Analytics.py", label="Analytics")
+
 
 
 st.title("📊 Stored Predictions History")
