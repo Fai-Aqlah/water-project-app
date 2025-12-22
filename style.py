@@ -42,7 +42,7 @@ header {
     animation: fadeInDown 1s ease-in-out, glowEffect 3s infinite ease-in-out;
 }
 
-/* 🌿 تأثير التوهّج الأخضر الناعم */
+/*  تأثير التوهج الأخضر  */
 @keyframes glowEffect {
     0% { text-shadow: 1px 1px 4px rgba(0,0,0,0.2), 0 0 10px #81c784, 0 0 20px #a5d6a7; }
     50% { text-shadow: 1px 1px 4px rgba(0,0,0,0.2), 0 0 15px #a5d6a7, 0 0 30px #c8e6c9; }
@@ -155,7 +155,7 @@ div.stButton > button:hover {
 }
 
     
-    /* ==== أزرار الإدخال والتنبؤ ==== */
+    /*  أزرار الإدخال والتنبؤ  */
 .stNumberInput input {
     font-size: 20px;              /* تكبير الخط داخل الصناديق */
     font-weight: 600;
