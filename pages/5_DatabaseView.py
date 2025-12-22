@@ -61,7 +61,8 @@ else:
     df["Change Rate (%)"] = df["Change Rate (%)"].astype(float).round(2)
 
     # Display table
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, use_container_width=True, hide_index=True)
+
 
     # Count
     st.success(f"✔ Total Records: {len(df)}")
