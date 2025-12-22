@@ -98,7 +98,7 @@ with tab1:
     fig3 = px.histogram(df, x="ChangeRate", nbins=20, color_discrete_sequence=["#d02728"])
     st.plotly_chart(fig3, use_container_width=True)
 
-# TAB 2 — LEAK ANALYSIS
+# Tab 2 — Leak analysis
 with tab2:
     fig4 = px.histogram(
     df,
@@ -114,14 +114,29 @@ with tab2:
    
     st.plotly_chart(fig4, use_container_width=True)
 
-# TAB 3 — COMPARISON
+# Tab 3 — Coparison
 with tab3:
     st.subheader("🔍Previous vs Current Consumption Comparison")
-    fig5 = px.scatter(df, x="Previous", y="Current", color="Result",
-                      color_discrete_sequence=["#4177b4", "#d02728", "#28a02c"])
-    fig5.update_layout(xaxis_title="Previous Consumption", yaxis_title="Current Consumption")
-    st.plotly_chart(fig5, use_container_width=True)
+    fig5 = px.scatter(
+    df,
+    x="Previous",
+    y="Current",
+    color="Result",
+    color_discrete_map={
+        "Leak": "red",
+        "Decrease": "green",
+        "Warning": "orange"
+    }
+)
 
+fig5.update_layout(
+    xaxis_title="Previous Consumption",
+    yaxis_title="Current Consumption"
+)
+
+st.plotly_chart(fig5, use_container_width=True)
+
+    
 # TAB 4 — TRENDS
 with tab4:
     st.subheader("📈Consumption Trends Over Time")
