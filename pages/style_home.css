@@ -21,9 +21,9 @@ main > div {
 }
 
 
-/* ============================================
-   SUBTITLE — العنوان الفرعي
-============================================ */
+/* 
+   العنوان الفرعي
+ */
 .subtitle {
     text-align: center;
     font-size: 40px !important;
@@ -32,9 +32,9 @@ main > div {
     margin-bottom: 40px;
 }
 
-/* ============================================
+/* 
    PROJECT DESCRIPTION — وصف المشروع
-============================================ */
+ */
 .project-description {
     text-align: center;
     max-width: 850px;
@@ -61,7 +61,7 @@ h3.benefit-title {
 }
 
 /* 
-   BENEFIT CARDS — البوكسات
+   Benefit cards — البوكسات
  */
 .benefit-card {
     width: 85%;
@@ -95,7 +95,7 @@ h3.benefit-title {
     box-shadow: 0px 4px 25px rgba(0,0,0,0.07);
 }
 
-/* ===== WHY BOX ===== */
+/*  Why box  */
 .why-box {
     background-color: #ffe7d1;   /* Peach */
     padding: 25px 35px;
