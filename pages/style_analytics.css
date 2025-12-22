@@ -20,7 +20,7 @@ button[data-baseweb="tab"] {
 .block-container {
     padding-top: 1.5rem;
 }
-/* ⭐ زر primary (معتمد للتنبؤ وغيره) */
+/*  زر primary معتمد للتنبؤ وغيره */
 button[kind="primary"] {
     background: linear-gradient(90deg, #009688, #0277bd) !important;
     color: white !important;
