@@ -86,28 +86,37 @@ tab1, tab2, tab3, tab4 = st.tabs([
 
 # TAB 1 — DISTRIBUTIONS
 with tab1:
-    st.subheader(" Previous Consumption Distribution")
+    st.subheader("📦Previous Consumption Distribution")
     fig1 = px.histogram(df, x="Previous", nbins=20, color_discrete_sequence=["#4177b4"])
     st.plotly_chart(fig1, use_container_width=True)
 
-    st.subheader(" Current Consumption Distribution")
+    st.subheader("📦Current Consumption Distribution")
     fig2 = px.histogram(df, x="Current", nbins=20, color_discrete_sequence=["#28a02c"])
     st.plotly_chart(fig2, use_container_width=True)
 
-    st.subheader(" Change Rate Distribution")
+    st.subheader("📦Change Rate Distribution")
     fig3 = px.histogram(df, x="ChangeRate", nbins=20, color_discrete_sequence=["#d02728"])
     st.plotly_chart(fig3, use_container_width=True)
 
 # TAB 2 — LEAK ANALYSIS
 with tab2:
-    st.subheader(" Leakage Detection (Yes / No)")
-    fig4 = px.histogram(df, x="Result", color="Result",
-                        color_discrete_sequence=["#4177b4", "#d02728", "#28a02c"])
+    fig4 = px.histogram(
+    df,
+    x="Result",
+    color="Result",
+    color_discrete_map={
+        "Leak": "red",
+        "Decrease": "green",
+        "Warning": "orange"
+    }
+)
+
+   
     st.plotly_chart(fig4, use_container_width=True)
 
 # TAB 3 — COMPARISON
 with tab3:
-    st.subheader("Previous vs Current Consumption Comparison")
+    st.subheader("🔍Previous vs Current Consumption Comparison")
     fig5 = px.scatter(df, x="Previous", y="Current", color="Result",
                       color_discrete_sequence=["#4177b4", "#d02728", "#28a02c"])
     fig5.update_layout(xaxis_title="Previous Consumption", yaxis_title="Current Consumption")
@@ -115,7 +124,7 @@ with tab3:
 
 # TAB 4 — TRENDS
 with tab4:
-    st.subheader("📈 Consumption Trends Over Time")
+    st.subheader("📈Consumption Trends Over Time")
     df_sorted = df.sort_values(by="Timestamp")
 
     fig6 = px.line(df_sorted, x="Timestamp", y="Current",
@@ -123,7 +132,7 @@ with tab4:
     fig6.update_layout(xaxis_title="Time", yaxis_title="Current Consumption")
     st.plotly_chart(fig6, use_container_width=True)
 
-    st.subheader("📈 Change Rate Trend")
+    st.subheader("📈Change Rate Trend")
     fig7 = px.line(df_sorted, x="Timestamp", y="ChangeRate",
                    color_discrete_sequence=["#d02728"])
     fig7.update_layout(xaxis_title="Time", yaxis_title="Change Rate (%)")
