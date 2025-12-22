@@ -10,7 +10,7 @@ main > div {
     background-color: #F2FFF7 !important;
 }
 
-/* ===== HEADER STYLE ===== */
+/* Header style  */
 .login-header {
     width: 75%;
     margin: auto;
@@ -34,7 +34,7 @@ main > div {
     margin-top: 12px;
     color: #87CEFA;
 }
-/* ===== تنسيق رسائل الأخطاء ===== */
+/*  تنسيق رسائل الأخطاء */
 
 .error-box {
     background: #ffdddd;
@@ -84,7 +84,7 @@ input:-webkit-autofill:focus {
     color: #000 !important;
 }
 
-/* ===== تنسيق صندوق الإدخال ===== */
+/* تنسيق صندوق الإدخال  */
 
 div[data-testid="stTextInput"] input {
     font-size: 24px !important;
@@ -96,7 +96,7 @@ div[data-testid="stTextInput"] input {
     color: #103A5C !important;
 }
 
-/* ===== تنسيق اسم الحقل (الليبل) ===== */
+/*تنسيق اسم الحقل (الليبل)  */
 
 div[data-testid="stTextInput"] label {
     font-size: 24px !important;
@@ -106,7 +106,7 @@ div[data-testid="stTextInput"] label {
 
 
 
-/* ===== تكبير الليبل (Username / Password) ===== */
+/* تكبير الليبل (Username / Password)  */
 
 div[data-testid="stTextInput"] label p {
     font-size: 26px !important;
