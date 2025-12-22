@@ -86,28 +86,28 @@ tab1, tab2, tab3, tab4 = st.tabs([
 
 # TAB 1 — DISTRIBUTIONS
 with tab1:
-    st.subheader("📦 Previous Consumption Distribution")
+    st.subheader(" Previous Consumption Distribution")
     fig1 = px.histogram(df, x="Previous", nbins=20, color_discrete_sequence=["#4177b4"])
     st.plotly_chart(fig1, use_container_width=True)
 
-    st.subheader("📦 Current Consumption Distribution")
+    st.subheader(" Current Consumption Distribution")
     fig2 = px.histogram(df, x="Current", nbins=20, color_discrete_sequence=["#28a02c"])
     st.plotly_chart(fig2, use_container_width=True)
 
-    st.subheader("📦 Change Rate Distribution")
+    st.subheader(" Change Rate Distribution")
     fig3 = px.histogram(df, x="ChangeRate", nbins=20, color_discrete_sequence=["#d02728"])
     st.plotly_chart(fig3, use_container_width=True)
 
 # TAB 2 — LEAK ANALYSIS
 with tab2:
-    st.subheader("🚨 Leakage Detection (Yes / No)")
+    st.subheader(" Leakage Detection (Yes / No)")
     fig4 = px.histogram(df, x="Result", color="Result",
                         color_discrete_sequence=["#4177b4", "#d02728", "#28a02c"])
     st.plotly_chart(fig4, use_container_width=True)
 
 # TAB 3 — COMPARISON
 with tab3:
-    st.subheader("🔍 Previous vs Current Consumption Comparison")
+    st.subheader("Previous vs Current Consumption Comparison")
     fig5 = px.scatter(df, x="Previous", y="Current", color="Result",
                       color_discrete_sequence=["#4177b4", "#d02728", "#28a02c"])
     fig5.update_layout(xaxis_title="Previous Consumption", yaxis_title="Current Consumption")
